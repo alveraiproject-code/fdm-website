@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/kurse", label: "Kurse & Weiterbildung" },
   { href: "/azav", label: "AZAV-Förderung" },
   { href: "/ueber-uns", label: "Über uns" },
+  { href: "/leitbild", label: "Leitbild" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 

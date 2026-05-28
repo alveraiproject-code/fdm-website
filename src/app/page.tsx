@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   CheckCircle,
   Award,
@@ -118,6 +119,13 @@ export default function Home() {
       <section className="bg-slate-50 border-b border-slate-200 py-5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+            <Image
+              src="/gzq-zertifikat.svg"
+              alt="GZQ AZAV Zertifizierung"
+              width={48}
+              height={48}
+              className="flex-shrink-0"
+            />
             {[
               "AZAV-zertifiziert (GZQ / DAkkS)",
               "Maßnahmenzertifikat §81 SGB III",

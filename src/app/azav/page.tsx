@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { CheckCircle, Award, Clock, Users, GraduationCap, ArrowRight, FileText, Phone } from "lucide-react";
 
 const modules = [
@@ -85,7 +86,16 @@ export default function AzavPage() {
               className="rounded-3xl p-8"
               style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)" }}
             >
-              <h3 className="font-bold text-lg mb-5">Auf einen Blick</h3>
+              <div className="flex items-center gap-3 mb-5">
+                <Image
+                  src="/gzq-zertifikat.svg"
+                  alt="GZQ AZAV Zertifizierung"
+                  width={52}
+                  height={52}
+                  className="flex-shrink-0"
+                />
+                <h3 className="font-bold text-lg">Auf einen Blick</h3>
+              </div>
               <div className="space-y-4">
                 {[
                   { icon: Clock, label: "Dauer", value: "48 Wochen" },

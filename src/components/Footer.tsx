@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
 
+
 export default function Footer() {
   return (
     <footer className="bg-[#1e293b] text-slate-300">
@@ -20,10 +21,17 @@ export default function Footer() {
               AZAV-zertifizierter Bildungsträger und Online-Akademie für
               berufliche Weiterbildung und KI-Kompetenz.
             </p>
-            <div className="flex items-center gap-2 text-xs text-slate-500">
-              <span className="inline-flex items-center gap-1 bg-[#3f74bc]/20 text-[#51ade5] px-2 py-1 rounded-full font-medium">
+            <div className="flex items-center gap-3 mt-2">
+              <span className="inline-flex items-center gap-1 bg-[#3f74bc]/20 text-[#51ade5] px-2 py-1 rounded-full text-xs font-medium">
                 AZAV-zertifiziert
               </span>
+              <Image
+                src="/gzq-zertifikat.svg"
+                alt="GZQ AZAV Zertifizierung"
+                width={48}
+                height={48}
+                className="opacity-90"
+              />
             </div>
           </div>
 
@@ -38,6 +46,7 @@ export default function Footer() {
                 { href: "/kurse", label: "Kurse & Weiterbildung" },
                 { href: "/azav", label: "AZAV-Förderung" },
                 { href: "/ueber-uns", label: "Über uns" },
+                { href: "/leitbild", label: "Leitbild" },
                 { href: "/kontakt", label: "Kontakt" },
               ].map((link) => (
                 <li key={link.href}>
