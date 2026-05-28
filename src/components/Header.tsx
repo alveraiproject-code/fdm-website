@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/", label: "Startseite" },
   { href: "/kurse", label: "Kurse & Weiterbildung" },
   { href: "/azav", label: "AZAV-Förderung" },
+  { href: "/qcg", label: "QCG-Förderung" },
   { href: "/ueber-uns", label: "Über uns" },
   { href: "/leitbild", label: "Leitbild" },
   { href: "/kontakt", label: "Kontakt" },

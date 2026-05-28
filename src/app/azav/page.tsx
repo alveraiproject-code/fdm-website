@@ -13,6 +13,8 @@ import {
   Wifi,
   BookOpen,
   Target,
+  Building2,
+  Sparkles,
 } from "lucide-react";
 
 const modules = [
@@ -463,6 +465,49 @@ export default function AzavPage() {
                 <span className="text-sm text-slate-700">{item}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* QCG Hinweis */}
+      <section
+        className="py-12"
+        style={{ background: "linear-gradient(135deg, #1a4731 0%, #166534 60%, #15803d 100%)" }}
+      >
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            <div className="flex-shrink-0">
+              <div
+                className="w-16 h-16 rounded-2xl flex items-center justify-center"
+                style={{ background: "rgba(255,255,255,0.15)" }}
+              >
+                <Building2 size={30} className="text-white" />
+              </div>
+            </div>
+            <div className="flex-1 text-white text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full mb-3" style={{ background: "rgba(255,255,255,0.15)", color: "#86efac" }}>
+                <Sparkles size={12} />
+                Alternativ: Qualifizierungschancengesetz (QCG)
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold mb-2">
+                Noch in Beschäftigung? Dann gilt das QCG für Sie!
+              </h3>
+              <p className="text-sm leading-relaxed max-w-2xl" style={{ color: "#bbf7d0" }}>
+                Der Bildungsgutschein ist für Arbeitssuchende. Wenn Sie aktuell <strong className="text-white">angestellt</strong> sind,
+                können Sie denselben Kurs über das <strong className="text-white">Qualifizierungschancengesetz (QCG)</strong> fördern lassen –
+                Ihr Arbeitgeber erhält je nach Betriebsgröße <strong className="text-white">bis zu 100 %</strong> der Kurskosten erstattet.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <Link
+                href="/qcg"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white font-semibold rounded-xl hover:bg-green-50 transition-colors text-sm whitespace-nowrap"
+                style={{ color: "#166534" }}
+              >
+                Mehr über das QCG
+                <ArrowRight size={15} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
