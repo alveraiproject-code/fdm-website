@@ -1,9 +1,50 @@
+import type { Metadata } from "next";
 import { Award, Users, MapPin, Mail, Phone, GraduationCap } from "lucide-react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Über uns – FDM GmbH | AZAV-zertifizierter Bildungsträger",
+  description:
+    "FDM GmbH – AZAV-zertifizierter Bildungsträger in Eislingen/Fils. Gegründet von Dursun Alver (Dipl. Wirtschaftsinformatiker FH). Erfahren Sie mehr über unser Unternehmen und unsere Mission.",
+  keywords: [
+    "FDM GmbH",
+    "Dursun Alver",
+    "Bildungsträger Eislingen",
+    "AZAV Zertifizierung",
+    "Weiterbildung Baden-Württemberg",
+    "Online Marketing Kurs",
+  ],
+  alternates: { canonical: "https://www.fdm-group.de/ueber-uns" },
+  openGraph: {
+    url: "https://www.fdm-group.de/ueber-uns",
+    title: "Über uns – FDM GmbH | AZAV-zertifizierter Bildungsträger",
+    description:
+      "Lernen Sie FDM GmbH und Geschäftsführer Dursun Alver kennen – AZAV-zertifizierter Bildungsträger mit Sitz in Eislingen/Fils.",
+  },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://www.fdm-group.de/ueber-uns/#ceo",
+  name: "Dursun Alver",
+  jobTitle: "Geschäftsführer",
+  description: "Diplom-Wirtschaftsinformatiker (FH), Gründer und Geschäftsführer der FDM GmbH",
+  worksFor: { "@id": "https://www.fdm-group.de/#organization" },
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Hochschule – Diplom Wirtschaftsinformatiker (FH)",
+  },
+  url: "https://www.fdm-group.de/ueber-uns",
+};
 
 export default function UeberUnsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+      />
       {/* Hero */}
       <section
         className="py-20 text-white"

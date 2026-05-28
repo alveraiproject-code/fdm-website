@@ -1,0 +1,57 @@
+# FDM GmbH – Bildungsträger & Online-Akademie
+
+> FDM GmbH ist ein AZAV-zertifizierter Bildungsträger und Online-Akademie mit Sitz in Eislingen/Fils, Deutschland. Das Unternehmen bietet staatlich geförderte Weiterbildungen sowie über 100 KI-Online-Kurse an.
+
+## Unternehmen
+
+- **Name:** FDM GmbH
+- **Geschäftsführer:** Dursun Alver (Dipl. Wirtschaftsinformatiker FH)
+- **Adresse:** Schillerstraße 21, 73054 Eislingen/Fils, Deutschland
+- **Telefon:** 07161-6275120
+- **E-Mail:** info@fdm-group.de
+- **Website:** https://www.fdm-group.de
+- **Online-Akademie:** https://alvatar.de
+- **Zertifizierung:** AZAV §82 SGB III, Zertifikat-Nr. Z-000473-2, GZQ GmbH / DAkkS, gültig bis 17.10.2029
+- **Fachbereich:** FB4 – Berufliche Weiterbildung
+
+## Angebote
+
+### 1. AZAV-zertifizierter Lehrgang: Online Marketing Experte (m/w/d)
+- **Förderung:** Bildungsgutschein §81 SGB III (Agentur für Arbeit / Jobcenter)
+- **Dauer:** 48 Wochen Vollzeit oder 96 Wochen Teilzeit
+- **Umfang:** 1.920 Unterrichtseinheiten
+- **Teilnehmer:** max. 15 Personen
+- **Maßnahme-ID:** 01/1024
+- **Durchführung:** 100 % online (Live-Webinare, Selbstlernphasen, Online-Tests, Projektarbeiten)
+- **Zielgruppe:** Arbeitssuchende, Quereinsteiger, Berufsrückkehrer
+- **Voraussetzungen:** Hauptschulabschluss, Deutschkenntnisse B2, Internetzugang, PC/Laptop mit Webcam
+- **Module:** Grundlagen Online-Marketing · SEO · SEA/Google Ads · Social Media · E-Mail-Marketing & CRM · Google Analytics 4 · Content-Marketing · Performance Marketing · Strategieprojekt
+- **Seite:** https://www.fdm-group.de/azav
+
+### 2. Qualifizierungschancengesetz (QCG) – Förderung für Beschäftigte
+- **Förderung:** §82 SGB III (Arbeitgeber stellt Antrag bei Agentur für Arbeit)
+- **Förderhöhe:** bis 100 % (< 10 MA) / bis 50 % (10–249 MA) / bis 25 % (≥ 250 MA)
+- **Zielgruppe:** Sozialversicherungspflichtig Beschäftigte und deren Arbeitgeber
+- **Seite:** https://www.fdm-group.de/qcg
+
+### 3. Online-Kurse auf alvatar.de (nicht AZAV-zertifiziert)
+- **Anzahl:** 100+ Kurse
+- **Themen:** Künstliche Intelligenz, Automatisierung, Online-Marketing, Business, Technik, Kreatives
+- **Plattform:** https://alvatar.de
+- **Seite:** https://www.fdm-group.de/kurse
+
+## Seitenübersicht
+
+- https://www.fdm-group.de – Startseite
+- https://www.fdm-group.de/azav – AZAV-Förderung / Bildungsgutschein
+- https://www.fdm-group.de/qcg – Qualifizierungschancengesetz
+- https://www.fdm-group.de/kurse – Alle Online-Kurse
+- https://www.fdm-group.de/ueber-uns – Über FDM GmbH
+- https://www.fdm-group.de/leitbild – Unternehmensleitbild (AZAV-Auditanforderung)
+- https://www.fdm-group.de/kontakt – Kontakt & Beratungsanfrage
+- https://www.fdm-group.de/impressum – Impressum
+- https://www.fdm-group.de/datenschutz – Datenschutzerklärung
+
+## Schlüsselbegriffe
+
+AZAV, Bildungsträger, Bildungsgutschein, Qualifizierungschancengesetz, QCG, Online Marketing Experte, Weiterbildung, Eislingen, FDM GmbH, alvatar, KI-Kurse, geförderte Weiterbildung, Arbeitssuchende, Umschulung, Agentur für Arbeit, Jobcenter, SGB III

@@ -17,22 +17,26 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Qualifizierungschancengesetz (QCG) – Förderung für Arbeitgeber & Arbeitnehmer | FDM GmbH",
+  title: "Qualifizierungschancengesetz (QCG) – Förderung für Arbeitgeber & Arbeitnehmer",
   description:
-    "Das Qualifizierungschancengesetz fördert Weiterbildungen für Beschäftigte. FDM GmbH ist AZAV-zertifiziert – Ihr Kurs zählt. Bis zu 100 % Kostenübernahme für Arbeitgeber möglich.",
+    "Das Qualifizierungschancengesetz (§82 SGB III) fördert Weiterbildungen für Beschäftigte. Bis zu 100 % Kostenübernahme für Arbeitgeber. FDM GmbH ist AZAV-zertifiziert und direkt anerkannt.",
   keywords: [
     "Qualifizierungschancengesetz",
     "QCG",
-    "Weiterbildungsförderung",
-    "Arbeitgeber Förderung",
-    "Arbeitnehmer Weiterbildung",
+    "§82 SGB III",
+    "Weiterbildungsförderung Arbeitgeber",
+    "Weiterbildung Beschäftigte",
+    "Mitarbeiterqualifizierung",
     "AZAV",
-    "Bildungsgutschein",
+    "Förderung Digitalisierung",
     "FDM GmbH",
   ],
+  alternates: { canonical: "https://www.fdm-group.de/qcg" },
   openGraph: {
-    title: "Qualifizierungschancengesetz (QCG) – Weiterbildung für Unternehmen",
-    description: "Bis zu 100 % Förderung für Ihre Mitarbeiterweiterbildung – AZAV-zertifiziert durch FDM GmbH.",
+    url: "https://www.fdm-group.de/qcg",
+    title: "Qualifizierungschancengesetz (QCG) – Weiterbildungsförderung für Unternehmen | FDM GmbH",
+    description:
+      "Bis zu 100 % Förderung für Mitarbeiterweiterbildung nach §82 SGB III. FDM GmbH ist AZAV-zertifiziert – Ihr Kurs zählt sofort.",
     type: "website",
     locale: "de_DE",
   },
@@ -144,9 +148,81 @@ const steps = [
   },
 ];
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://www.fdm-group.de/qcg/#faq",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Gilt das QCG auch für Mini-Jobber oder Teilzeitkräfte?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nein – das Qualifizierungschancengesetz gilt ausschließlich für sozialversicherungspflichtig Beschäftigte. Geringfügig Beschäftigte (450-Euro-Jobs) sind grundsätzlich ausgeschlossen.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Wie viel Förderung erhalten Arbeitgeber beim QCG?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Die Förderhöhe richtet sich nach der Unternehmensgröße: Kleinstunternehmen (< 10 Mitarbeiter) erhalten bis zu 100 %, kleine Unternehmen (10–249 Mitarbeiter) bis zu 50 % und große Unternehmen (ab 250 Mitarbeiter) bis zu 25 % der Weiterbildungskosten.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Muss der Mitarbeiter der Weiterbildung zustimmen?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ja – Arbeitgeber und Arbeitnehmer müssen sich einigen. Der Kurs kann nicht einseitig vom Arbeitgeber angeordnet werden. Eine gemeinsame Vereinbarung ist Voraussetzung für den Förderantrag.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Wie lange dauert die Bewilligung durch die Agentur für Arbeit?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Erfahrungsgemäß dauert die Bearbeitung zwei bis vier Wochen. Es empfiehlt sich, den Antrag mindestens vier Wochen vor dem gewünschten Starttermin zu stellen.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Können auch mehrere Mitarbeiter gleichzeitig gefördert werden?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ja – es gibt keine Begrenzung auf eine Person. Mehrere Mitarbeitende eines Unternehmens können gleichzeitig gefördert werden, sofern die jeweiligen Voraussetzungen vorliegen.",
+      },
+    },
+  ],
+};
+
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://www.fdm-group.de/qcg/#service",
+  name: "QCG-Förderberatung – Qualifizierungschancengesetz",
+  description:
+    "FDM GmbH berät Arbeitgeber und Arbeitnehmer zur Förderung nach dem Qualifizierungschancengesetz (§82 SGB III). Wir begleiten den kompletten Antragsprozess.",
+  provider: { "@id": "https://www.fdm-group.de/#organization" },
+  serviceType: "Weiterbildungsförderung",
+  areaServed: {
+    "@type": "Country",
+    name: "Deutschland",
+  },
+  url: "https://www.fdm-group.de/qcg",
+};
+
 export default function QcgPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd).replace(/</g, "\\u003c") }}
+      />
       {/* Hero */}
       <section
         className="py-20 text-white overflow-hidden relative"

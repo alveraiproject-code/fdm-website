@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -12,6 +13,31 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { courses } from "@/lib/courses";
+
+export const metadata: Metadata = {
+  title: "FDM GmbH – Bildungsträger & Online-Akademie | AZAV-zertifiziert",
+  description:
+    "FDM GmbH ist Ihr AZAV-zertifizierter Partner für berufliche Weiterbildung in Eislingen. Bildungsgutschein, QCG-Förderung und 100+ KI-Online-Kurse auf alvatar.de.",
+  alternates: { canonical: "https://www.fdm-group.de" },
+  openGraph: {
+    url: "https://www.fdm-group.de",
+    title: "FDM GmbH – Bildungsträger & Online-Akademie | AZAV-zertifiziert",
+    description:
+      "AZAV-zertifizierter Bildungsträger: geförderte Weiterbildungen mit Bildungsgutschein, QCG-Förderung und über 100 KI-Online-Kurse.",
+  },
+};
+
+const homepageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.fdm-group.de/#webpage",
+  url: "https://www.fdm-group.de",
+  name: "FDM GmbH – Bildungsträger & Online-Akademie",
+  description: "AZAV-zertifizierter Bildungsträger mit geförderten Weiterbildungen und KI-Online-Kursen.",
+  isPartOf: { "@id": "https://www.fdm-group.de/#website" },
+  about: { "@id": "https://www.fdm-group.de/#organization" },
+  inLanguage: "de-DE",
+};
 
 const featuredCourses = courses.slice(0, 6);
 
@@ -48,6 +74,10 @@ const usps = [
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageJsonLd).replace(/</g, "\\u003c") }}
+      />
       {/* Hero */}
       <section className="hero-gradient text-white overflow-hidden relative">
         <div

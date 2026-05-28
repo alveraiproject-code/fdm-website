@@ -1,3 +1,12 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Datenschutzerklärung – FDM GmbH",
+  description: "Datenschutzerklärung der FDM GmbH gemäß DSGVO / EU-Verordnung 2016/679.",
+  robots: { index: false, follow: false },
+  alternates: { canonical: "https://www.fdm-group.de/datenschutz" },
+};
+
 export default function DatenschutzPage() {
   return (
     <section className="py-16 bg-white">

@@ -3,9 +3,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Leitbild – FDM GmbH",
+  title: "Leitbild – Mission, Vision & Qualitätspolitik der FDM GmbH",
   description:
-    "Das Leitbild der FDM GmbH: Mission, Vision, Werte und Qualitätspolitik des AZAV-zertifizierten Bildungsträgers.",
+    "Das offizielle Leitbild der FDM GmbH: Mission, Vision, Unternehmenswerte und Qualitätspolitik. Erstellt im Rahmen der AZAV-Zertifizierung nach GZQ-Auditanforderungen.",
+  keywords: [
+    "Leitbild FDM GmbH",
+    "Mission Vision",
+    "Qualitätspolitik Bildungsträger",
+    "AZAV Audit",
+    "Unternehmenswerte",
+    "GZQ Zertifizierung",
+  ],
+  alternates: { canonical: "https://www.fdm-group.de/leitbild" },
+  openGraph: {
+    url: "https://www.fdm-group.de/leitbild",
+    title: "Leitbild der FDM GmbH – Mission, Vision & Qualitätspolitik",
+    description:
+      "Unser Leitbild: Qualität, Transparenz und Kundenorientierung als Grundlage unserer AZAV-zertifizierten Bildungsarbeit.",
+  },
 };
 
 const werte = [
