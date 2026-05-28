@@ -644,11 +644,11 @@ export default function QcgPage() {
               Kostenlose Beratung anfragen
             </Link>
             <a
-              href="tel:+4971616275126"
+              href="tel:+4971616275120"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-white font-semibold rounded-xl border border-white/30 hover:bg-white/10 transition-colors"
             >
               <Phone size={18} />
-              07161 – 6275126
+              07161 – 6275120
             </a>
           </div>
         </div>

@@ -34,7 +34,7 @@ export default function DatenschutzPage() {
               <br />
               73054 Eislingen/Fils
               <br />
-              Telefon: 07161 – 6275126
+              Telefon: 07161 – 6275120
               <br />
               E-Mail: info@fdm-group.de
               <br />

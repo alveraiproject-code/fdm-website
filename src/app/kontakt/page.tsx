@@ -59,7 +59,7 @@ export default function KontaktPage() {
                 </h2>
                 <div className="space-y-4">
                   <a
-                    href="tel:+4971616275126"
+                    href="tel:+4971616275120"
                     className="flex items-center gap-3 text-slate-700 hover:text-[#3f74bc] transition-colors group"
                   >
                     <div
@@ -70,7 +70,7 @@ export default function KontaktPage() {
                     </div>
                     <div>
                       <p className="text-xs text-slate-500">Telefon</p>
-                      <p className="font-semibold text-sm">07161 – 6275126</p>
+                      <p className="font-semibold text-sm">07161 – 6275120</p>
                     </div>
                   </a>
 

@@ -44,11 +44,11 @@ export default function Header() {
       <div className="bg-[#2c3892] text-white text-sm py-2 hidden md:block">
         <div className="max-w-7xl mx-auto px-6 flex justify-end gap-6">
           <a
-            href="tel:+4971616275126"
+            href="tel:+4971616275120"
             className="flex items-center gap-1.5 hover:text-sky-300 transition-colors"
           >
             <Phone size={13} />
-            07161 – 6275126
+            07161 – 6275120
           </a>
           <a
             href="mailto:info@fdm-group.de"

@@ -130,7 +130,7 @@ export default function UeberUnsPage() {
                   E-Mail
                 </a>
                 <a
-                  href="tel:+4971616275126"
+                  href="tel:+4971616275120"
                   className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50"
                 >
                   <Phone size={12} />
@@ -161,7 +161,7 @@ export default function UeberUnsPage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone size={18} style={{ color: "#3f74bc" }} className="flex-shrink-0" />
-                  <a href="tel:+4971616275126" className="hover:text-[#3f74bc]">07161 – 6275126</a>
+                  <a href="tel:+4971616275120" className="hover:text-[#3f74bc]">07161 – 6275120</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail size={18} style={{ color: "#3f74bc" }} className="flex-shrink-0" />

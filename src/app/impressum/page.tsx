@@ -38,7 +38,7 @@ export default function ImpressumPage() {
               Kontakt
             </h2>
             <p>
-              Telefon: 07161 – 6275126
+              Telefon: 07161 – 6275120
               <br />
               E-Mail:{" "}
               <a
