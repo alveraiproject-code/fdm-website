@@ -39,18 +39,6 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Redirect www → non-www (set your domain here)
-  async redirects() {
-    return [
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.fdm-group.de" }],
-        destination: "https://fdm-group.de/:path*",
-        permanent: true,
-      },
-    ];
-  },
-
   turbopack: {
     // Silence the workspace root warning on Vercel
     root: __dirname,
