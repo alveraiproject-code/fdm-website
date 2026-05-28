@@ -1,16 +1,30 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CheckCircle, Award, Clock, Users, GraduationCap, ArrowRight, FileText, Phone } from "lucide-react";
+import {
+  CheckCircle,
+  Award,
+  Clock,
+  Users,
+  GraduationCap,
+  ArrowRight,
+  FileText,
+  Phone,
+  Monitor,
+  Wifi,
+  BookOpen,
+  Target,
+} from "lucide-react";
 
 const modules = [
-  "Grundlagen des Online-Marketings & digitale Strategie",
-  "Suchmaschinenoptimierung (SEO) & Content-Marketing",
-  "Social Media Marketing & Community Management",
-  "Google Ads, Meta Ads & Paid Advertising",
-  "E-Mail-Marketing & Marketing-Automation",
-  "Analytics, KPI-Messung & Conversion-Optimierung",
-  "Affiliate-Marketing & Influencer-Marketing",
-  "KI-Tools im Online-Marketing",
+  { num: 1, title: "Grundlagen des Online-Marketings", desc: "Überblick über digitale Kanäle, Marketingziele und strategische Planung einer Online-Präsenz." },
+  { num: 2, title: "Suchmaschinenoptimierung (SEO)", desc: "On-Page und Off-Page-Optimierung, Keyword-Recherche, technische SEO und Content-Strategie." },
+  { num: 3, title: "Suchmaschinenwerbung (SEA) mit Google Ads", desc: "Kampagnenplanung, Anzeigenformate, Gebotsstrategien und Conversion-Tracking in Google Ads." },
+  { num: 4, title: "Social Media Marketing", desc: "Plattformstrategien für LinkedIn, Instagram, Facebook & Co., Community Management und organische Reichweite." },
+  { num: 5, title: "E-Mail-Marketing & CRM", desc: "Newsletter-Konzeption, Automatisierungen, Segmentierung und rechtssichere Umsetzung (DSGVO)." },
+  { num: 6, title: "Webanalyse & Google Analytics 4", desc: "Datenerhebung und Interpretation mit GA4, Dashboards, KPI-Definitionen und datenbasierte Entscheidungen." },
+  { num: 7, title: "Content-Marketing & Storytelling", desc: "Redaktionsplanung, Textformate, Storytelling-Techniken und Content-Distribution über mehrere Kanäle." },
+  { num: 8, title: "Performance Marketing & KPIs", desc: "ROI-Berechnung, A/B-Testing, Conversion-Optimierung und kanalübergreifendes Kampagnen-Controlling." },
+  { num: 9, title: "Projektarbeit: Entwicklung einer Online-Marketing-Strategie", desc: "Eigenständige Erstellung einer vollständigen Online-Marketing-Strategie als Abschlussprojekt." },
 ];
 
 const steps = [
@@ -98,7 +112,8 @@ export default function AzavPage() {
               </div>
               <div className="space-y-4">
                 {[
-                  { icon: Clock, label: "Dauer", value: "48 Wochen" },
+                  { icon: Clock, label: "Vollzeit", value: "48 Wochen" },
+                  { icon: Clock, label: "Teilzeit", value: "96 Wochen" },
                   { icon: FileText, label: "Unterrichtsstunden", value: "1.920 UE" },
                   { icon: Users, label: "Teilnehmerzahl", value: "max. 15 Personen" },
                   { icon: Award, label: "Abschluss", value: "Abschlusszertifikat" },
@@ -152,7 +167,7 @@ export default function AzavPage() {
               },
               {
                 title: "Praxisrelevante Inhalte",
-                desc: "Von SEO über Social Media bis zu KI-Tools im Marketing – alle Themen sind direkt beruflich verwertbar.",
+                desc: "Von SEO über Social Media bis zu Performance Marketing – alle Themen sind direkt beruflich verwertbar.",
               },
               {
                 title: "Anerkanntes Zertifikat",
@@ -176,48 +191,33 @@ export default function AzavPage() {
         </div>
       </section>
 
-      {/* Inhalte */}
+      {/* Zielgruppe & Zugangsvoraussetzungen */}
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-12">
+
+            {/* Zielgruppe */}
             <div>
-              <h2 className="text-3xl font-bold mb-4" style={{ color: "#1e293b" }}>
-                Kursinhalte
+              <div
+                className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full mb-4"
+                style={{ background: "#eff6ff", color: "#3f74bc" }}
+              >
+                <Users size={14} />
+                Zielgruppe
+              </div>
+              <h2 className="text-2xl font-bold mb-4" style={{ color: "#1e293b" }}>
+                Für wen ist dieser Lehrgang?
               </h2>
-              <p className="text-slate-600 mb-6 leading-relaxed">
-                Der Lehrgang „Online Marketing Experte (m/w/d)" vermittelt
-                praxisnahes Wissen aus allen relevanten Bereichen des digitalen
-                Marketings – von der Strategie bis zur Umsetzung.
+              <p className="text-slate-600 mb-5 leading-relaxed">
+                Der Lehrgang richtet sich an Personen, die einen Einstieg oder
+                Neustart im digitalen Marketing anstreben.
               </p>
               <ul className="space-y-3">
-                {modules.map((mod, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
-                    <div
-                      className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5"
-                      style={{ background: "#3f74bc", color: "white" }}
-                    >
-                      {i + 1}
-                    </div>
-                    {mod}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-3xl font-bold mb-4" style={{ color: "#1e293b" }}>
-                Fördervoraussetzungen
-              </h2>
-              <p className="text-slate-600 mb-6 leading-relaxed">
-                Sie können die Weiterbildung über einen Bildungsgutschein
-                fördern lassen, wenn eine der folgenden Voraussetzungen zutrifft:
-              </p>
-              <ul className="space-y-3 mb-6">
                 {[
-                  "Sie sind arbeitssuchend oder von Arbeitslosigkeit bedroht",
-                  "Sie beziehen Arbeitslosengeld I (ALG I)",
-                  "Sie beziehen Bürgergeld (ALG II / Jobcenter)",
-                  "Sie sind in einem Bereich tätig, in dem Weiterbildungsbedarf besteht",
+                  "Arbeitssuchende und Arbeitslose, die eine neue berufliche Perspektive suchen",
+                  "Quereinsteiger aus anderen Berufsfeldern mit Interesse an digitalem Marketing",
+                  "Berufsrückkehrer nach Elternzeit oder längerer Auszeit",
+                  "Personen, die ihre vorhandenen Marketing-Kenntnisse erweitern möchten",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-slate-700">
                     <CheckCircle size={16} style={{ color: "#3f74bc", marginTop: 2 }} className="flex-shrink-0" />
@@ -225,12 +225,197 @@ export default function AzavPage() {
                   </li>
                 ))}
               </ul>
+            </div>
+
+            {/* Zugangsvoraussetzungen */}
+            <div>
               <div
-                className="rounded-xl p-5 border border-blue-200"
+                className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full mb-4"
+                style={{ background: "#eff6ff", color: "#3f74bc" }}
+              >
+                <Target size={14} />
+                Zugangsvoraussetzungen
+              </div>
+              <h2 className="text-2xl font-bold mb-4" style={{ color: "#1e293b" }}>
+                Was wird vorausgesetzt?
+              </h2>
+              <p className="text-slate-600 mb-5 leading-relaxed">
+                Die Hürden sind bewusst niedrig gehalten, damit möglichst viele
+                Menschen von dieser Förderung profitieren können.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Schulabschluss mindestens Hauptschule",
+                  "Interesse an Marketing, Medien oder IT (wünschenswert, kein Muss)",
+                  "Deutschkenntnisse auf B2-Niveau (Wort und Schrift)",
+                  "Motivation zur selbständigen Online-Arbeit",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-slate-700">
+                    <CheckCircle size={16} style={{ color: "#3f74bc", marginTop: 2 }} className="flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Kursinhalte */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-3" style={{ color: "#1e293b" }}>
+              Kursinhalte
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Der Lehrgang „Online Marketing Experte (m/w/d)" vermittelt praxisnahes
+              Wissen aus allen relevanten Bereichen des digitalen Marketings –
+              von der Strategie bis zur Umsetzung. Er umfasst <strong>9 Lernmodule</strong> und
+              schließt mit einer eigenständigen Projektarbeit ab.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {modules.map((mod) => (
+              <div
+                key={mod.num}
+                className="rounded-2xl p-5 border border-slate-200 bg-white card-hover"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
+                    style={{ background: mod.num === 9 ? "linear-gradient(135deg, #2c3892, #3f74bc)" : "#eff6ff", color: mod.num === 9 ? "white" : "#3f74bc" }}
+                  >
+                    {mod.num}
+                  </div>
+                  <h3 className="font-bold text-sm leading-snug" style={{ color: "#1e293b" }}>
+                    {mod.title}
+                  </h3>
+                </div>
+                <p className="text-xs text-slate-500 leading-relaxed">{mod.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Durchführungsform & Technische Voraussetzungen */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12">
+
+            {/* Durchführungsform */}
+            <div>
+              <div
+                className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full mb-4"
+                style={{ background: "#eff6ff", color: "#3f74bc" }}
+              >
+                <BookOpen size={14} />
+                Durchführungsform
+              </div>
+              <h2 className="text-2xl font-bold mb-4" style={{ color: "#1e293b" }}>
+                Wie läuft der Lehrgang ab?
+              </h2>
+              <p className="text-slate-600 mb-5 leading-relaxed">
+                Die Weiterbildung kombiniert verschiedene Lernformate für einen
+                optimalen Lernerfolg – vollständig online und zeitlich flexibel.
+              </p>
+              <div className="space-y-4">
+                {[
+                  {
+                    icon: Monitor,
+                    title: "Live-Webinare",
+                    desc: "Interaktive Online-Sessions mit erfahrenen Dozenten – Fragen stellen, mitdiskutieren, direkt lernen.",
+                  },
+                  {
+                    icon: BookOpen,
+                    title: "Selbstlernphasen",
+                    desc: "Eigenständiges Erarbeiten der Lerninhalte im eigenen Tempo mit umfangreichem Kursmaterial.",
+                  },
+                  {
+                    icon: FileText,
+                    title: "Online-Tests",
+                    desc: "Wissensüberprüfungen nach jedem Modul – zur Sicherung des Lernfortschritts.",
+                  },
+                  {
+                    icon: Award,
+                    title: "Projektarbeiten",
+                    desc: "Praktische Aufgaben und abschließende Strategie-Projektarbeit für den direkten Praxistransfer.",
+                  },
+                ].map(({ icon: Icon, title, desc }) => (
+                  <div key={title} className="flex items-start gap-3">
+                    <div
+                      className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
+                      style={{ background: "#eff6ff" }}
+                    >
+                      <Icon size={17} style={{ color: "#3f74bc" }} />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm mb-0.5" style={{ color: "#1e293b" }}>{title}</div>
+                      <p className="text-xs text-slate-500 leading-relaxed">{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Technische Voraussetzungen */}
+            <div>
+              <div
+                className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full mb-4"
+                style={{ background: "#eff6ff", color: "#3f74bc" }}
+              >
+                <Wifi size={14} />
+                Technische Voraussetzungen
+              </div>
+              <h2 className="text-2xl font-bold mb-4" style={{ color: "#1e293b" }}>
+                Was benötigen Sie?
+              </h2>
+              <p className="text-slate-600 mb-5 leading-relaxed">
+                Da die Weiterbildung vollständig online stattfindet, benötigen
+                Sie eine stabile technische Grundausstattung.
+              </p>
+              <ul className="space-y-4">
+                {[
+                  {
+                    icon: Wifi,
+                    title: "Stabile Internetverbindung",
+                    desc: "Für Live-Webinare und den Zugriff auf die Lernplattform.",
+                  },
+                  {
+                    icon: Monitor,
+                    title: "PC oder Laptop mit Webcam & Mikrofon",
+                    desc: "Für die aktive Teilnahme an Online-Meetings und Webinaren.",
+                  },
+                  {
+                    icon: BookOpen,
+                    title: "Aktueller Webbrowser",
+                    desc: "Chrome, Firefox, Edge oder Safari in der neuesten Version.",
+                  },
+                ].map(({ icon: Icon, title, desc }) => (
+                  <li key={title} className="flex items-start gap-3 list-none">
+                    <div
+                      className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
+                      style={{ background: "#eff6ff" }}
+                    >
+                      <Icon size={17} style={{ color: "#3f74bc" }} />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm mb-0.5" style={{ color: "#1e293b" }}>{title}</div>
+                      <p className="text-xs text-slate-500 leading-relaxed">{desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Fördervoraussetzungen Info */}
+              <div
+                className="rounded-xl p-5 border border-blue-200 mt-8"
                 style={{ background: "#eff6ff" }}
               >
                 <p className="text-sm font-medium mb-2" style={{ color: "#1e40af" }}>
-                  Nicht sicher ob Sie berechtigt sind?
+                  Nicht sicher, ob Sie berechtigt sind?
                 </p>
                 <p className="text-sm text-slate-600 mb-3">
                   Sprechen Sie uns an – wir klären gemeinsam, ob und wie Sie die
@@ -245,15 +430,48 @@ export default function AzavPage() {
                 </Link>
               </div>
             </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Fördervoraussetzungen */}
+      <section className="py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-3" style={{ color: "#1e293b" }}>
+              Fördervoraussetzungen
+            </h2>
+            <p className="text-slate-600 max-w-xl mx-auto">
+              Sie können die Weiterbildung über einen Bildungsgutschein
+              fördern lassen, wenn eine der folgenden Voraussetzungen zutrifft:
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+            {[
+              "Sie sind arbeitssuchend oder von Arbeitslosigkeit bedroht",
+              "Sie beziehen Arbeitslosengeld I (ALG I)",
+              "Sie beziehen Bürgergeld (ALG II / Jobcenter)",
+              "Sie sind in einem Bereich tätig, in dem Weiterbildungsbedarf besteht",
+            ].map((item) => (
+              <div
+                key={item}
+                className="flex items-start gap-3 rounded-xl p-4 border border-slate-200"
+                style={{ background: "#f8fafc" }}
+              >
+                <CheckCircle size={18} style={{ color: "#3f74bc", marginTop: 1 }} className="flex-shrink-0" />
+                <span className="text-sm text-slate-700">{item}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Steps */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12" style={{ color: "#1e293b" }}>
-            So einfach geht's
+            So einfach geht&apos;s
           </h2>
           <div className="grid md:grid-cols-4 gap-6">
             {steps.map((s) => (
