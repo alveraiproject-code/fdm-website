@@ -1,27 +1,8 @@
-import type { Metadata } from "next";
 import { Award, Users, MapPin, Mail, Phone, GraduationCap } from "lucide-react";
 import Link from "next/link";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Über uns – FDM GmbH | AZAV-zertifizierter Bildungsträger",
-  description:
-    "FDM GmbH – AZAV-zertifizierter Bildungsträger in Eislingen/Fils. Gegründet von Dursun Alver (Dipl. Wirtschaftsinformatiker FH). Erfahren Sie mehr über unser Unternehmen und unsere Mission.",
-  keywords: [
-    "FDM GmbH",
-    "Dursun Alver",
-    "Bildungsträger Eislingen",
-    "AZAV Zertifizierung",
-    "Weiterbildung Baden-Württemberg",
-    "Online Marketing Kurs",
-  ],
-  alternates: { canonical: "https://www.fdm-group.de/ueber-uns" },
-  openGraph: {
-    url: "https://www.fdm-group.de/ueber-uns",
-    title: "Über uns – FDM GmbH | AZAV-zertifizierter Bildungsträger",
-    description:
-      "Lernen Sie FDM GmbH und Geschäftsführer Dursun Alver kennen – AZAV-zertifizierter Bildungsträger mit Sitz in Eislingen/Fils.",
-  },
-};
+export const metadata = buildMetadata("ueber-uns");
 
 const personJsonLd = {
   "@context": "https://schema.org",

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -17,30 +16,9 @@ import {
   Building2,
   Sparkles,
 } from "lucide-react";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Online Marketing Experte (m/w/d) – AZAV-geförderte Weiterbildung",
-  description:
-    "Staatlich geförderter Lehrgang Online Marketing Experte bei FDM GmbH – 48 Wochen Vollzeit oder 96 Wochen Teilzeit, 1.920 UE, 9 Module. Finanzierbar über den Bildungsgutschein der Agentur für Arbeit.",
-  keywords: [
-    "Online Marketing Experte",
-    "AZAV Lehrgang",
-    "Bildungsgutschein",
-    "geförderte Weiterbildung",
-    "SEO Kurs",
-    "Google Ads Schulung",
-    "Social Media Marketing",
-    "FDM GmbH",
-    "Umschulung Online Marketing",
-  ],
-  alternates: { canonical: "https://www.fdm-group.de/azav" },
-  openGraph: {
-    url: "https://www.fdm-group.de/azav",
-    title: "Online Marketing Experte (m/w/d) – AZAV-geförderte Weiterbildung | FDM GmbH",
-    description:
-      "AZAV-zertifizierter Lehrgang mit 9 Modulen: SEO, Google Ads, Social Media, Analytics und mehr. Vollständig finanzierbar über Bildungsgutschein.",
-  },
-};
+export const metadata = buildMetadata("azav");
 
 const courseJsonLd = {
   "@context": "https://schema.org",

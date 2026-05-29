@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import {
   CheckCircle,
@@ -15,32 +14,9 @@ import {
   ChevronRight,
   Info,
 } from "lucide-react";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Qualifizierungschancengesetz (QCG) – Förderung für Arbeitgeber & Arbeitnehmer",
-  description:
-    "Das Qualifizierungschancengesetz (§82 SGB III) fördert Weiterbildungen für Beschäftigte. Bis zu 100 % Kostenübernahme für Arbeitgeber. FDM GmbH ist AZAV-zertifiziert und direkt anerkannt.",
-  keywords: [
-    "Qualifizierungschancengesetz",
-    "QCG",
-    "§82 SGB III",
-    "Weiterbildungsförderung Arbeitgeber",
-    "Weiterbildung Beschäftigte",
-    "Mitarbeiterqualifizierung",
-    "AZAV",
-    "Förderung Digitalisierung",
-    "FDM GmbH",
-  ],
-  alternates: { canonical: "https://www.fdm-group.de/qcg" },
-  openGraph: {
-    url: "https://www.fdm-group.de/qcg",
-    title: "Qualifizierungschancengesetz (QCG) – Weiterbildungsförderung für Unternehmen | FDM GmbH",
-    description:
-      "Bis zu 100 % Förderung für Mitarbeiterweiterbildung nach §82 SGB III. FDM GmbH ist AZAV-zertifiziert – Ihr Kurs zählt sofort.",
-    type: "website",
-    locale: "de_DE",
-  },
-};
+export const metadata = buildMetadata("qcg");
 
 const subsidies = [
   {

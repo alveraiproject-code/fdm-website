@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -13,19 +12,9 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { courses } from "@/lib/courses";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "FDM GmbH – Bildungsträger & Online-Akademie | AZAV-zertifiziert",
-  description:
-    "FDM GmbH ist Ihr AZAV-zertifizierter Partner für berufliche Weiterbildung in Eislingen. Bildungsgutschein, QCG-Förderung und 100+ KI-Online-Kurse auf alvatar.de.",
-  alternates: { canonical: "https://www.fdm-group.de" },
-  openGraph: {
-    url: "https://www.fdm-group.de",
-    title: "FDM GmbH – Bildungsträger & Online-Akademie | AZAV-zertifiziert",
-    description:
-      "AZAV-zertifizierter Bildungsträger: geförderte Weiterbildungen mit Bildungsgutschein, QCG-Förderung und über 100 KI-Online-Kurse.",
-  },
-};
+export const metadata = buildMetadata("home");
 
 const homepageJsonLd = {
   "@context": "https://schema.org",

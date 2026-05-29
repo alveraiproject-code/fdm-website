@@ -54,3 +54,30 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(63, 116, 188, 0.15);
 }
+
+/* Visible focus ring for keyboard navigation (WCAG 2.2 AA) */
+:focus-visible {
+  outline: 2px solid #3f74bc;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .card-hover {
+    transition: none;
+  }
+  .card-hover:hover {
+    transform: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

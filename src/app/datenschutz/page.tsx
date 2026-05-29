@@ -1,11 +1,6 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Datenschutzerklärung – FDM GmbH",
-  description: "Datenschutzerklärung der FDM GmbH gemäß DSGVO / EU-Verordnung 2016/679.",
-  robots: { index: false, follow: false },
-  alternates: { canonical: "https://www.fdm-group.de/datenschutz" },
-};
+export const metadata = buildMetadata("datenschutz");
 
 export default function DatenschutzPage() {
   return (

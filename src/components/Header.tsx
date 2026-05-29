@@ -41,28 +41,33 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-slate-100 shadow-sm">
       {/* Topbar */}
-      <div className="bg-[#2c3892] text-white text-sm py-2 hidden md:block">
+      <div className="bg-[#2c3892] text-white text-sm py-2 hidden md:block" aria-hidden="true">
         <div className="max-w-7xl mx-auto px-6 flex justify-end gap-6">
           <a
             href="tel:+4971616275120"
             className="flex items-center gap-1.5 hover:text-sky-300 transition-colors"
+            aria-label="Telefon: 07161 – 6275120"
           >
-            <Phone size={13} />
+            <Phone size={13} aria-hidden="true" />
             07161 – 6275120
           </a>
           <a
             href="mailto:info@fdm-group.de"
             className="flex items-center gap-1.5 hover:text-sky-300 transition-colors"
+            aria-label="E-Mail: info@fdm-group.de"
           >
-            <Mail size={13} />
+            <Mail size={13} aria-hidden="true" />
             info@fdm-group.de
           </a>
         </div>
       </div>
 
       {/* Main nav */}
-      <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-        <Link href="/" className="flex-shrink-0">
+      <nav
+        className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16"
+        aria-label="Hauptnavigation"
+      >
+        <Link href="/" className="flex-shrink-0" aria-label="FDM GmbH – Startseite">
           <Image
             src="/logo.png"
             alt="FDM GmbH"
@@ -74,8 +79,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden lg:flex items-center gap-1">
-          {/* Startseite */}
+        <ul className="hidden lg:flex items-center gap-1" role="list">
           <li>
             <Link
               href="/"
@@ -85,7 +89,6 @@ export default function Header() {
             </Link>
           </li>
 
-          {/* Kurse */}
           <li>
             <Link
               href="/kurse"
@@ -100,23 +103,30 @@ export default function Header() {
             <button
               className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
               aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="foerderung-dropdown"
             >
               Förderung
               <ChevronDown
                 size={14}
+                aria-hidden="true"
                 className="transition-transform duration-200 group-hover:rotate-180"
               />
             </button>
 
             {/* Dropdown panel */}
             <div
+              id="foerderung-dropdown"
               className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50"
               style={{ minWidth: 340 }}
+              role="menu"
+              aria-label="Förderungswege"
             >
               <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
                 <div
                   className="px-4 py-2.5 text-xs font-semibold uppercase tracking-wider"
                   style={{ background: "#f8fafc", color: "#94a3b8", borderBottom: "1px solid #f1f5f9" }}
+                  aria-hidden="true"
                 >
                   Förderungswege
                 </div>
@@ -124,11 +134,13 @@ export default function Header() {
                   <Link
                     key={href}
                     href={href}
+                    role="menuitem"
                     className="flex items-start gap-3 px-4 py-4 hover:bg-blue-50 transition-colors group/item"
                   >
                     <div
                       className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
                       style={{ background: badgeBg }}
+                      aria-hidden="true"
                     >
                       <Icon size={17} style={{ color: badgeColor }} />
                     </div>
@@ -169,6 +181,7 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 text-sm font-semibold text-[#3f74bc] border border-[#3f74bc] rounded-lg hover:bg-blue-50 transition-colors"
+            aria-label="Online-Kurse auf alvatar.de (öffnet in neuem Tab)"
           >
             Online-Kurse
           </a>
@@ -184,15 +197,22 @@ export default function Header() {
         <button
           className="lg:hidden p-2 text-slate-600"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menü"
+          aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
         >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
         </button>
       </nav>
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-slate-100 bg-white px-6 py-4 space-y-1">
+        <div
+          id="mobile-menu"
+          className="lg:hidden border-t border-slate-100 bg-white px-6 py-4 space-y-1"
+          role="navigation"
+          aria-label="Mobile Navigation"
+        >
           <Link
             href="/"
             className="block px-4 py-3 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
@@ -212,16 +232,22 @@ export default function Header() {
           <div>
             <button
               onClick={() => setFoerderungOpen(!foerderungOpen)}
+              aria-expanded={foerderungOpen}
+              aria-controls="mobile-foerderung"
               className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
             >
               <span>Förderung</span>
               <ChevronDown
                 size={15}
+                aria-hidden="true"
                 className={`transition-transform duration-200 ${foerderungOpen ? "rotate-180" : ""}`}
               />
             </button>
             {foerderungOpen && (
-              <div className="ml-4 mt-1 space-y-1 border-l-2 border-blue-100 pl-3">
+              <div
+                id="mobile-foerderung"
+                className="ml-4 mt-1 space-y-1 border-l-2 border-blue-100 pl-3"
+              >
                 {foerderungLinks.map(({ href, label, desc }) => (
                   <Link
                     key={href}
@@ -254,6 +280,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-center px-4 py-2.5 text-sm font-semibold text-[#3f74bc] border border-[#3f74bc] rounded-lg"
+              aria-label="Online-Kurse auf alvatar.de (öffnet in neuem Tab)"
             >
               Online-Kurse auf alvatar.de
             </a>
