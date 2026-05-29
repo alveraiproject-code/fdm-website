@@ -207,10 +207,15 @@ export default function Home() {
             </div>
 
             <div
-              className="rounded-3xl p-8 text-white"
+              className="rounded-3xl p-8 text-white relative overflow-hidden"
               style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}
             >
-              <div className="flex items-center gap-3 mb-6">
+              <div
+                className="absolute inset-0 opacity-[0.06]"
+                style={{ backgroundImage: "url(/dot-grid.svg)", backgroundSize: "28px 28px" }}
+                aria-hidden="true"
+              />
+              <div className="flex items-center gap-3 mb-6 relative">
                 <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.2)" }}>
                   <Award size={28} />
                 </div>
@@ -219,7 +224,7 @@ export default function Home() {
                   <div className="font-bold text-lg">AZAV §81 SGB III</div>
                 </div>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-4 relative">
                 {[
                   { label: "Zertifizierer", value: "GZQ GmbH / DAkkS" },
                   { label: "Fachbereich", value: "FB4 – Berufliche Weiterbildung" },
@@ -358,10 +363,15 @@ export default function Home() {
 
       {/* CTA Banner */}
       <section
-        className="py-16"
+        className="py-16 relative overflow-hidden"
         style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}
       >
-        <div className="max-w-4xl mx-auto px-6 text-center text-white">
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{ backgroundImage: "url(/dot-grid.svg)", backgroundSize: "28px 28px" }}
+          aria-hidden="true"
+        />
+        <div className="max-w-4xl mx-auto px-6 text-center text-white relative">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Kostenlose Beratung gewünscht?
           </h2>
