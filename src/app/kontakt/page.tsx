@@ -5,6 +5,8 @@ import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from "lucide-react";
 
 export default function KontaktPage() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -28,10 +30,31 @@ export default function KontaktPage() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (form.honeypot) return; // bot detected
-    setSent(true);
+    setError("");
+    setSending(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? "Versand fehlgeschlagen.");
+      }
+      setSent(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Versand fehlgeschlagen. Bitte später erneut versuchen."
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -287,13 +310,20 @@ export default function KontaktPage() {
                         zu.
                       </p>
 
+                      {error && (
+                        <p role="alert" className="text-sm font-medium text-red-600">
+                          {error}
+                        </p>
+                      )}
+
                       <button
                         type="submit"
-                        className="inline-flex items-center gap-2 px-6 py-3 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
+                        disabled={sending}
+                        className="inline-flex items-center gap-2 px-6 py-3 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
                         style={{ background: "#3f74bc" }}
                       >
                         <Send size={16} aria-hidden="true" />
-                        Nachricht senden
+                        {sending ? "Wird gesendet …" : "Nachricht senden"}
                       </button>
                     </form>
                   )}
