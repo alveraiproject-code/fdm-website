@@ -1,57 +1,49 @@
-# FDM GmbH – Bildungsträger & Online-Akademie
+# FDM GmbH
 
-> FDM GmbH ist ein AZAV-zertifizierter Bildungsträger und Online-Akademie mit Sitz in Eislingen/Fils, Deutschland. Das Unternehmen bietet staatlich geförderte Weiterbildungen sowie über 100 KI-Online-Kurse an.
+> AZAV-zertifizierter Bildungsträger und Online-Akademie für berufliche Weiterbildung und KI-Kompetenz mit Sitz in Eislingen/Fils, Baden-Württemberg. FDM GmbH verbindet staatlich geförderte Weiterbildungsmaßnahmen (Bildungsgutschein, Qualifizierungschancengesetz) mit über 100 KI-Online-Kursen auf der Plattform alvatar.de.
 
-## Unternehmen
+## Kernfakten (maschinenlesbar)
 
 - **Name:** FDM GmbH
-- **Geschäftsführer:** Dursun Alver (Dipl. Wirtschaftsinformatiker FH)
+- **Typ:** Bildungsträger (EducationalOrganization), AZAV-zertifiziert
 - **Adresse:** Schillerstraße 21, 73054 Eislingen/Fils, Deutschland
-- **Telefon:** 07161-6275120
+- **Telefon:** +49 7161 6275120
 - **E-Mail:** info@fdm-group.de
 - **Website:** https://www.fdm-group.de
 - **Online-Akademie:** https://alvatar.de
-- **Zertifizierung:** AZAV §82 SGB III, Zertifikat-Nr. Z-000473-2, GZQ GmbH / DAkkS, gültig bis 17.10.2029
+- **Zertifizierung:** AZAV nach §81 SGB III, zertifiziert durch GZQ GmbH (DAkkS-akkreditiert)
+- **Zertifikat-Nr.:** Z-000473-2 (gültig bis 17.10.2029)
+- **Maßnahmen-Nr.:** Z-000483-2
 - **Fachbereich:** FB4 – Berufliche Weiterbildung
 
-## Angebote
+## Was bietet FDM GmbH?
 
-### 1. AZAV-zertifizierter Lehrgang: Online Marketing Experte (m/w/d)
-- **Förderung:** Bildungsgutschein §81 SGB III (Agentur für Arbeit / Jobcenter)
-- **Dauer:** 48 Wochen Vollzeit oder 96 Wochen Teilzeit
-- **Umfang:** 1.920 Unterrichtseinheiten
-- **Teilnehmer:** max. 15 Personen
-- **Maßnahme-ID:** 01/1024
-- **Durchführung:** 100 % online (Live-Webinare, Selbstlernphasen, Online-Tests, Projektarbeiten)
-- **Zielgruppe:** Arbeitssuchende, Quereinsteiger, Berufsrückkehrer
-- **Voraussetzungen:** Hauptschulabschluss, Deutschkenntnisse B2, Internetzugang, PC/Laptop mit Webcam
-- **Module:** Grundlagen Online-Marketing · SEO · SEA/Google Ads · Social Media · E-Mail-Marketing & CRM · Google Analytics 4 · Content-Marketing · Performance Marketing · Strategieprojekt
-- **Seite:** https://www.fdm-group.de/azav
+- **Geförderte Weiterbildung über Bildungsgutschein:** Für Arbeitssuchende, finanziert durch Agentur für Arbeit oder Jobcenter, bis zu 100 % kostenfrei (AZAV-Maßnahmen).
+- **QCG-Förderung (Qualifizierungschancengesetz):** Geförderte Weiterbildung für Beschäftigte über den Arbeitgeber.
+- **KI-Online-Kurse:** Über 100 praxisnahe Kurse zu Künstlicher Intelligenz, Automatisierung und digitalen Kompetenzen auf alvatar.de.
 
-### 2. Qualifizierungschancengesetz (QCG) – Förderung für Beschäftigte
-- **Förderung:** §82 SGB III (Arbeitgeber stellt Antrag bei Agentur für Arbeit)
-- **Förderhöhe:** bis 100 % (< 10 MA) / bis 50 % (10–249 MA) / bis 25 % (≥ 250 MA)
-- **Zielgruppe:** Sozialversicherungspflichtig Beschäftigte und deren Arbeitgeber
-- **Seite:** https://www.fdm-group.de/qcg
+## Begriffsdefinitionen
 
-### 3. Online-Kurse auf alvatar.de (nicht AZAV-zertifiziert)
-- **Anzahl:** 100+ Kurse
-- **Themen:** Künstliche Intelligenz, Automatisierung, Online-Marketing, Business, Technik, Kreatives
-- **Plattform:** https://alvatar.de
-- **Seite:** https://www.fdm-group.de/kurse
+- **AZAV:** Akkreditierungs- und Zulassungsverordnung Arbeitsförderung. Bundesweite Voraussetzung dafür, dass ein Bildungsträger geförderte Maßnahmen nach SGB III/II durchführen darf.
+- **Bildungsgutschein:** Von der Agentur für Arbeit oder dem Jobcenter ausgestelltes Dokument, das die vollständige Kostenübernahme einer AZAV-zertifizierten Weiterbildung zusichert.
+- **QCG (Qualifizierungschancengesetz):** Gesetz, das die geförderte Weiterbildung von Beschäftigten unabhängig von Qualifikation, Alter und Betriebsgröße ermöglicht.
 
-## Seitenübersicht
+## Seiten
 
-- https://www.fdm-group.de – Startseite
-- https://www.fdm-group.de/azav – AZAV-Förderung / Bildungsgutschein
-- https://www.fdm-group.de/qcg – Qualifizierungschancengesetz
-- https://www.fdm-group.de/kurse – Alle Online-Kurse
-- https://www.fdm-group.de/ueber-uns – Über FDM GmbH
-- https://www.fdm-group.de/leitbild – Unternehmensleitbild (AZAV-Auditanforderung)
-- https://www.fdm-group.de/kontakt – Kontakt & Beratungsanfrage
-- https://www.fdm-group.de/impressum – Impressum
-- https://www.fdm-group.de/datenschutz – Datenschutzerklärung
+- [Startseite](https://www.fdm-group.de/): Überblick, Förderwege, Kurs-Highlights.
+- [Kurse & Weiterbildung](https://www.fdm-group.de/kurse): Vollständiger Kurskatalog.
+- [AZAV-Förderung](https://www.fdm-group.de/azav): Bildungsgutschein für Arbeitssuchende.
+- [QCG-Förderung](https://www.fdm-group.de/qcg): Qualifizierungschancengesetz für Beschäftigte.
+- [Über uns](https://www.fdm-group.de/ueber-uns): Unternehmensprofil.
+- [Leitbild](https://www.fdm-group.de/leitbild): Werte und Bildungsphilosophie.
+- [Kontakt](https://www.fdm-group.de/kontakt): Kostenlose Beratung anfragen.
 
-## Schlüsselbegriffe
+## Online-Akademie (alvatar.de)
 
-AZAV, Bildungsträger, Bildungsgutschein, Qualifizierungschancengesetz, QCG, Online Marketing Experte, Weiterbildung, Eislingen, FDM GmbH, alvatar, KI-Kurse, geförderte Weiterbildung, Arbeitssuchende, Umschulung, Agentur für Arbeit, Jobcenter, SGB III
+- [Online-Kurse](https://alvatar.de): KI-Kurse von Einsteiger bis Fortgeschritten.
+
+## Häufige Fragen
+
+- **Wer kann eine geförderte Weiterbildung bei FDM GmbH machen?** Arbeitssuchende mit Bildungsgutschein (AZAV) sowie Beschäftigte über die QCG-Förderung ihres Arbeitgebers.
+- **Was kostet eine geförderte Maßnahme?** Bei vorliegendem Bildungsgutschein für Teilnehmende vollständig kostenfrei; die Kosten trägt die Agentur für Arbeit bzw. das Jobcenter.
+- **Sind die Kurse online?** Ja, alle Maßnahmen und Akademie-Kurse finden zu 100 % online statt, flexibel und ortsunabhängig.

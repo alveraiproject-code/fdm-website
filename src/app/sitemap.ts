@@ -1,64 +1,47 @@
-import type { MetadataRoute } from "next";
+// =============================================================
+// app/sitemap.ts — Next.js Metadata Route
+// Liefert /sitemap.xml dynamisch mit lastmod, changefreq, priority.
+// =============================================================
+import type { MetadataRoute } from 'next'
 
-const BASE_URL = "https://www.fdm-group.de";
+const BASE = 'https://www.fdm-group.de'
+
+// Statische Routen mit Gewichtung. priority spiegelt Conversion-Relevanz.
+const routes: {
+  path: string
+  priority: number
+  changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']
+}[] = [
+  { path: '/',            priority: 1.0,  changeFrequency: 'weekly' },
+  { path: '/kurse',       priority: 0.9,  changeFrequency: 'weekly' },
+  { path: '/azav',        priority: 0.9,  changeFrequency: 'monthly' },
+  { path: '/qcg',         priority: 0.9,  changeFrequency: 'monthly' },
+  { path: '/ueber-uns',   priority: 0.6,  changeFrequency: 'monthly' },
+  { path: '/leitbild',    priority: 0.5,  changeFrequency: 'yearly' },
+  { path: '/kontakt',     priority: 0.8,  changeFrequency: 'monthly' },
+  { path: '/impressum',   priority: 0.2,  changeFrequency: 'yearly' },
+  { path: '/datenschutz', priority: 0.2,  changeFrequency: 'yearly' },
+]
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const now = new Date()
 
-  return [
-    {
-      url: `${BASE_URL}`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 1.0,
-    },
-    {
-      url: `${BASE_URL}/azav`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/qcg`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/kurse`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/ueber-uns`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/leitbild`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/kontakt`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/impressum`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.2,
-    },
-    {
-      url: `${BASE_URL}/datenschutz`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.2,
-    },
-  ];
+  return routes.map(({ path, priority, changeFrequency }) => ({
+    url: `${BASE}${path}`,
+    lastModified: now, // TODO: bei CMS/MDX echtes Änderungsdatum pro Route einsetzen
+    changeFrequency,
+    priority,
+  }))
+
+  // ---- Erweiterung bei dynamischen Kurs-Detailseiten ----
+  // Falls /kurse/[slug] existiert, hier anhängen:
+  //
+  // const courses = await getCourses()  // aus DB/MDX/API
+  // const courseEntries = courses.map((c) => ({
+  //   url: `${BASE}/kurse/${c.slug}`,
+  //   lastModified: c.updatedAt,
+  //   changeFrequency: 'monthly' as const,
+  //   priority: 0.7,
+  // }))
+  // return [...staticEntries, ...courseEntries]
 }
