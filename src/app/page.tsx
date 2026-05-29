@@ -83,7 +83,7 @@ export default function Home() {
                 <Award size={14} />
                 AZAV-zertifizierter Bildungsträger
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{ hyphens: "none" }}>
                 Ihre Karriere.{" "}
                 <span style={{ color: "#51ade5" }}>Gefördert.</span>
                 <br />
