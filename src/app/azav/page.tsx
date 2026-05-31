@@ -17,61 +17,9 @@ import {
   Sparkles,
 } from "lucide-react";
 import { buildMetadata } from "@/lib/metadata";
+import { courseAZAV } from "@/lib/schema";
 
 export const metadata = buildMetadata("azav");
-
-const courseJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Course",
-  "@id": "https://www.fdm-group.de/azav/#course",
-  name: "Online Marketing Experte (m/w/d)",
-  description:
-    "AZAV-zertifizierter Lehrgang für Online-Marketing mit 9 Modulen (SEO, SEA/Google Ads, Social Media, E-Mail-Marketing, Analytics, Content-Marketing, Performance Marketing). 1.920 Unterrichtseinheiten, vollständig online.",
-  url: "https://www.fdm-group.de/azav",
-  image: "https://www.fdm-group.de/logo.png",
-  provider: {
-    "@type": "EducationalOrganization",
-    "@id": "https://www.fdm-group.de/#organization",
-    name: "FDM GmbH",
-    url: "https://www.fdm-group.de",
-  },
-  educationalCredentialAwarded: "Abschlusszertifikat Online Marketing Experte (m/w/d)",
-  courseCode: "01/1024",
-  numberOfCredits: 1920,
-  timeToComplete: "P48W",
-  courseMode: "online",
-  inLanguage: "de-DE",
-  availableLanguage: "de",
-  financialAidEligible: "Bildungsgutschein §81 SGB III (Agentur für Arbeit / Jobcenter)",
-  hasCourseInstance: [
-    {
-      "@type": "CourseInstance",
-      courseMode: "online",
-      courseWorkload: "P48W",
-      name: "Vollzeit – 48 Wochen",
-    },
-    {
-      "@type": "CourseInstance",
-      courseMode: "online",
-      courseWorkload: "P96W",
-      name: "Teilzeit – 96 Wochen",
-    },
-  ],
-  syllabusSections: [
-    { "@type": "Syllabus", name: "Grundlagen des Online-Marketings" },
-    { "@type": "Syllabus", name: "Suchmaschinenoptimierung (SEO)" },
-    { "@type": "Syllabus", name: "Suchmaschinenwerbung (SEA) mit Google Ads" },
-    { "@type": "Syllabus", name: "Social Media Marketing" },
-    { "@type": "Syllabus", name: "E-Mail-Marketing & CRM" },
-    { "@type": "Syllabus", name: "Webanalyse & Google Analytics 4" },
-    { "@type": "Syllabus", name: "Content-Marketing & Storytelling" },
-    { "@type": "Syllabus", name: "Performance Marketing & KPIs" },
-    { "@type": "Syllabus", name: "Projektarbeit: Entwicklung einer Online-Marketing-Strategie" },
-  ],
-  typicalAgeRange: "18-",
-  teaches: "Online-Marketing, SEO, SEA, Social Media Marketing, Analytics, Content-Marketing",
-  competencyRequired: "Hauptschulabschluss, Deutschkenntnisse B2",
-};
 
 const modules = [
   { num: 1, title: "Grundlagen des Online-Marketings", desc: "Überblick über digitale Kanäle, Marketingziele und strategische Planung einer Online-Präsenz." },
@@ -113,7 +61,7 @@ export default function AzavPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd).replace(/</g, "\\u003c") }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseAZAV).replace(/</g, "\\u003c") }}
       />
       {/* Hero */}
       <section

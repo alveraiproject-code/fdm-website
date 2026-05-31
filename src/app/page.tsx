@@ -10,9 +10,11 @@ import {
   Laptop,
   Shield,
   ChevronRight,
+  ChevronDown,
 } from "lucide-react";
 import { courses } from "@/lib/courses";
 import { buildMetadata } from "@/lib/metadata";
+import { faqSchema } from "@/lib/schema";
 
 export const metadata = buildMetadata("home");
 
@@ -66,6 +68,10 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageJsonLd).replace(/</g, "\\u003c") }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
       />
       {/* Hero */}
       <section className="hero-gradient text-white overflow-hidden relative">
@@ -357,6 +363,44 @@ export default function Home() {
               Alle Kurse auf alvatar.de
               <ArrowRight size={16} />
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div
+              className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full mb-4"
+              style={{ background: "#eff6ff", color: "#3f74bc" }}
+            >
+              <BookOpen size={14} />
+              FAQ
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "#1e293b" }}>
+              Häufige Fragen
+            </h2>
+          </div>
+          <div className="space-y-4">
+            {faqSchema.mainEntity.map((item) => (
+              <details
+                key={item.name}
+                className="group bg-white rounded-2xl border border-slate-200 overflow-hidden"
+              >
+                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none p-6 font-semibold marker:hidden" style={{ color: "#1e293b" }}>
+                  {item.name}
+                  <ChevronDown
+                    size={20}
+                    className="flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
+                    style={{ color: "#3f74bc" }}
+                  />
+                </summary>
+                <p className="px-6 pb-6 -mt-1 text-sm text-slate-600 leading-relaxed">
+                  {item.acceptedAnswer.text}
+                </p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
