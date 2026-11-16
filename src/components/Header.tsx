@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Phone, Mail, ChevronDown, Award, Building2 } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown, Award, Building2, GraduationCap } from "lucide-react";
 
 const mainNavLinks = [
   { href: "/", label: "Startseite" },
@@ -14,6 +14,15 @@ const mainNavLinks = [
 ];
 
 const foerderungLinks = [
+  {
+    href: "/weiterbildung",
+    label: "Geförderte Weiterbildung",
+    desc: "Kursangebot und kostenlose Beratung",
+    icon: GraduationCap,
+    badge: "Kursangebot",
+    badgeColor: "#2c3892",
+    badgeBg: "#eef2ff",
+  },
   {
     href: "/azav",
     label: "AZAV-Förderung",

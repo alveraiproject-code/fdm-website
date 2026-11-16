@@ -14,6 +14,7 @@ const routes: {
 }[] = [
   { path: '/',            priority: 1.0,  changeFrequency: 'weekly' },
   { path: '/kurse',       priority: 0.9,  changeFrequency: 'weekly' },
+  { path: '/weiterbildung', priority: 0.9, changeFrequency: 'weekly' },
   { path: '/azav',        priority: 0.9,  changeFrequency: 'monthly' },
   { path: '/qcg',         priority: 0.9,  changeFrequency: 'monthly' },
   { path: '/ueber-uns',   priority: 0.6,  changeFrequency: 'monthly' },

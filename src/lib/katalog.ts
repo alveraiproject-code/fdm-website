@@ -1,0 +1,48 @@
+// =============================================================
+// lib/katalog.ts — Geförderte Weiterbildungen aus dem CRM
+// Der Katalog kommt live aus dem CRM der FDM Akademie und enthält
+// ausschließlich Kurse, die dort als zertifiziert freigegeben sind.
+// =============================================================
+
+export const CRM_URL = "https://crm.fdm-akademie.de";
+
+export interface Weiterbildung {
+  modul_nr: string;
+  titel: string;
+  kurzbeschreibung: string | null;
+  fachbereich: string | null;
+  fachbereich_name: string;
+  kursart: string;
+  kursart_name: string;
+  zeitmodell: string;
+  zeitmodell_name: string;
+  lerneinheiten: number | null;
+  praktikumsstunden: number | null;
+  dauer_wochen: number | null;
+  laufender_einstieg: boolean | null;
+}
+
+// Lädt den Katalog serverseitig und hält ihn fünf Minuten vor.
+// Ist das CRM nicht erreichbar, bleibt die Seite mit leerem Katalog benutzbar.
+export async function ladeKatalog(): Promise<Weiterbildung[]> {
+  try {
+    const antwort = await fetch(`${CRM_URL}/api/katalog`, {
+      next: { revalidate: 300 },
+    });
+    if (!antwort.ok) return [];
+    const daten = (await antwort.json()) as { kurse?: Weiterbildung[] };
+    return daten.kurse ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export function dauerText(k: Pick<Weiterbildung, "dauer_wochen">): string | null {
+  if (!k.dauer_wochen) return null;
+  const wochen = Number(k.dauer_wochen);
+  if (wochen >= 8) {
+    const monate = Math.round(wochen / 4.345);
+    return `ca. ${monate} Monate`;
+  }
+  return wochen === 1 ? "1 Woche" : `${wochen} Wochen`;
+}
