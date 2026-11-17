@@ -82,7 +82,7 @@ export default function Header() {
           <li>
             <Link
               href="/"
-              className="px-4 py-2 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
+              className="px-3 xl:px-4 py-2 text-sm font-medium text-slate-700 rounded-lg whitespace-nowrap hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
             >
               Startseite
             </Link>
@@ -91,7 +91,7 @@ export default function Header() {
           <li>
             <Link
               href="/weiterbildung"
-              className="px-4 py-2 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
+              className="px-3 xl:px-4 py-2 text-sm font-medium text-slate-700 rounded-lg whitespace-nowrap hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
             >
               Geförderte Weiterbildung
             </Link>
@@ -99,7 +99,7 @@ export default function Header() {
           <li>
             <Link
               href="/kurse"
-              className="px-4 py-2 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
+              className="px-3 xl:px-4 py-2 text-sm font-medium text-slate-700 rounded-lg whitespace-nowrap hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
             >
               Online-Kurse
             </Link>
@@ -108,7 +108,7 @@ export default function Header() {
           {/* Förderung Dropdown */}
           <li className="relative group">
             <button
-              className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
+              className="flex items-center gap-1 px-3 xl:px-4 py-2 text-sm font-medium text-slate-700 rounded-lg whitespace-nowrap hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="foerderung-dropdown"
@@ -124,7 +124,7 @@ export default function Header() {
             {/* Dropdown panel */}
             <div
               id="foerderung-dropdown"
-              className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50"
+              className="absolute right-0 xl:right-auto xl:left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50"
               style={{ minWidth: 340 }}
               role="menu"
               aria-label="Förderungswege"
@@ -174,7 +174,7 @@ export default function Header() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="px-4 py-2 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
+                className="px-3 xl:px-4 py-2 text-sm font-medium text-slate-700 rounded-lg whitespace-nowrap hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
               >
                 {link.label}
               </Link>
@@ -182,10 +182,10 @@ export default function Header() {
           ))}
         </ul>
 
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden xl:flex items-center gap-3">
           <Link
             href="/weiterbildung#beratung"
-            className="px-4 py-2 text-sm font-semibold text-white bg-[#3f74bc] rounded-lg hover:bg-[#2c3892] transition-colors"
+            className="px-4 py-2 text-sm font-semibold text-white bg-[#3f74bc] rounded-lg whitespace-nowrap hover:bg-[#2c3892] transition-colors"
           >
             Beratung anfragen
           </Link>
