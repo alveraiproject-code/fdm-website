@@ -30,7 +30,8 @@ const vorteile = [
 ];
 
 export default async function WeiterbildungPage() {
-  const kurse = await ladeKatalog();
+  // Die Liste braucht den Zulassungsstatus nicht; er bleibt auf dem Server.
+  const kurse = (await ladeKatalog()).map(({ zugelassen: _zugelassen, ...k }) => k);
 
   return (
     <>

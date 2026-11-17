@@ -1,7 +1,7 @@
 // =============================================================
 // lib/katalog.ts — Geförderte Weiterbildungen aus dem CRM
 // Der Katalog kommt live aus dem CRM der FDM Akademie und enthält
-// ausschließlich Kurse, die dort als zertifiziert freigegeben sind.
+// ausschließlich Kurse, die dort für den Katalog freigegeben sind.
 // =============================================================
 
 export const CRM_URL = "https://crm.fdm-akademie.de";
@@ -20,6 +20,8 @@ export interface Weiterbildung {
   praktikumsstunden: number | null;
   dauer_wochen: number | null;
   laufender_einstieg: boolean | null;
+  // Als FDM-Maßnahme nach AZAV zugelassen; steuert nur den Wortlaut des Förderhinweises.
+  zugelassen?: boolean;
 }
 
 // Lädt den Katalog serverseitig und hält ihn fünf Minuten vor.

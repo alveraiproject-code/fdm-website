@@ -17,9 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const kurs = await findeKurs(params);
   if (!kurs) return { title: "Weiterbildung nicht gefunden" };
   return {
-    title: `${kurs.titel} – geförderte Weiterbildung`,
+    title: kurs.zugelassen ? `${kurs.titel} – geförderte Weiterbildung` : `${kurs.titel} – Weiterbildung der FDM Akademie`,
     description: (
-      kurs.kurzbeschreibung ?? `${kurs.titel}: geförderte Weiterbildung der FDM Akademie im virtuellen Klassenzimmer.`
+      kurs.kurzbeschreibung ?? `${kurs.titel}: Weiterbildung der FDM Akademie im virtuellen Klassenzimmer.`
     ).slice(0, 160),
     alternates: { canonical: `https://www.fdm-group.de/weiterbildung/${encodeURIComponent(kurs.modul_nr)}` },
   };
@@ -46,7 +46,7 @@ export default async function KursSeite({ params }: Props) {
         <div className="mx-auto max-w-5xl px-6">
           <Link href="/weiterbildung" className="mb-5 inline-flex items-center gap-2 text-sm text-sky-200 hover:text-white">
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Alle geförderten Weiterbildungen
+            Alle Weiterbildungen
           </Link>
           <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-sky-200">{kurs.fachbereich_name}</p>
           <h1 className="text-3xl font-bold md:text-4xl">{kurs.titel}</h1>
@@ -85,8 +85,9 @@ export default async function KursSeite({ params }: Props) {
 
             <h2 className="mt-8 text-xl font-bold text-slate-900">Förderung</h2>
             <p className="mt-3 text-slate-700">
-              Diese Weiterbildung ist nach AZAV zugelassen. Mit einem Bildungsgutschein der Agentur für Arbeit oder des
-              Jobcenters können die Lehrgangskosten übernommen werden; über die Förderung entscheidet Ihr Kostenträger.
+              {kurs.zugelassen
+                ? "Diese Weiterbildung ist nach AZAV zugelassen. Mit einem Bildungsgutschein der Agentur für Arbeit oder des Jobcenters können die Lehrgangskosten übernommen werden; über die Förderung entscheidet Ihr Kostenträger."
+                : "Ob und auf welchem Weg diese Weiterbildung für Sie gefördert werden kann, klären wir mit Ihnen in der kostenlosen Beratung. In Frage kommt zum Beispiel ein Bildungsgutschein der Agentur für Arbeit oder des Jobcenters; über die Förderung entscheidet Ihr Kostenträger."}{" "}
               Für Beschäftigte kommt eine Förderung über das{" "}
               <Link href="/qcg" className="text-[#3f74bc] underline">
                 Qualifizierungschancengesetz
