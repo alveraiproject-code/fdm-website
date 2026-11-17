@@ -1,15 +1,25 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { ArrowRight, Clock, Search } from "lucide-react";
-import { dauerText, type Weiterbildung } from "@/lib/katalog";
+import { dauerText, kursPfad, type Weiterbildung } from "@/lib/katalog";
+import Kennzeichen from "@/components/Kennzeichen";
 
 // Durchsuchbare Liste der geförderten Weiterbildungen (Daten kommen serverseitig aus dem CRM).
 export default function KatalogListe({ kurse }: { kurse: Weiterbildung[] }) {
   const [suche, setSuche] = useState("");
-  const [bereich, setBereich] = useState("Alle");
+  const [gewaehlt, setBereich] = useState<string | null>(null);
   const [zeit, setZeit] = useState("Alle");
+
+  // Einstieg über die Startseite: /weiterbildung?bereich=IT%20und%20EDV wählt den Fachbereich vor.
+  const ausAdresse = useSyncExternalStore(
+    () => () => {},
+    () => new URLSearchParams(window.location.search).get("bereich") ?? "",
+    () => "",
+  );
+  const bereich =
+    gewaehlt ?? (ausAdresse && kurse.some((k) => k.fachbereich_name === ausAdresse) ? ausAdresse : "Alle");
 
   const bereiche = useMemo(
     () => ["Alle", ...Array.from(new Set(kurse.map((k) => k.fachbereich_name))).sort((a, b) => a.localeCompare(b, "de"))],
@@ -74,10 +84,13 @@ export default function KatalogListe({ kurse }: { kurse: Weiterbildung[] }) {
         {gefiltert.slice(0, 120).map((k) => (
           <li key={k.modul_nr}>
             <Link
-              href={`/weiterbildung/${encodeURIComponent(k.modul_nr)}`}
+              href={kursPfad(k.modul_nr)}
               className="card-hover flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5"
             >
-              <span className="mb-2 text-xs font-semibold uppercase tracking-wide text-[#3f74bc]">{k.fachbereich_name}</span>
+              <span className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                <span className="text-xs font-semibold uppercase tracking-wide text-[#3f74bc]">{k.fachbereich_name}</span>
+                {k.zugelassen && <Kennzeichen art="azav" />}
+              </span>
               <span className="font-semibold leading-snug text-slate-900">{k.titel}</span>
               {k.kurzbeschreibung && (
                 <span className="mt-2 line-clamp-3 text-sm text-slate-600">{k.kurzbeschreibung}</span>

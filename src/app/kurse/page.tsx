@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { ArrowRight, Search, Filter } from "lucide-react";
+import Link from "next/link";
 import { courses, categories, type Level } from "@/lib/courses";
+import Kennzeichen from "@/components/Kennzeichen";
 
 const levelColors: Record<Level, { bg: string; text: string }> = {
   Einsteiger: { bg: "#f0fdf4", text: "#15803d" },
@@ -39,43 +41,39 @@ export default function KursePage() {
             alvatar.de – Online-Akademie
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Alle Kurse & Weiterbildungen
+            Online-Kurse für Selbstzahler
           </h1>
           <p className="max-w-2xl mx-auto text-lg" style={{ color: "#cbd5e1" }}>
-            Über 100 Online-Kurse zu KI, Automatisierung und digitalen
-            Kompetenzen – plus AZAV-zertifizierte geförderte Weiterbildung.
+            Über 100 Selbstlernkurse zu KI, Automatisierung und digitalen
+            Kompetenzen. Sofort buchbar auf alvatar.de, im eigenen Tempo.
           </p>
+          <div className="mt-5">
+            <Kennzeichen art="selbstzahler" hell />
+          </div>
         </div>
       </section>
 
-      {/* AZAV Kurs Highlight */}
-      <section className="py-10 bg-blue-50 border-b border-blue-200">
+      {/* Abgrenzung zur geförderten Weiterbildung */}
+      <section className="py-8 bg-amber-50 border-b border-amber-200">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center gap-6 bg-white rounded-2xl border border-blue-200 p-6 shadow-sm">
-            <div
-              className="p-4 rounded-xl flex-shrink-0"
-              style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}
-            >
-              <span className="text-white font-bold text-lg">AZAV</span>
-            </div>
+          <div className="flex flex-col md:flex-row md:items-center gap-5 bg-white rounded-2xl border border-amber-200 p-6">
             <div className="flex-1">
-              <div className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "#3f74bc" }}>
-                Geförderte Weiterbildung – kostenlos mit Bildungsgutschein
-              </div>
-              <h2 className="text-xl font-bold mb-1" style={{ color: "#1e293b" }}>
-                Online Marketing Experte (m/w/d)
+              <h2 className="text-lg font-bold mb-1" style={{ color: "#1e293b" }}>
+                Gut zu wissen: Diese Kurse sind nicht gefördert
               </h2>
               <p className="text-sm text-slate-600">
-                1.920 Unterrichtsstunden · 48 Wochen · 100 % online · Laufender Einstieg
+                Die Online-Kurse auf alvatar.de sind Selbstlernkurse zum Festpreis. Sie sind nicht nach AZAV
+                zugelassen und können nicht mit einem Bildungsgutschein bezahlt werden. Weiterbildungen mit
+                Live-Unterricht und Fördermöglichkeit finden Sie in der FDM Akademie.
               </p>
             </div>
-            <a
-              href="/azav"
+            <Link
+              href="/weiterbildung"
               className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 text-white font-semibold rounded-xl text-sm hover:opacity-90 transition-opacity"
               style={{ background: "#3f74bc" }}
             >
-              Mehr erfahren <ArrowRight size={15} />
-            </a>
+              Geförderte Weiterbildung ansehen <ArrowRight size={15} />
+            </Link>
           </div>
         </div>
       </section>

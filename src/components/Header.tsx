@@ -3,30 +3,20 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Phone, Mail, ChevronDown, Award, Building2, GraduationCap } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown, Award, Building2 } from "lucide-react";
 
 const mainNavLinks = [
   { href: "/", label: "Startseite" },
-  { href: "/kurse", label: "Kurse & Weiterbildung" },
+  { href: "/weiterbildung", label: "Geförderte Weiterbildung" },
   { href: "/ueber-uns", label: "Über uns" },
-  { href: "/leitbild", label: "Leitbild" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 
 const foerderungLinks = [
   {
-    href: "/weiterbildung",
-    label: "Geförderte Weiterbildung",
-    desc: "Kursangebot und kostenlose Beratung",
-    icon: GraduationCap,
-    badge: "Kursangebot",
-    badgeColor: "#2c3892",
-    badgeBg: "#eef2ff",
-  },
-  {
     href: "/azav",
-    label: "AZAV-Förderung",
-    desc: "Bildungsgutschein für Arbeitssuchende",
+    label: "Bildungsgutschein",
+    desc: "So funktioniert die Förderung für Arbeitssuchende",
     icon: Award,
     badge: "Arbeitssuchende",
     badgeColor: "#3f74bc",
@@ -34,8 +24,8 @@ const foerderungLinks = [
   },
   {
     href: "/qcg",
-    label: "QCG-Förderung",
-    desc: "Qualifizierungschancengesetz für Beschäftigte",
+    label: "Qualifizierungschancengesetz",
+    desc: "Förderung für Beschäftigte und Arbeitgeber",
     icon: Building2,
     badge: "Arbeitgeber & Arbeitnehmer",
     badgeColor: "#15803d",
@@ -100,10 +90,18 @@ export default function Header() {
 
           <li>
             <Link
+              href="/weiterbildung"
+              className="px-4 py-2 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
+            >
+              Geförderte Weiterbildung
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/kurse"
               className="px-4 py-2 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
             >
-              Kurse & Weiterbildung
+              Online-Kurse
             </Link>
           </li>
 
@@ -185,17 +183,8 @@ export default function Header() {
         </ul>
 
         <div className="hidden lg:flex items-center gap-3">
-          <a
-            href="https://alvatar.de"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 text-sm font-semibold text-[#3f74bc] border border-[#3f74bc] rounded-lg hover:bg-blue-50 transition-colors"
-            aria-label="Online-Kurse auf alvatar.de (öffnet in neuem Tab)"
-          >
-            Online-Kurse
-          </a>
           <Link
-            href="/kontakt"
+            href="/weiterbildung#beratung"
             className="px-4 py-2 text-sm font-semibold text-white bg-[#3f74bc] rounded-lg hover:bg-[#2c3892] transition-colors"
           >
             Beratung anfragen
@@ -230,11 +219,18 @@ export default function Header() {
             Startseite
           </Link>
           <Link
+            href="/weiterbildung"
+            className="block px-4 py-3 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
+            onClick={() => setMobileOpen(false)}
+          >
+            Geförderte Weiterbildung
+          </Link>
+          <Link
             href="/kurse"
             className="block px-4 py-3 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-[#3f74bc] transition-colors"
             onClick={() => setMobileOpen(false)}
           >
-            Kurse & Weiterbildung
+            Online-Kurse
           </Link>
 
           {/* Förderung section in mobile */}

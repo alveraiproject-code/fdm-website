@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Award, GraduationCap, Laptop, Users } from "lucide-react";
 import AnfrageFormular from "@/components/AnfrageFormular";
 import KatalogListe from "@/components/KatalogListe";
@@ -30,8 +31,8 @@ const vorteile = [
 ];
 
 export default async function WeiterbildungPage() {
-  // Die Liste braucht den Zulassungsstatus nicht; er bleibt auf dem Server.
-  const kurse = (await ladeKatalog()).map(({ zugelassen: _zugelassen, ...k }) => k);
+  // Das Kennzeichen „AZAV-zugelassen“ geht nur für zugelassene Kurse an den Browser.
+  const kurse = (await ladeKatalog()).map(({ zugelassen, ...k }) => (zugelassen ? { ...k, zugelassen } : k));
 
   return (
     <>
@@ -76,7 +77,16 @@ export default async function WeiterbildungPage() {
 
       <section className="py-14">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="mb-6 text-2xl font-bold text-slate-900">Unser Kursangebot</h2>
+          <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <h2 className="text-2xl font-bold text-slate-900">Unser Kursangebot</h2>
+            <p className="text-sm text-slate-500">
+              Kurze Selbstlernkurse ohne Förderung finden Sie unter{" "}
+              <Link href="/kurse" className="font-semibold text-[#3f74bc] underline">
+                Online-Kurse
+              </Link>
+              .
+            </p>
+          </div>
           {kurse.length > 0 ? (
             <KatalogListe kurse={kurse} />
           ) : (

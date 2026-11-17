@@ -61,13 +61,13 @@ const routes: Record<RouteKey, { path: string; title: string; description: strin
   },
   kurse: {
     path: '/kurse',
-    title: 'Kurse & Weiterbildung – KI-Online-Kurse & geförderte Lehrgänge',
+    title: 'Online-Kurse für Selbstzahler – KI-Kurse auf alvatar.de',
     description:
-      'Über 100 praxisnahe KI-Online-Kurse und AZAV-geförderte Weiterbildungen. Von ChatGPT bis Datenanalyse – flexibel, online, im eigenen Tempo.',
+      'Über 100 praxisnahe KI-Online-Kurse zum Selbstlernen: sofort buchbar auf alvatar.de, im eigenen Tempo. Selbstzahler-Angebot ohne Förderung.',
   },
   azav: {
     path: '/azav',
-    title: 'AZAV-Förderung – Bildungsgutschein für Arbeitssuchende',
+    title: 'Bildungsgutschein – geförderte Weiterbildung für Arbeitssuchende',
     description:
       'Mit dem Bildungsgutschein der Agentur für Arbeit oder des Jobcenters zur geförderten Weiterbildung – bis zu 100 % kostenfrei. AZAV-zertifiziert nach §81 SGB III.',
   },

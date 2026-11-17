@@ -11,8 +11,12 @@ import {
   Shield,
   ChevronRight,
   ChevronDown,
+  XCircle,
 } from "lucide-react";
+import Kennzeichen from "@/components/Kennzeichen";
 import { courses } from "@/lib/courses";
+import { fachbereiche, ladeKatalog } from "@/lib/katalog";
+import { OME_PFAD } from "@/lib/kursdetails";
 import { buildMetadata } from "@/lib/metadata";
 import { faqSchema } from "@/lib/schema";
 
@@ -32,37 +36,48 @@ const homepageJsonLd = {
 
 const featuredCourses = courses.slice(0, 6);
 
-const stats = [
-  { value: "100+", label: "Online-Kurse" },
-  { value: "AZAV", label: "Zertifiziert" },
-  { value: "FB4", label: "Fachbereich" },
-  { value: "100%", label: "Online" },
-];
-
 const usps = [
   {
     icon: Shield,
-    title: "AZAV-zertifiziert",
-    desc: "Alle unsere geförderten Maßnahmen sind durch die GZQ GmbH (DAkkS-akkreditiert) nach AZAV zugelassen.",
+    title: "AZAV-zertifizierter Träger",
+    desc: "Die FDM GmbH ist durch die GZQ GmbH (DAkkS-akkreditiert) als Bildungsträger nach AZAV zugelassen.",
   },
   {
     icon: GraduationCap,
-    title: "Bildungsgutschein",
-    desc: "Finanzieren Sie Ihre Weiterbildung über die Agentur für Arbeit oder das Jobcenter – bis zu 100 % kostenfrei.",
+    title: "Förderung nutzen",
+    desc: "Wir klären mit Ihnen, ob ein Bildungsgutschein oder das Qualifizierungschancengesetz für Sie in Frage kommt.",
   },
   {
     icon: Laptop,
-    title: "Flexibel & Online",
-    desc: "Alle Kurse finden online statt – von überall aus, in Ihrem eigenen Tempo.",
+    title: "Live und online",
+    desc: "Unterricht im virtuellen Klassenzimmer mit Dozentinnen und Dozenten in Echtzeit, von zu Hause aus.",
   },
   {
     icon: BookOpen,
     title: "Praxisorientiert",
-    desc: "Aktuelle Inhalte mit direktem Bezug zum Arbeitsmarkt – entwickelt von erfahrenen Praktikern.",
+    desc: "Aktuelle Inhalte mit direktem Bezug zum Arbeitsmarkt, in Vollzeit oder Teilzeit.",
   },
 ];
 
-export default function Home() {
+const schritte = [
+  { titel: "Beratung", text: "Sie schildern uns Ihr Ziel. Wir empfehlen passende Weiterbildungen, kostenlos und unverbindlich." },
+  { titel: "Förderung klären", text: "Wir bereiten mit Ihnen das Gespräch mit Agentur für Arbeit, Jobcenter oder Arbeitgeber vor." },
+  { titel: "Anmeldung & Start", text: "Sobald die Finanzierung steht, melden Sie sich an und starten online." },
+  { titel: "Abschluss", text: "Sie schließen mit einem Zertifikat ab und gehen den nächsten beruflichen Schritt." },
+];
+
+export default async function Home() {
+  const katalog = await ladeKatalog();
+  const bereiche = fachbereiche(katalog);
+  const anzahl = katalog.length;
+
+  const stats = [
+    { value: anzahl > 0 ? anzahl.toLocaleString("de-DE") : "900+", label: "Weiterbildungen" },
+    { value: bereiche.length > 0 ? String(bereiche.length) : "15", label: "Fachbereiche" },
+    { value: "AZAV", label: "Zertifizierter Träger" },
+    { value: "100%", label: "Online" },
+  ];
+
   return (
     <>
       <script
@@ -73,6 +88,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
       />
+
       {/* Hero */}
       <section className="hero-gradient text-white overflow-hidden relative">
         <div
@@ -81,49 +97,44 @@ export default function Home() {
             backgroundImage:
               "radial-gradient(circle at 20% 50%, #51ade5 0%, transparent 50%), radial-gradient(circle at 80% 20%, #3f74bc 0%, transparent 40%)",
           }}
+          aria-hidden="true"
         />
         <div className="max-w-7xl mx-auto px-6 py-20 md:py-28 relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-sky-200 text-sm font-medium px-4 py-1.5 rounded-full mb-6 border border-white/20">
-                <Award size={14} />
+                <Award size={14} aria-hidden="true" />
                 AZAV-zertifizierter Bildungsträger
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{ hyphens: "none" }}>
-                Ihre Karriere.{" "}
-                <span style={{ color: "#51ade5" }}>Gefördert.</span>
+                Ihre Karriere. <span style={{ color: "#51ade5" }}>Gefördert.</span>
                 <br />
                 Zukunftssicher.
               </h1>
               <p className="text-lg text-slate-300 leading-relaxed mb-8 max-w-xl">
-                FDM GmbH ist Ihr AZAV-zertifizierter Partner für berufliche
-                Weiterbildung. Nutzen Sie Ihren Bildungsgutschein für geförderte
-                Maßnahmen – oder starten Sie sofort mit unseren Online-Kursen
-                auf alvatar.de.
+                In der FDM Akademie bilden Sie sich live im virtuellen Klassenzimmer weiter, in Vollzeit oder Teilzeit.
+                Wir beraten Sie persönlich und klären mit Ihnen die Förderung.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/azav"
+                  href="/weiterbildung"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white font-semibold rounded-xl hover:bg-slate-100 transition-colors"
                   style={{ color: "#2c3892" }}
                 >
-                  <GraduationCap size={18} />
-                  Gefördert weiterbilden
+                  <GraduationCap size={18} aria-hidden="true" />
+                  Weiterbildung finden
                 </Link>
-                <a
-                  href="https://alvatar.de"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/weiterbildung#beratung"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 font-semibold rounded-xl border border-white/30 hover:bg-white/10 transition-colors"
                   style={{ background: "rgba(81,173,229,0.15)" }}
                 >
-                  <Laptop size={18} />
-                  Online-Kurse entdecken
-                </a>
+                  <Users size={18} aria-hidden="true" />
+                  Kostenlose Beratung
+                </Link>
               </div>
             </div>
 
-            {/* Stats */}
             <div className="grid grid-cols-2 gap-4">
               {stats.map((s) => (
                 <div
@@ -150,6 +161,7 @@ export default function Home() {
               width={48}
               height={48}
               className="flex-shrink-0"
+              style={{ height: "auto" }}
             />
             {[
               "AZAV-zertifiziert (GZQ / DAkkS)",
@@ -158,7 +170,7 @@ export default function Home() {
               "Zulassung bis Oktober 2029",
             ].map((item) => (
               <div key={item} className="flex items-center gap-2 text-sm text-slate-600 font-medium">
-                <CheckCircle size={17} style={{ color: "#3f74bc" }} />
+                <CheckCircle size={17} style={{ color: "#3f74bc" }} aria-hidden="true" />
                 {item}
               </div>
             ))}
@@ -166,56 +178,165 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AZAV Highlight */}
+      {/* Zwei Wege */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: "#1e293b" }}>
+              Zwei Wege zu Ihrem Ziel
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Bei uns finden Sie zwei klar getrennte Angebote. So sehen Sie sofort, was gefördert werden kann und was
+              Sie selbst buchen.
+            </p>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-6">
+            <div className="rounded-3xl p-8 text-white relative overflow-hidden" style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}>
+              <div className="text-xs font-semibold uppercase tracking-wider text-sky-200 mb-2">FDM Akademie</div>
+              <h3 className="text-2xl font-bold mb-4">Geförderte Weiterbildung</h3>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Live-Unterricht im virtuellen Klassenzimmer",
+                  "Weiterbildungen und Umschulungen in Vollzeit oder Teilzeit",
+                  "Förderung über Bildungsgutschein oder Qualifizierungschancengesetz möglich",
+                  "Persönliche Beratung und Begleitung bis zum Abschluss",
+                ].map((punkt) => (
+                  <li key={punkt} className="flex items-start gap-2.5 text-sm">
+                    <CheckCircle size={17} className="flex-shrink-0 mt-0.5 text-sky-200" aria-hidden="true" />
+                    {punkt}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/weiterbildung"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white font-semibold rounded-xl hover:bg-slate-100 transition-colors"
+                style={{ color: "#2c3892" }}
+              >
+                Kursangebot ansehen <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+
+            <div className="rounded-3xl p-8 border-2 border-slate-200 bg-white">
+              <div className="flex flex-wrap items-center gap-3 mb-2">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">alvatar.de</span>
+                <Kennzeichen art="selbstzahler" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: "#1e293b" }}>
+                Online-Kurse für Selbstzahler
+              </h3>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Kurze Selbstlernkurse zu KI und digitalen Kompetenzen",
+                  "Sofort starten, im eigenen Tempo lernen",
+                  "Festpreise, direkt online buchbar",
+                ].map((punkt) => (
+                  <li key={punkt} className="flex items-start gap-2.5 text-sm text-slate-700">
+                    <CheckCircle size={17} className="flex-shrink-0 mt-0.5" style={{ color: "#3f74bc" }} aria-hidden="true" />
+                    {punkt}
+                  </li>
+                ))}
+                <li className="flex items-start gap-2.5 text-sm text-slate-700">
+                  <XCircle size={17} className="flex-shrink-0 mt-0.5 text-amber-600" aria-hidden="true" />
+                  Nicht nach AZAV zugelassen, kein Bildungsgutschein
+                </li>
+              </ul>
+              <Link
+                href="/kurse"
+                className="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-xl border border-[#3f74bc] text-[#3f74bc] hover:bg-blue-50 transition-colors"
+              >
+                Online-Kurse ansehen <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Fachbereiche */}
+      {bereiche.length > 0 && (
+        <section className="py-20 bg-slate-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-10">
+              <div>
+                <div
+                  className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full mb-3"
+                  style={{ background: "#eff6ff", color: "#3f74bc" }}
+                >
+                  <GraduationCap size={14} aria-hidden="true" />
+                  FDM Akademie
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "#1e293b" }}>
+                  Weiterbildung nach Fachbereich
+                </h2>
+              </div>
+              <Link
+                href="/weiterbildung"
+                className="flex-shrink-0 inline-flex items-center gap-1 font-semibold hover:gap-2 transition-all"
+                style={{ color: "#3f74bc" }}
+              >
+                Alle {anzahl.toLocaleString("de-DE")} Weiterbildungen <ChevronRight size={18} aria-hidden="true" />
+              </Link>
+            </div>
+            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {bereiche.map((b) => (
+                <li key={b.name}>
+                  <Link
+                    href={`/weiterbildung?bereich=${encodeURIComponent(b.name)}`}
+                    className="card-hover flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5"
+                  >
+                    <span className="font-semibold leading-snug" style={{ color: "#1e293b" }}>
+                      {b.name}
+                    </span>
+                    <span className="mt-3 text-sm text-[#3f74bc]">
+                      {b.anzahl} {b.anzahl === 1 ? "Kurs" : "Kurse"}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {/* Zugelassener Lehrgang */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div
-                className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full mb-4"
-                style={{ background: "#eff6ff", color: "#3f74bc" }}
-              >
-                <Award size={14} />
-                Geförderte Weiterbildung
+              <div className="mb-4">
+                <Kennzeichen art="azav" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: "#1e293b" }}>
-                Online Marketing Experte{" "}
-                <span className="gradient-text">(m/w/d)</span>
+                Online Marketing Experte <span className="gradient-text">(m/w/d)</span>
               </h2>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Unser AZAV-zertifizierter Lehrgang ermöglicht Ihnen einen
-                umfassenden Einstieg in die Welt des Online-Marketings.
-                Finanzierbar über den Bildungsgutschein der Agentur für Arbeit
-                oder des Jobcenters – für Sie vollständig kostenfrei.
+                Unser eigener Lehrgang für den umfassenden Einstieg ins Online-Marketing. Finanzierbar über den
+                Bildungsgutschein der Agentur für Arbeit oder des Jobcenters.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
-                  "1.920 Unterrichtsstunden über 48 Wochen",
-                  "100 % online – flexibel von zu Hause",
+                  "1.920 Unterrichtseinheiten, 48 Wochen in Vollzeit oder 96 Wochen in Teilzeit",
+                  "9 Lernmodule von SEO bis Performance Marketing",
                   "Abschlusszertifikat des Bildungsträgers",
                   "Laufender Einstieg möglich",
                   "Maßnahme-ID: 01/1024",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-slate-700">
-                    <CheckCircle size={16} style={{ color: "#3f74bc", marginTop: 2 }} className="flex-shrink-0" />
+                    <CheckCircle size={16} style={{ color: "#3f74bc", marginTop: 2 }} className="flex-shrink-0" aria-hidden="true" />
                     {item}
                   </li>
                 ))}
               </ul>
               <Link
-                href="/azav"
+                href={OME_PFAD}
                 className="inline-flex items-center gap-2 px-6 py-3 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
                 style={{ background: "#3f74bc" }}
               >
-                Mehr erfahren
-                <ArrowRight size={16} />
+                Zum Lehrgang
+                <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </div>
 
-            <div
-              className="rounded-3xl p-8 text-white relative overflow-hidden"
-              style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}
-            >
+            <div className="rounded-3xl p-8 text-white relative overflow-hidden" style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}>
               <div
                 className="absolute inset-0 opacity-[0.06]"
                 style={{ backgroundImage: "url(/dot-grid.svg)", backgroundSize: "28px 28px" }}
@@ -223,7 +344,7 @@ export default function Home() {
               />
               <div className="flex items-center gap-3 mb-6 relative">
                 <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.2)" }}>
-                  <Award size={28} />
+                  <Award size={28} aria-hidden="true" />
                 </div>
                 <div>
                   <div className="text-xs text-slate-300 uppercase tracking-wider">Zertifikat</div>
@@ -253,33 +374,67 @@ export default function Home() {
         </div>
       </section>
 
-      {/* USPs */}
+      {/* Ablauf */}
       <section className="py-20 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: "#1e293b" }}>
+              So kommen Sie zu Ihrer Weiterbildung
+            </h2>
+            <p className="text-slate-600 max-w-xl mx-auto">
+              Wie der Bildungsgutschein funktioniert, lesen Sie unter{" "}
+              <Link href="/azav" className="font-semibold text-[#3f74bc] underline">
+                Bildungsgutschein
+              </Link>
+              , die Förderung für Beschäftigte unter{" "}
+              <Link href="/qcg" className="font-semibold text-[#3f74bc] underline">
+                Qualifizierungschancengesetz
+              </Link>
+              .
+            </p>
+          </div>
+          <ol className="grid md:grid-cols-4 gap-6">
+            {schritte.map((s, i) => (
+              <li key={s.titel} className="text-center">
+                <div
+                  className="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4"
+                  style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)", color: "white" }}
+                  aria-hidden="true"
+                >
+                  {i + 1}
+                </div>
+                <h3 className="font-bold mb-2" style={{ color: "#1e293b" }}>
+                  {s.titel}
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{s.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* USPs */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: "#1e293b" }}>
               Warum FDM GmbH?
             </h2>
             <p className="text-slate-600 max-w-xl mx-auto">
-              Wir verbinden staatlich anerkannte Fördermaßnahmen mit modernen
-              Online-Inhalten auf höchstem Niveau.
+              Wir verbinden anerkannte Weiterbildung mit persönlicher Beratung und modernem Online-Unterricht.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {usps.map((usp) => {
               const Icon = usp.icon;
               return (
-                <div
-                  key={usp.title}
-                  className="bg-white rounded-2xl p-6 border border-slate-200 card-hover"
-                >
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                    style={{ background: "#eff6ff" }}
-                  >
-                    <Icon size={22} style={{ color: "#3f74bc" }} />
+                <div key={usp.title} className="bg-white rounded-2xl p-6 border border-slate-200 card-hover">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ background: "#eff6ff" }}>
+                    <Icon size={22} style={{ color: "#3f74bc" }} aria-hidden="true" />
                   </div>
-                  <h3 className="font-bold mb-2" style={{ color: "#1e293b" }}>{usp.title}</h3>
+                  <h3 className="font-bold mb-2" style={{ color: "#1e293b" }}>
+                    {usp.title}
+                  </h3>
                   <p className="text-sm text-slate-600 leading-relaxed">{usp.desc}</p>
                 </div>
               );
@@ -289,23 +444,26 @@ export default function Home() {
       </section>
 
       {/* Online-Kurse Teaser */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-12">
             <div>
-              <div
-                className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full mb-3"
-                style={{ background: "#eff6ff", color: "#3f74bc" }}
-              >
-                <Laptop size={14} />
-                alvatar.de – Online-Akademie
+              <div className="flex flex-wrap items-center gap-3 mb-3">
+                <span
+                  className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full"
+                  style={{ background: "#eff6ff", color: "#3f74bc" }}
+                >
+                  <Laptop size={14} aria-hidden="true" />
+                  alvatar.de – Online-Akademie
+                </span>
+                <Kennzeichen art="selbstzahler" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "#1e293b" }}>
-                KI-Kurse für die Zukunft
+                Online-Kurse für Selbstzahler
               </h2>
               <p className="text-slate-600 mt-2 max-w-lg">
-                Über 100 praxisnahe Online-Kurse rund um Künstliche Intelligenz,
-                Automatisierung und digitale Kompetenzen.
+                Über 100 kurze Selbstlernkurse rund um Künstliche Intelligenz, Automatisierung und digitale
+                Kompetenzen. Diese Kurse buchen Sie selbst; eine Förderung ist hier nicht möglich.
               </p>
             </div>
             <Link
@@ -313,7 +471,7 @@ export default function Home() {
               className="flex-shrink-0 inline-flex items-center gap-1 font-semibold hover:gap-2 transition-all"
               style={{ color: "#3f74bc" }}
             >
-              Alle Kurse ansehen <ChevronRight size={18} />
+              Alle Online-Kurse ansehen <ChevronRight size={18} aria-hidden="true" />
             </Link>
           </div>
 
@@ -333,13 +491,15 @@ export default function Home() {
                       course.level === "Einsteiger"
                         ? { background: "#f0fdf4", color: "#15803d" }
                         : course.level === "Fortgeschritten"
-                        ? { background: "#fffbeb", color: "#b45309" }
-                        : { background: "#faf5ff", color: "#7e22ce" }
+                          ? { background: "#fffbeb", color: "#b45309" }
+                          : { background: "#faf5ff", color: "#7e22ce" }
                     }
                   >
                     {course.level}
                   </span>
-                  <span className="font-bold" style={{ color: "#3f74bc" }}>{course.price}</span>
+                  <span className="font-bold" style={{ color: "#3f74bc" }}>
+                    {course.price}
+                  </span>
                 </div>
                 <h3
                   className="font-semibold text-sm mb-2 leading-snug group-hover:text-[#3f74bc] transition-colors"
@@ -351,31 +511,18 @@ export default function Home() {
               </a>
             ))}
           </div>
-
-          <div className="mt-10 text-center">
-            <a
-              href="https://alvatar.de"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3.5 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
-              style={{ background: "#3f74bc" }}
-            >
-              Alle Kurse auf alvatar.de
-              <ArrowRight size={16} />
-            </a>
-          </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-12">
             <div
               className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full mb-4"
               style={{ background: "#eff6ff", color: "#3f74bc" }}
             >
-              <BookOpen size={14} />
+              <BookOpen size={14} aria-hidden="true" />
               FAQ
             </div>
             <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "#1e293b" }}>
@@ -384,21 +531,20 @@ export default function Home() {
           </div>
           <div className="space-y-4">
             {faqSchema.mainEntity.map((item) => (
-              <details
-                key={item.name}
-                className="group bg-white rounded-2xl border border-slate-200 overflow-hidden"
-              >
-                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none p-6 font-semibold marker:hidden" style={{ color: "#1e293b" }}>
+              <details key={item.name} className="group bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                <summary
+                  className="flex items-center justify-between gap-4 cursor-pointer list-none p-6 font-semibold marker:hidden"
+                  style={{ color: "#1e293b" }}
+                >
                   {item.name}
                   <ChevronDown
                     size={20}
                     className="flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
                     style={{ color: "#3f74bc" }}
+                    aria-hidden="true"
                   />
                 </summary>
-                <p className="px-6 pb-6 -mt-1 text-sm text-slate-600 leading-relaxed">
-                  {item.acceptedAnswer.text}
-                </p>
+                <p className="px-6 pb-6 -mt-1 text-sm text-slate-600 leading-relaxed">{item.acceptedAnswer.text}</p>
               </details>
             ))}
           </div>
@@ -406,30 +552,24 @@ export default function Home() {
       </section>
 
       {/* CTA Banner */}
-      <section
-        className="py-16 relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}
-      >
+      <section className="py-16 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}>
         <div
           className="absolute inset-0 opacity-[0.07]"
           style={{ backgroundImage: "url(/dot-grid.svg)", backgroundSize: "28px 28px" }}
           aria-hidden="true"
         />
         <div className="max-w-4xl mx-auto px-6 text-center text-white relative">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Kostenlose Beratung gewünscht?
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Kostenlose Beratung gewünscht?</h2>
           <p className="mb-8 text-lg" style={{ color: "#cbd5e1" }}>
-            Wir helfen Ihnen, den richtigen Kurs zu finden und klären, ob Sie
-            Anspruch auf eine geförderte Maßnahme haben.
+            Wir helfen Ihnen, die richtige Weiterbildung zu finden, und klären mit Ihnen die Fördermöglichkeiten.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/kontakt"
+              href="/weiterbildung#beratung"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white font-semibold rounded-xl hover:bg-slate-100 transition-colors"
               style={{ color: "#2c3892" }}
             >
-              <Users size={18} />
+              <Users size={18} aria-hidden="true" />
               Jetzt Beratung anfragen
             </Link>
             <a

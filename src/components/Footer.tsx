@@ -43,8 +43,9 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               {[
                 { href: "/", label: "Startseite" },
-                { href: "/kurse", label: "Kurse & Weiterbildung" },
-                { href: "/azav", label: "AZAV-Förderung" },
+                { href: "/weiterbildung", label: "Geförderte Weiterbildung" },
+                { href: "/kurse", label: "Online-Kurse (Selbstzahler)" },
+                { href: "/azav", label: "Bildungsgutschein" },
                 { href: "/qcg", label: "QCG-Förderung" },
                 { href: "/ueber-uns", label: "Über uns" },
                 { href: "/leitbild", label: "Leitbild" },

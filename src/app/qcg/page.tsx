@@ -551,7 +551,7 @@ export default function QcgPage() {
                     </p>
                   </div>
                   <Link
-                    href="/azav"
+                    href="/weiterbildung/FDM-OME-VZ"
                     className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white font-semibold rounded-xl hover:bg-slate-100 transition-colors text-sm whitespace-nowrap"
                     style={{ color: "#2c3892" }}
                   >

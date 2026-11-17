@@ -83,12 +83,12 @@ export const schemaGraph = {
 export const courseAZAV = {
   '@context': 'https://schema.org',
   '@type': 'Course',
-  '@id': `${BASE}/azav#course`,
+  '@id': `${BASE}/weiterbildung/FDM-OME-VZ#course`,
   name: 'Online Marketing Experte (m/w/d)',
   description:
     'AZAV-zertifizierter Lehrgang für den umfassenden Einstieg in das Online-Marketing. Finanzierbar über den Bildungsgutschein der Agentur für Arbeit oder des Jobcenters – für Teilnehmende vollständig kostenfrei.',
   provider: { '@id': `${BASE}/#organization` },
-  url: `${BASE}/azav`,
+  url: `${BASE}/weiterbildung/FDM-OME-VZ`,
   inLanguage: 'de-DE',
   educationalCredentialAwarded:
     'Abschlusszertifikat des Bildungsträgers (AZAV §81 SGB III)',
@@ -100,7 +100,7 @@ export const courseAZAV = {
     // 48 Wochen, laufender Einstieg
     location: {
       '@type': 'VirtualLocation',
-      url: `${BASE}/azav`,
+      url: `${BASE}/weiterbildung/FDM-OME-VZ`,
     },
   },
   offers: {
@@ -109,7 +109,7 @@ export const courseAZAV = {
     price: '0',
     priceCurrency: 'EUR',
     availability: 'https://schema.org/InStock',
-    url: `${BASE}/azav`,
+    url: `${BASE}/weiterbildung/FDM-OME-VZ`,
   },
 }
 
@@ -195,6 +195,14 @@ export const faqSchema = {
     },
     {
       '@type': 'Question',
+      name: 'Was ist der Unterschied zwischen geförderter Weiterbildung und den Online-Kursen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Geförderte Weiterbildungen der FDM Akademie finden live im virtuellen Klassenzimmer statt, dauern mehrere Wochen bis Monate und können über einen Bildungsgutschein oder das Qualifizierungschancengesetz finanziert werden. Die Online-Kurse auf alvatar.de sind kurze Selbstlernkurse für Selbstzahler. Sie sind nicht nach AZAV zugelassen und können nicht mit einem Bildungsgutschein bezahlt werden.',
+      },
+    },
+    {
+      '@type': 'Question',
       name: 'Was bedeutet AZAV-Zertifizierung?',
       acceptedAnswer: {
         '@type': 'Answer',
@@ -205,7 +213,7 @@ export const faqSchema = {
 }
 
 // ---------- WIEDERVERWENDBAR: BreadcrumbList (Helper) ----------
-// items: [{ name: 'Startseite', url: BASE }, { name: 'AZAV-Förderung', url: `${BASE}/azav` }]
+// items: [{ name: 'Startseite', url: BASE }, { name: 'AZAV-Förderung', url: `${BASE}/weiterbildung/FDM-OME-VZ` }]
 export const breadcrumb = (
   items: { name: string; url: string }[],
 ) => ({

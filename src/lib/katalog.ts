@@ -33,10 +33,20 @@ export async function ladeKatalog(): Promise<Weiterbildung[]> {
     });
     if (!antwort.ok) return [];
     const daten = (await antwort.json()) as { kurse?: Weiterbildung[] };
-    return daten.kurse ?? [];
+    // Zugelassene Kurse stehen vorn, danach alphabetisch (so liefert es das CRM).
+    return [...(daten.kurse ?? [])].sort((a, b) => Number(b.zugelassen ?? false) - Number(a.zugelassen ?? false));
   } catch {
     return [];
   }
+}
+
+export const kursPfad = (modulNr: string) => `/weiterbildung/${encodeURIComponent(modulNr)}`;
+
+// Anzahl der Kurse je Fachbereich, größte zuerst (für die Übersicht auf der Startseite).
+export function fachbereiche(kurse: Weiterbildung[]): { name: string; anzahl: number }[] {
+  const zaehler = new Map<string, number>();
+  for (const k of kurse) zaehler.set(k.fachbereich_name, (zaehler.get(k.fachbereich_name) ?? 0) + 1);
+  return [...zaehler.entries()].map(([name, anzahl]) => ({ name, anzahl })).sort((a, b) => b.anzahl - a.anzahl);
 }
 
 export function dauerText(k: Pick<Weiterbildung, "dauer_wochen">): string | null {
