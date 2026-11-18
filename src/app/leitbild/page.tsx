@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import BeratungCta from "@/components/BeratungCta";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata("leitbild");
@@ -79,6 +80,7 @@ export default function LeitbildPage() {
                 width={120}
                 height={120}
                 className="drop-shadow-lg"
+                style={{ height: "auto" }}
               />
             </div>
           </div>
@@ -239,6 +241,7 @@ export default function LeitbildPage() {
             width={100}
             height={100}
             className="flex-shrink-0"
+            style={{ height: "auto" }}
           />
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "#3f74bc" }}>
@@ -257,11 +260,13 @@ export default function LeitbildPage() {
               className="inline-flex items-center gap-1 text-sm font-semibold mt-2 hover:underline"
               style={{ color: "#3f74bc" }}
             >
-              Zur AZAV-Seite →
+              So funktioniert der Bildungsgutschein →
             </Link>
           </div>
         </section>
       </div>
+
+      <BeratungCta />
     </>
   );
 }

@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Phone, Mail, MapPin, Clock, Send, CheckCircle } from "lucide-react";
+import Kennzeichen from "@/components/Kennzeichen";
 
 export default function KontaktPage() {
   const [sent, setSent] = useState(false);
@@ -18,8 +20,8 @@ export default function KontaktPage() {
 
   const subjects = [
     "Allgemeine Anfrage",
-    "AZAV-Weiterbildung & Bildungsgutschein",
     "Online-Kurse alvatar.de",
+    "Förderung für Unternehmen (QCG)",
     "Kooperationsanfrage",
     "Sonstiges",
   ];
@@ -64,12 +66,56 @@ export default function KontaktPage() {
         className="py-16 text-white"
         style={{ background: "linear-gradient(135deg, #1e293b, #2c3892, #3f74bc)" }}
       >
-        <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="max-w-7xl mx-auto px-6">
+          <div
+            className="inline-flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-full mb-5 border border-white/20"
+            style={{ background: "rgba(255,255,255,0.1)", color: "#bae6fd" }}
+          >
+            <Phone size={14} aria-hidden="true" />
+            Mo – Fr, 09:00 – 17:00 Uhr
+          </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Kontakt</h1>
-          <p className="text-lg max-w-xl mx-auto" style={{ color: "#cbd5e1" }}>
-            Wir freuen uns auf Ihre Anfrage. Schreiben Sie uns oder rufen Sie
-            direkt an – wir antworten schnell.
+          <p className="text-lg max-w-xl" style={{ color: "#cbd5e1" }}>
+            Wir freuen uns auf Ihre Nachricht. Schreiben Sie uns oder rufen Sie direkt an.
           </p>
+        </div>
+      </section>
+
+      {/* Wegweiser: das richtige Formular für das richtige Anliegen */}
+      <section className="bg-white border-b border-slate-200 py-10">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-5">
+            <Link
+              href="/weiterbildung#beratung"
+              className="card-hover flex flex-col rounded-2xl p-6 text-white"
+              style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}
+            >
+              <span className="text-xs font-semibold uppercase tracking-wider text-sky-200">FDM Akademie</span>
+              <span className="mt-1 text-xl font-bold">Beratung zur geförderten Weiterbildung</span>
+              <span className="mt-2 text-sm text-slate-200">
+                Sie interessieren sich für eine Weiterbildung oder Umschulung und möchten wissen, welche Förderung in
+                Frage kommt? Dann nutzen Sie bitte unser Beratungsformular.
+              </span>
+              <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold">
+                Beratung anfragen <ArrowRight size={15} aria-hidden="true" />
+              </span>
+            </Link>
+            <Link href="/kurse" className="card-hover flex flex-col rounded-2xl border border-slate-200 bg-white p-6">
+              <span className="flex flex-wrap items-center gap-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">alvatar.de</span>
+                <Kennzeichen art="selbstzahler" />
+              </span>
+              <span className="mt-1 text-xl font-bold" style={{ color: "#1e293b" }}>
+                Online-Kurse für Selbstzahler
+              </span>
+              <span className="mt-2 text-sm text-slate-600">
+                Kurze Selbstlernkurse zu KI und digitalen Kompetenzen buchen Sie direkt online.
+              </span>
+              <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold text-[#3f74bc]">
+                Online-Kurse ansehen <ArrowRight size={15} aria-hidden="true" />
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -161,12 +207,18 @@ export default function KontaktPage() {
                 style={{ background: "#eff6ff" }}
               >
                 <h3 className="font-bold text-sm mb-2" style={{ color: "#1e40af" }}>
-                  Interesse an geförderter Weiterbildung?
+                  Fragen zur Förderung?
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Wählen Sie als Betreff „AZAV-Weiterbildung &
-                  Bildungsgutschein" – wir klären kostenlos, ob Sie Anspruch
-                  auf Förderung haben.
+                  Wie der Weg zum{" "}
+                  <Link href="/azav" className="underline hover:text-[#3f74bc]">
+                    Bildungsgutschein
+                  </Link>{" "}
+                  aussieht und was das{" "}
+                  <Link href="/qcg" className="underline hover:text-[#3f74bc]">
+                    Qualifizierungschancengesetz
+                  </Link>{" "}
+                  für Beschäftigte bietet, haben wir für Sie zusammengefasst.
                 </p>
               </div>
             </div>
@@ -301,12 +353,12 @@ export default function KontaktPage() {
                       <p className="text-xs text-slate-500">
                         Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten
                         gemäß unserer{" "}
-                        <a
+                        <Link
                           href="/datenschutz"
                           className="underline hover:text-[#3f74bc]"
                         >
                           Datenschutzerklärung
-                        </a>{" "}
+                        </Link>{" "}
                         zu.
                       </p>
 

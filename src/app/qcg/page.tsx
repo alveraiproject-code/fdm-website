@@ -14,6 +14,9 @@ import {
   ChevronRight,
   Info,
 } from "lucide-react";
+import BeratungCta from "@/components/BeratungCta";
+import Kennzeichen from "@/components/Kennzeichen";
+import { OME_PFAD } from "@/lib/kursdetails";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata("qcg");
@@ -83,12 +86,12 @@ const employeeBenefits = [
   {
     icon: TrendingUp,
     title: "Karrierechancen verbessern",
-    desc: "Digitale Kompetenzen im Online-Marketing sind stark gefragt – die Weiterbildung öffnet neue Türen im eigenen Unternehmen.",
+    desc: "Neue Kompetenzen sind gefragt. Die Weiterbildung öffnet neue Türen im eigenen Unternehmen.",
   },
   {
     icon: Lightbulb,
     title: "Zukunftssichere Qualifikation",
-    desc: "Erwerben Sie ein AZAV-zertifiziertes Abschlusszertifikat, das von Arbeitgebern und der Bundesagentur für Arbeit anerkannt wird.",
+    desc: "Sie schließen mit einem Zertifikat ab, das Ihre neue Qualifikation gegenüber Arbeitgebern belegt.",
   },
   {
     icon: ShieldCheck,
@@ -234,7 +237,7 @@ export default function QcgPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
-                href="/kontakt"
+                href="/weiterbildung#beratung"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white font-semibold rounded-xl hover:bg-slate-100 transition-colors"
                 style={{ color: "#2c3892" }}
               >
@@ -245,7 +248,7 @@ export default function QcgPage() {
                 href="#foerderhoehe"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl border border-white/30 hover:bg-white/10 transition-colors"
               >
-                Förderhöhe berechnen
+                Förderhöhe ansehen
                 <ChevronRight size={17} />
               </a>
             </div>
@@ -287,7 +290,7 @@ export default function QcgPage() {
                 Hintergrund
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: "#1e293b" }}>
-                Was ist das Qualifizierungschancengesetz?
+                Was ist das Qualifizierungs&shy;chancengesetz?
               </h2>
               <p className="text-slate-600 leading-relaxed mb-4">
                 Das Qualifizierungschancengesetz ist seit Januar 2019 in Kraft
@@ -447,7 +450,7 @@ export default function QcgPage() {
                   ))}
                 </div>
                 <Link
-                  href="/kontakt"
+                  href="/weiterbildung#beratung"
                   className="mt-7 w-full inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold text-white rounded-xl hover:opacity-90 transition-opacity"
                   style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}
                 >
@@ -494,7 +497,7 @@ export default function QcgPage() {
                   ))}
                 </div>
                 <Link
-                  href="/kontakt"
+                  href="/weiterbildung#beratung"
                   className="mt-7 w-full inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold rounded-xl border-2 hover:bg-green-50 transition-colors"
                   style={{ borderColor: "#15803d", color: "#15803d" }}
                 >
@@ -508,81 +511,48 @@ export default function QcgPage() {
         </div>
       </section>
 
-      {/* Passender Kurs: Online Marketing Experte */}
+      {/* Passende Weiterbildungen */}
       <section className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-10">
-            <div
-              className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full mb-4"
-              style={{ background: "#eff6ff", color: "#3f74bc" }}
-            >
-              <Award size={14} />
-              QCG-fähige Weiterbildung bei FDM GmbH
-            </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: "#1e293b" }}>
-              Der passende Kurs – sofort förderfähig
+              Passende Weiterbildungen
             </h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Unser AZAV-zertifizierter Lehrgang ist für das Qualifizierungschancengesetz
-              anerkannt. Starten Sie jetzt – mit bis zu 100 % staatlicher Förderung.
+              Welche Weiterbildung zu Ihrem Betrieb passt und wie hoch die Förderung ausfällt, klären wir gemeinsam mit
+              Ihnen und Ihrer Agentur für Arbeit.
             </p>
           </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div
-              className="rounded-3xl overflow-hidden border border-blue-100"
-              style={{ boxShadow: "0 4px 24px rgba(44,56,146,0.10)" }}
-            >
-              <div
-                className="px-8 py-8 text-white"
-                style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}
-              >
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                  <div>
-                    <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#bae6fd" }}>
-                      AZAV-zertifizierter Lehrgang · Maßnahme-ID 01/1024
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                      Online Marketing Experte (m/w/d)
-                    </h3>
-                    <p style={{ color: "#cbd5e1" }} className="text-sm max-w-lg">
-                      Praxisnahe Weiterbildung in SEO, Google Ads, Social Media, Analytics
-                      und Content-Marketing – 9 Module, vollständig online.
-                    </p>
-                  </div>
-                  <Link
-                    href="/weiterbildung/FDM-OME-VZ"
-                    className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white font-semibold rounded-xl hover:bg-slate-100 transition-colors text-sm whitespace-nowrap"
-                    style={{ color: "#2c3892" }}
-                  >
-                    Zur Kursseite
-                    <ArrowRight size={15} />
-                  </Link>
-                </div>
-              </div>
-              <div className="px-8 py-7 bg-white">
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                  {[
-                    { label: "Dauer Vollzeit", value: "48 Wochen" },
-                    { label: "Dauer Teilzeit", value: "96 Wochen" },
-                    { label: "Unterrichtsstunden", value: "1.920 UE" },
-                    { label: "Teilnehmer", value: "max. 15 Personen" },
-                  ].map((item) => (
-                    <div key={item.label} className="text-center">
-                      <div className="font-bold text-lg mb-0.5" style={{ color: "#2c3892" }}>{item.value}</div>
-                      <div className="text-xs text-slate-500">{item.label}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 pt-5 border-t border-slate-100">
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    <strong className="text-slate-800">9 Lehrmodule:</strong>{" "}
-                    Grundlagen · SEO · SEA mit Google Ads · Social Media · E-Mail-Marketing & CRM ·
-                    Google Analytics 4 · Content-Marketing · Performance Marketing · Strategieprojekt
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Link href={OME_PFAD} className="card-hover flex flex-col rounded-2xl border border-slate-200 bg-white p-6">
+              <span className="mb-3">
+                <Kennzeichen art="azav" />
+              </span>
+              <span className="text-xl font-bold" style={{ color: "#1e293b" }}>
+                Online Marketing Experte (m/w/d)
+              </span>
+              <span className="mt-2 text-sm text-slate-600">
+                1.920 Unterrichtseinheiten · 48 Wochen in Vollzeit oder 96 Wochen in Teilzeit · laufender Einstieg ·
+                Maßnahme-ID 01/1024
+              </span>
+              <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-semibold text-[#3f74bc]">
+                Zum Lehrgang <ArrowRight size={15} aria-hidden="true" />
+              </span>
+            </Link>
+            <Link href="/weiterbildung" className="card-hover flex flex-col rounded-2xl border border-slate-200 bg-white p-6">
+              <span className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#3f74bc]">FDM Akademie</span>
+              <span className="text-xl font-bold" style={{ color: "#1e293b" }}>
+                Gesamtes Kursangebot
+              </span>
+              <span className="mt-2 text-sm text-slate-600">
+                Weiterbildungen aus IT, kaufmännischen Berufen, Gesundheit, Technik, Medien und Sprachen, live im
+                virtuellen Klassenzimmer und in Vollzeit oder Teilzeit. Welche Förderung für Ihre Beschäftigten in Frage
+                kommt, klären wir in der Beratung.
+              </span>
+              <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-semibold text-[#3f74bc]">
+                Kursangebot ansehen <ArrowRight size={15} aria-hidden="true" />
+              </span>
+            </Link>
           </div>
         </div>
       </section>
@@ -672,39 +642,10 @@ export default function QcgPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section
-        className="py-16 text-white text-center"
-        style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}
-      >
-        <div className="max-w-2xl mx-auto px-6">
-          <Award size={36} className="mx-auto mb-4 opacity-80" />
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
-            Jetzt Förderung prüfen lassen
-          </h2>
-          <p className="mb-8 text-lg" style={{ color: "#cbd5e1" }}>
-            Wir prüfen kostenlos, ob Ihr Unternehmen und Ihre Mitarbeitenden
-            die Voraussetzungen für das Qualifizierungschancengesetz erfüllen.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/kontakt"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white font-semibold rounded-xl hover:bg-slate-100 transition-colors"
-              style={{ color: "#2c3892" }}
-            >
-              <Building2 size={18} />
-              Kostenlose Beratung anfragen
-            </Link>
-            <a
-              href="tel:+4971616275120"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-white font-semibold rounded-xl border border-white/30 hover:bg-white/10 transition-colors"
-            >
-              <Phone size={18} />
-              07161 – 6275120
-            </a>
-          </div>
-        </div>
-      </section>
+      <BeratungCta
+        titel="Jetzt Förderung prüfen lassen"
+        text="Wir prüfen kostenlos, ob Ihr Unternehmen und Ihre Mitarbeitenden die Voraussetzungen für das Qualifizierungschancengesetz erfüllen."
+      />
     </>
   );
 }
