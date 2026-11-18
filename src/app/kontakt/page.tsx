@@ -1,22 +1,61 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Phone, Mail, MapPin, Clock, Send, CheckCircle } from "lucide-react";
 import Kennzeichen from "@/components/Kennzeichen";
+import { CRM_URL } from "@/lib/katalog";
 
 export default function KontaktPage() {
+  const geladen = useRef(0);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "Allgemeine Anfrage",
-    message: "",
-    honeypot: "",
-  });
+
+  useEffect(() => {
+    geladen.current = Date.now();
+  }, []);
+
+  // Die Nachricht geht wie das Beratungsformular direkt in das CRM der FDM Akademie.
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
+    setSending(true);
+    const f = new FormData(e.currentTarget);
+    const text = (name: string) => String(f.get(name) ?? "").trim();
+    try {
+      const res = await fetch(`${CRM_URL}/api/anfrage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          vorname: text("vorname"),
+          nachname: text("nachname"),
+          email: text("email"),
+          telefon: text("telefon"),
+          nachricht: `Betreff: ${text("betreff")}\n\n${text("nachricht")}`,
+          firma_website: text("firma_website"),
+          einwilligung: f.get("einwilligung") === "on",
+          geladen: geladen.current,
+          quelle: "fdm-group.de/kontakt",
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; fehler?: string };
+      if (!res.ok || !data.ok) {
+        throw new Error(data.fehler ?? "Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.");
+      }
+      setSent(true);
+    } catch (err) {
+      setError(
+        err instanceof TypeError
+          ? "Ihre Nachricht konnte nicht gesendet werden. Bitte prüfen Sie Ihre Verbindung oder rufen Sie uns an."
+          : err instanceof Error
+            ? err.message
+            : "Ihre Nachricht konnte nicht gesendet werden.",
+      );
+    } finally {
+      setSending(false);
+    }
+  };
 
   const subjects = [
     "Allgemeine Anfrage",
@@ -25,39 +64,6 @@ export default function KontaktPage() {
     "Kooperationsanfrage",
     "Sonstiges",
   ];
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (form.honeypot) return; // bot detected
-    setError("");
-    setSending(true);
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error ?? "Versand fehlgeschlagen.");
-      }
-      setSent(true);
-    } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Versand fehlgeschlagen. Bitte später erneut versuchen."
-      );
-    } finally {
-      setSending(false);
-    }
-  };
 
   return (
     <>
@@ -235,132 +241,96 @@ export default function KontaktPage() {
                         Vielen Dank für Ihre Anfrage!
                       </h2>
                       <p className="text-slate-600 text-sm">
-                        Wir melden uns in Kürze bei Ihnen zurück.
+                        Ihre Nachricht ist bei uns angekommen. Wir melden uns innerhalb von zwei Werktagen bei Ihnen.
                       </p>
                     </div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                    <form onSubmit={handleSubmit} className="space-y-5">
                       <h2 className="font-bold text-xl mb-6" style={{ color: "#1e293b" }}>
                         Nachricht senden
                       </h2>
 
-                      {/* Honeypot — hidden from real users, traps bots */}
-                      <div className="hidden" aria-hidden="true">
-                        <label htmlFor="website">Website (nicht ausfüllen)</label>
-                        <input
-                          type="text"
-                          id="website"
-                          name="honeypot"
-                          value={form.honeypot}
-                          onChange={handleChange}
-                          tabIndex={-1}
-                          autoComplete="off"
-                        />
+                      {/* Spamschutz: für Menschen unsichtbar, darf nicht ausgefüllt werden */}
+                      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                        <label>
+                          Bitte dieses Feld leer lassen
+                          <input name="firma_website" tabIndex={-1} autoComplete="off" />
+                        </label>
                       </div>
 
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label htmlFor="name" className="block text-sm font-medium mb-1.5 text-slate-700">
-                            Name <span aria-hidden="true">*</span>
+                          <label htmlFor="vorname" className="block text-sm font-medium mb-1.5 text-slate-700">
+                            Vorname <span className="text-slate-400 font-normal">(optional)</span>
+                          </label>
+                          <input type="text" id="vorname" name="vorname" autoComplete="given-name" maxLength={100} className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#3f74bc]/30 focus:border-[#3f74bc]" />
+                        </div>
+                        <div>
+                          <label htmlFor="nachname" className="block text-sm font-medium mb-1.5 text-slate-700">
+                            Nachname <span aria-hidden="true">*</span>
                             <span className="sr-only">(Pflichtfeld)</span>
                           </label>
-                          <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={form.name}
-                            onChange={handleChange}
-                            required
-                            aria-required="true"
-                            autoComplete="name"
-                            placeholder="Ihr vollständiger Name"
-                            className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:border-[#3f74bc]"
-                            style={{ ["--tw-ring-color" as string]: "#3f74bc" }}
-                          />
+                          <input type="text" id="nachname" name="nachname" required autoComplete="family-name" maxLength={100} className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#3f74bc]/30 focus:border-[#3f74bc]" />
                         </div>
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 gap-4">
                         <div>
                           <label htmlFor="email" className="block text-sm font-medium mb-1.5 text-slate-700">
                             E-Mail <span aria-hidden="true">*</span>
                             <span className="sr-only">(Pflichtfeld)</span>
                           </label>
-                          <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            required
-                            aria-required="true"
-                            autoComplete="email"
-                            placeholder="ihre@email.de"
-                            className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2"
-                          />
+                          <input type="email" id="email" name="email" required autoComplete="email" maxLength={200} placeholder="ihre@email.de" className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#3f74bc]/30 focus:border-[#3f74bc]" />
                         </div>
-                      </div>
-
-                      <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label htmlFor="phone" className="block text-sm font-medium mb-1.5 text-slate-700">
+                          <label htmlFor="telefon" className="block text-sm font-medium mb-1.5 text-slate-700">
                             Telefon <span className="text-slate-400 font-normal">(optional)</span>
                           </label>
-                          <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            value={form.phone}
-                            onChange={handleChange}
-                            autoComplete="tel"
-                            placeholder="Ihre Telefonnummer"
-                            className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2"
-                          />
-                        </div>
-                        <div>
-                          <label htmlFor="subject" className="block text-sm font-medium mb-1.5 text-slate-700">
-                            Betreff
-                          </label>
-                          <select
-                            id="subject"
-                            name="subject"
-                            value={form.subject}
-                            onChange={handleChange}
-                            className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 bg-white"
-                          >
-                            {subjects.map((s) => (
-                              <option key={s} value={s}>{s}</option>
-                            ))}
-                          </select>
+                          <input type="tel" id="telefon" name="telefon" autoComplete="tel" maxLength={50} className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#3f74bc]/30 focus:border-[#3f74bc]" />
                         </div>
                       </div>
 
                       <div>
-                        <label htmlFor="message" className="block text-sm font-medium mb-1.5 text-slate-700">
+                        <label htmlFor="betreff" className="block text-sm font-medium mb-1.5 text-slate-700">
+                          Betreff
+                        </label>
+                        <select id="betreff" name="betreff" defaultValue={subjects[0]} className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#3f74bc]/30 focus:border-[#3f74bc] bg-white">
+                          {subjects.map((s) => (
+                            <option key={s} value={s}>
+                              {s}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div>
+                        <label htmlFor="nachricht" className="block text-sm font-medium mb-1.5 text-slate-700">
                           Ihre Nachricht <span aria-hidden="true">*</span>
                           <span className="sr-only">(Pflichtfeld)</span>
                         </label>
                         <textarea
-                          id="message"
-                          name="message"
-                          value={form.message}
-                          onChange={handleChange}
+                          id="nachricht"
+                          name="nachricht"
                           required
-                          aria-required="true"
                           rows={5}
+                          maxLength={2900}
                           placeholder="Wie können wir Ihnen helfen?"
-                          className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 resize-none"
+                          className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#3f74bc]/30 focus:border-[#3f74bc] resize-none"
                         />
                       </div>
 
-                      <p className="text-xs text-slate-500">
-                        Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten
-                        gemäß unserer{" "}
-                        <Link
-                          href="/datenschutz"
-                          className="underline hover:text-[#3f74bc]"
-                        >
-                          Datenschutzerklärung
-                        </Link>{" "}
-                        zu.
-                      </p>
+                      <label className="flex items-start gap-2 text-sm text-slate-700">
+                        <input type="checkbox" name="einwilligung" required className="mt-0.5 h-4 w-4 accent-[#2c3892]" />
+                        <span>
+                          Ich bin damit einverstanden, dass die FDM GmbH meine Angaben speichert und verwendet, um meine
+                          Anfrage zu bearbeiten und mich dazu zu kontaktieren. Die Einwilligung kann ich jederzeit
+                          widerrufen. Näheres steht in der{" "}
+                          <Link href="/datenschutz" className="underline hover:text-[#3f74bc]">
+                            Datenschutzerklärung
+                          </Link>
+                          . *
+                        </span>
+                      </label>
 
                       {error && (
                         <p role="alert" className="text-sm font-medium text-red-600">
@@ -377,6 +347,7 @@ export default function KontaktPage() {
                         <Send size={16} aria-hidden="true" />
                         {sending ? "Wird gesendet …" : "Nachricht senden"}
                       </button>
+                      <p className="text-xs text-slate-500">* Pflichtangaben</p>
                     </form>
                   )}
                 </div>

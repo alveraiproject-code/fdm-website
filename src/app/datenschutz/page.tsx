@@ -67,6 +67,8 @@ export default function DatenschutzPage() {
               den Fall von Anschlussfragen bei uns gespeichert. Diese Daten
               geben wir nicht ohne Ihre Einwilligung weiter. Rechtsgrundlage
               ist Art. 6 Abs. 1 lit. b DSGVO.
+              Die Angaben werden in unserer Kundenverwaltung gespeichert; die
+              dafür eingesetzten Dienstleister nennen wir in Abschnitt 5.
             </p>
           </div>
 
