@@ -40,6 +40,26 @@ export async function ladeKatalog(): Promise<Weiterbildung[]> {
   }
 }
 
+// Ausführliche Beschreibung eines Kurses (Einleitung, Abschnitte, Fragen). Wird im CRM gepflegt.
+export interface Kurstext {
+  einleitung: string;
+  abschnitte: { ueberschrift: string; text: string }[];
+  fragen: { frage: string; antwort: string }[];
+}
+
+export async function ladeKurstext(modulNr: string): Promise<Kurstext | null> {
+  try {
+    const antwort = await fetch(`${CRM_URL}/api/kurs/${encodeURIComponent(modulNr)}`, {
+      next: { revalidate: 600 },
+    });
+    if (!antwort.ok) return null;
+    const text = ((await antwort.json()) as { langtext?: Kurstext | null }).langtext;
+    return text && text.einleitung && Array.isArray(text.abschnitte) ? text : null;
+  } catch {
+    return null;
+  }
+}
+
 export const kursPfad = (modulNr: string) => `/weiterbildung/${encodeURIComponent(modulNr)}`;
 
 // Anzahl der Kurse je Fachbereich, größte zuerst (für die Übersicht auf der Startseite).

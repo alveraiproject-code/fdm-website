@@ -44,6 +44,8 @@ export default async function KettenSeite({ params }: Props) {
   const bereich = bereichText(kette.fachbereich_name);
   const zugelassen = kette.stufen.every((s) => s.kurs.zugelassen);
   const stunden = Math.round(kette.grund.ue * 0.75);
+  // Die Agentur für Arbeit zählt in Unterrichtseinheiten.
+  const ueberGrenze = kette.grund.ue > 120;
   const verwandte = ketten
     .filter((k) => k.fachbereich_name === kette.fachbereich_name && k.zeitmodell === kette.zeitmodell && k.slug !== kette.slug)
     .slice(0, 8);
@@ -276,9 +278,9 @@ export default async function KettenSeite({ params }: Props) {
               <Link href="/qcg" className="text-[#3f74bc] underline">
                 Qualifizierungschancengesetz
               </Link>{" "}
-              in Frage, das unter anderem einen Umfang von mehr als 120 Stunden voraussetzt.
-              {stunden > 120
-                ? ` ${optional.length ? "Die Grundkette" : "Die Kette"} umfasst ${kette.grund.ue.toLocaleString("de-DE")} Unterrichtseinheiten, das entspricht rund ${stunden} Zeitstunden.`
+              in Frage, das unter anderem einen Umfang von mehr als 120 Unterrichtseinheiten voraussetzt.
+              {ueberGrenze
+                ? ` ${optional.length ? "Die Grundkette" : "Die Kette"} umfasst ${kette.grund.ue.toLocaleString("de-DE")} Unterrichtseinheiten.`
                 : ""}{" "}
               Wie der Weg zum Bildungsgutschein aussieht, lesen Sie unter{" "}
               <Link href="/azav" className="text-[#3f74bc] underline">

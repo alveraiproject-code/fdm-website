@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Award, BookOpen, CalendarClock, CheckCircle, ChevronRight, Clock, FileText, GraduationCap, Users } from "lucide-react";
 import AnfrageFormular from "@/components/AnfrageFormular";
 import Kennzeichen from "@/components/Kennzeichen";
-import { dauerText, kursPfad, ladeKatalog, type Weiterbildung } from "@/lib/katalog";
+import { faqSeite } from "@/lib/faq";
+import { dauerText, kursPfad, ladeKatalog, ladeKurstext, type Weiterbildung } from "@/lib/katalog";
 import { kettenPfad, kettenVonKurs, ladeKetten } from "@/lib/ketten";
 import { kursdetails } from "@/lib/kursdetails";
 import { breadcrumb, courseAZAV, kursSchema } from "@/lib/schema";
@@ -66,6 +67,8 @@ export default async function KursSeite({ params }: Props) {
   const details = kursdetails(kurs.modul_nr);
   const zwilling = andereZeitform(kurs, katalog);
   const inKetten = kettenVonKurs(kurs.modul_nr, await ladeKetten(katalog));
+  // Der eigene Lehrgang hat seine ausführlichen Inhalte bereits in den Kursdetails.
+  const text = details ? null : await ladeKurstext(kurs.modul_nr);
   // Weitere Kurse desselben Fachbereichs im selben Zeitmodell, alphabetisch um den aktuellen Kurs herum.
   const verwandte = (() => {
     const gleiche = katalog
@@ -101,9 +104,23 @@ export default async function KursSeite({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: ldJson(details ? { ...courseAZAV, url: `${BASE}${kursPfad(kurs.modul_nr)}` } : kursSchema(kurs)),
+          __html: ldJson(
+            details
+              ? { ...courseAZAV, url: `${BASE}${kursPfad(kurs.modul_nr)}` }
+              : text
+                ? { ...kursSchema(kurs), description: `${text.einleitung} ${kursSchema(kurs).description}` }
+                : kursSchema(kurs),
+          ),
         }}
       />
+      {text && text.fragen.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: ldJson(faqSeite(text.fragen.map((f) => ({ ...f, rubrik: kurs.titel })))),
+          }}
+        />
+      )}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(breadcrumb(pfad)) }} />
 
       <section className="py-14 text-white" style={{ background: "linear-gradient(135deg, #1e293b, #2c3892, #3f74bc)" }}>
@@ -233,12 +250,21 @@ export default async function KursSeite({ params }: Props) {
               );
             })}
 
+            {text && <p className="mb-8 text-lg leading-relaxed text-slate-800">{text.einleitung}</p>}
+
             {kurs.kurzbeschreibung && (
               <>
                 <h2 className="text-xl font-bold text-slate-900">Inhalte</h2>
                 <p className="mt-3 text-slate-700">{kurs.kurzbeschreibung}</p>
               </>
             )}
+
+            {text?.abschnitte.map((a) => (
+              <div key={a.ueberschrift}>
+                <h2 className="mt-8 text-xl font-bold text-slate-900">{a.ueberschrift}</h2>
+                <p className="mt-3 leading-relaxed text-slate-700">{a.text}</p>
+              </div>
+            ))}
 
             {details && (
               <>
@@ -319,6 +345,20 @@ export default async function KursSeite({ params }: Props) {
               </Link>
               .
             </p>
+
+            {text && text.fragen.length > 0 && (
+              <>
+                <h2 className="mt-10 text-xl font-bold text-slate-900">Fragen zu diesem Kurs</h2>
+                <dl className="mt-4 space-y-4">
+                  {text.fragen.map((f) => (
+                    <div key={f.frage} className="rounded-xl border border-slate-200 bg-white p-4">
+                      <dt className="font-semibold text-slate-900">{f.frage}</dt>
+                      <dd className="mt-1.5 text-sm leading-relaxed text-slate-700">{f.antwort}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </>
+            )}
 
             {verwandte.length > 0 && (
               <>

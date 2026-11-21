@@ -69,7 +69,7 @@ export function fragen(z: { gesamt: number; vollzeit: number; teilzeit: number; 
       rubrik: "Förderung",
       frage: "Wie funktioniert die Förderung für Beschäftigte nach dem Qualifizierungschancengesetz?",
       antwort:
-        "Beim Qualifizierungschancengesetz beantragt der Arbeitgeber die Förderung bei der Agentur für Arbeit. Je nach Betriebsgröße kann er Zuschüsse zu den Lehrgangskosten und zum Arbeitsentgelt während der Weiterbildung erhalten. Voraussetzung ist unter anderem, dass die Weiterbildung mehr als 120 Stunden umfasst und bei einem zugelassenen Träger stattfindet. Die FDM Akademie unterstützt Arbeitgeber und Beschäftigte bei der Vorbereitung des Antrags.",
+        "Beim Qualifizierungschancengesetz beantragt der Arbeitgeber die Förderung bei der Agentur für Arbeit. Je nach Betriebsgröße kann er Zuschüsse zu den Lehrgangskosten und zum Arbeitsentgelt während der Weiterbildung erhalten. Voraussetzung ist unter anderem, dass die Weiterbildung mehr als 120 Unterrichtseinheiten umfasst und bei einem zugelassenen Träger stattfindet. Die FDM Akademie unterstützt Arbeitgeber und Beschäftigte bei der Vorbereitung des Antrags.",
     },
     {
       rubrik: "Förderung",
