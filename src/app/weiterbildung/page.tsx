@@ -8,7 +8,7 @@ import { ladeKatalog } from "@/lib/katalog";
 export const metadata: Metadata = {
   title: "Geförderte Weiterbildung – Kurse mit Bildungsgutschein",
   description:
-    "Geförderte Weiterbildungen und Umschulungen der FDM Akademie: live im virtuellen Klassenzimmer, in Voll- oder Teilzeit. Förderung über Bildungsgutschein oder Qualifizierungschancengesetz möglich.",
+    "Geförderte Weiterbildungen der FDM Akademie: live im virtuellen Klassenzimmer, in Voll- oder Teilzeit. Förderung über Bildungsgutschein oder Qualifizierungschancengesetz möglich.",
   alternates: { canonical: "https://www.fdm-group.de/weiterbildung" },
 };
 
@@ -47,7 +47,7 @@ export default async function WeiterbildungPage() {
           </div>
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">Geförderte Weiterbildung</h1>
           <p className="mx-auto max-w-2xl text-lg" style={{ color: "#cbd5e1" }}>
-            Weiterbildungen und Umschulungen für Ihren nächsten beruflichen Schritt, in Vollzeit oder Teilzeit. Wir
+            Weiterbildungen für Ihren nächsten beruflichen Schritt, in Vollzeit oder Teilzeit. Wir
             klären mit Ihnen, welche Förderung für Sie in Frage kommt.
           </p>
           <a

@@ -168,7 +168,7 @@ export default function BildungsgutscheinPage() {
                 Gesamtes Kursangebot
               </span>
               <span className="mt-2 text-sm text-slate-600">
-                Weiterbildungen und Umschulungen aus IT, kaufmännischen Berufen, Gesundheit, Technik, Medien und
+                Weiterbildungen aus IT, kaufmännischen Berufen, Gesundheit, Technik, Medien und
                 Sprachen, live im virtuellen Klassenzimmer. Welche Förderung für Sie in Frage kommt, klären wir in der
                 Beratung.
               </span>

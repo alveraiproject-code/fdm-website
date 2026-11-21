@@ -112,7 +112,7 @@ export default function UeberUnsPage() {
               <ul className="space-y-3 mb-8">
                 {[
                   "Live-Unterricht im virtuellen Klassenzimmer",
-                  "Weiterbildungen und Umschulungen in Vollzeit oder Teilzeit",
+                  "Weiterbildungen in Vollzeit oder Teilzeit",
                   "Förderung über Bildungsgutschein oder Qualifizierungschancengesetz möglich",
                 ].map((punkt) => (
                   <li key={punkt} className="flex items-start gap-2.5 text-sm">

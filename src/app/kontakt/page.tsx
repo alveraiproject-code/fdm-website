@@ -99,7 +99,7 @@ export default function KontaktPage() {
               <span className="text-xs font-semibold uppercase tracking-wider text-sky-200">FDM Akademie</span>
               <span className="mt-1 text-xl font-bold">Beratung zur geförderten Weiterbildung</span>
               <span className="mt-2 text-sm text-slate-200">
-                Sie interessieren sich für eine Weiterbildung oder Umschulung und möchten wissen, welche Förderung in
+                Sie interessieren sich für eine Weiterbildung und möchten wissen, welche Förderung in
                 Frage kommt? Dann nutzen Sie bitte unser Beratungsformular.
               </span>
               <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold">
