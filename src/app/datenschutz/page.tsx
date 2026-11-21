@@ -117,11 +117,25 @@ export default function DatenschutzPage() {
               unserem Postfach abgerufen, Ihrer Anfrage zugeordnet und zusammen
               mit dem bisherigen Schriftwechsel im CRM gespeichert.
             </p>
+            <h3 className="font-semibold mb-1">Unterlagen, die Sie uns senden</h3>
+            <p className="mb-3">
+              Senden Sie uns per E-Mail Unterlagen, zum Beispiel ein Foto oder
+              eine PDF-Datei Ihres Bildungsgutscheins, speichern wir diese
+              Dateien zu Ihrer Anfrage. Wir entnehmen daraus die Angaben, die
+              wir für Beratung und Angebot benötigen, etwa Bildungsziel, Dauer,
+              Gültigkeit, ausstellende Stelle und Gutscheinnummer. Zugriff auf
+              die Dateien haben nur die mit der Beratung betrauten
+              Beschäftigten. Bitte senden Sie uns nur Unterlagen, die für Ihre
+              Weiterbildung erforderlich sind, und schwärzen Sie Angaben, die
+              wir dafür nicht brauchen. Löschen wir Ihre Daten, löschen wir
+              auch diese Dateien.
+            </p>
             <h3 className="font-semibold mb-1">Einsatz eines KI-Assistenten</h3>
             <p className="mb-3">
               Zur Unterstützung unserer Beratung setzen wir einen KI-Assistenten
               ein (Sprachmodell „Claude“ des Anbieters Anthropic). Er wertet den
-              Inhalt Ihrer Anfrage und Ihrer Antworten aus, schlägt passende
+              Inhalt Ihrer Anfrage, Ihrer Antworten und der von Ihnen gesandten
+              Unterlagen (zum Beispiel des Bildungsgutscheins) aus, schlägt passende
               Kurse aus unserem Angebot vor und formuliert Antwortentwürfe.
               Einzelne Antworten, etwa Rückfragen zu Ihrem Anliegen, können
               automatisch versendet werden; solche E-Mails sind als mit
