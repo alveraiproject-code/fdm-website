@@ -44,9 +44,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { kurs } = await findeKurs(params);
   if (!kurs) return { title: "Weiterbildung nicht gefunden", robots: { index: false, follow: true } };
   const url = `${BASE}${kursPfad(kurs.modul_nr)}`;
+  // Teilzeitkurse tragen das Zeitmodell schon im Titel; dann nicht doppelt nennen.
+  const zeit = kurs.titel.includes(kurs.zeitmodell_name) ? "" : ` (${kurs.zeitmodell_name})`;
   const titel = kurs.zugelassen
-    ? `${kurs.titel} – geförderte Weiterbildung (${kurs.zeitmodell_name})`
-    : `${kurs.titel} – Weiterbildung online (${kurs.zeitmodell_name})`;
+    ? `${kurs.titel} – geförderte Weiterbildung${zeit}`
+    : `${kurs.titel} – Weiterbildung online${zeit}`;
   const text = beschreibung(kurs);
   return {
     title: titel,
