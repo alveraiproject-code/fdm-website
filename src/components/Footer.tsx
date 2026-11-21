@@ -18,8 +18,9 @@ export default function Footer() {
               className="h-10 w-auto brightness-0 invert mb-4"
             />
             <p className="text-sm text-slate-400 leading-relaxed mb-4">
-              AZAV-zertifizierter Bildungsträger und Online-Akademie für
-              berufliche Weiterbildung und KI-Kompetenz.
+              FDM Akademie: berufliche Weiterbildung live im virtuellen
+              Klassenzimmer. Die FDM GmbH ist ein nach AZAV zugelassener
+              Bildungsträger.
             </p>
             <div className="flex items-center gap-3 mt-2">
               <span className="inline-flex items-center gap-1 bg-[#3f74bc]/20 text-[#51ade5] px-2 py-1 rounded-full text-xs font-medium">
@@ -47,6 +48,7 @@ export default function Footer() {
                 { href: "/kurse", label: "Online-Kurse (Selbstzahler)" },
                 { href: "/azav", label: "Bildungsgutschein" },
                 { href: "/qcg", label: "QCG-Förderung" },
+                { href: "/faq", label: "Häufige Fragen" },
                 { href: "/ueber-uns", label: "Über uns" },
                 { href: "/leitbild", label: "Leitbild" },
                 { href: "/kontakt", label: "Kontakt" },

@@ -1,39 +1,76 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Award, BookOpen, CalendarClock, CheckCircle, Clock, FileText, GraduationCap, Users } from "lucide-react";
+import { ArrowRight, Award, BookOpen, CalendarClock, CheckCircle, ChevronRight, Clock, FileText, GraduationCap, Users } from "lucide-react";
 import AnfrageFormular from "@/components/AnfrageFormular";
 import Kennzeichen from "@/components/Kennzeichen";
-import { dauerText, kursPfad, ladeKatalog } from "@/lib/katalog";
+import { dauerText, kursPfad, ladeKatalog, type Weiterbildung } from "@/lib/katalog";
 import { kursdetails } from "@/lib/kursdetails";
-import { courseAZAV } from "@/lib/schema";
+import { breadcrumb, courseAZAV, kursSchema } from "@/lib/schema";
+import { BASE, andereZeitform, bereichPfad, ldJson } from "@/lib/site";
 
 type Props = { params: Promise<{ modulNr: string }> };
 
 async function findeKurs(params: Props["params"]) {
   const { modulNr } = await params;
   const nummer = decodeURIComponent(modulNr);
-  return (await ladeKatalog()).find((k) => k.modul_nr === nummer) ?? null;
+  const katalog = await ladeKatalog();
+  return { kurs: katalog.find((k) => k.modul_nr === nummer) ?? null, katalog };
+}
+
+// Beschreibung für Suchergebnisse: Inhalt des Kurses plus die wichtigsten Eckdaten.
+function beschreibung(kurs: Weiterbildung) {
+  const eckdaten = [
+    kurs.zeitmodell_name,
+    dauerText(kurs),
+    kurs.lerneinheiten ? `${kurs.lerneinheiten} UE` : null,
+    "live online",
+  ]
+    .filter(Boolean)
+    .join(", ");
+  const inhalt = kurs.kurzbeschreibung ? kurs.kurzbeschreibung.replace(/\s+/g, " ").trim() : "";
+  const platz = 150 - eckdaten.length;
+  let text = inhalt ? `${kurs.titel}: ${inhalt}` : kurs.titel;
+  if (text.length > platz) {
+    // Am Wortende kürzen, nie mitten im Wort.
+    text = `${text.slice(0, platz).replace(/\s+\S*$/, "").replace(/[,;:–-]+$/, "")} …`;
+  } else if (!/[.!?…]$/.test(text)) {
+    text += ".";
+  }
+  return `${text} ${eckdaten}. Beratung kostenlos.`;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const kurs = await findeKurs(params);
-  if (!kurs) return { title: "Weiterbildung nicht gefunden" };
+  const { kurs } = await findeKurs(params);
+  if (!kurs) return { title: "Weiterbildung nicht gefunden", robots: { index: false, follow: true } };
+  const url = `${BASE}${kursPfad(kurs.modul_nr)}`;
+  const titel = kurs.zugelassen
+    ? `${kurs.titel} – geförderte Weiterbildung (${kurs.zeitmodell_name})`
+    : `${kurs.titel} – Weiterbildung online (${kurs.zeitmodell_name})`;
+  const text = beschreibung(kurs);
   return {
-    title: kurs.zugelassen
-      ? `${kurs.titel} – geförderte Weiterbildung (${kurs.zeitmodell_name})`
-      : `${kurs.titel} – Weiterbildung der FDM Akademie`,
-    description: (
-      kurs.kurzbeschreibung ?? `${kurs.titel}: Weiterbildung der FDM Akademie im virtuellen Klassenzimmer.`
-    ).slice(0, 160),
-    alternates: { canonical: `https://www.fdm-group.de${kursPfad(kurs.modul_nr)}` },
+    title: titel,
+    description: text,
+    alternates: { canonical: url },
+    openGraph: { title: titel, description: text, url, type: "website" },
+    twitter: { title: titel, description: text },
   };
 }
 
 export default async function KursSeite({ params }: Props) {
-  const kurs = await findeKurs(params);
+  const { kurs, katalog } = await findeKurs(params);
   if (!kurs) notFound();
   const details = kursdetails(kurs.modul_nr);
+  const zwilling = andereZeitform(kurs, katalog);
+  // Weitere Kurse desselben Fachbereichs im selben Zeitmodell, alphabetisch um den aktuellen Kurs herum.
+  const verwandte = (() => {
+    const gleiche = katalog
+      .filter((k) => k.fachbereich_name === kurs.fachbereich_name && k.zeitmodell === kurs.zeitmodell)
+      .sort((a, b) => a.titel.localeCompare(b.titel, "de"));
+    const stelle = gleiche.findIndex((k) => k.modul_nr === kurs.modul_nr);
+    const start = Math.max(0, Math.min(stelle - 3, gleiche.length - 7));
+    return gleiche.slice(start, start + 7).filter((k) => k.modul_nr !== kurs.modul_nr);
+  })();
 
   const fakten = [
     { icon: GraduationCap, name: "Art", wert: kurs.kursart_name },
@@ -48,31 +85,52 @@ export default async function KursSeite({ params }: Props) {
     { icon: FileText, name: "Maßnahme-ID", wert: details?.massnahme ?? null },
   ].filter((f) => f.wert);
 
+  const pfad = [
+    { name: "Startseite", pfad: "/" },
+    { name: "Geförderte Weiterbildung", pfad: "/weiterbildung" },
+    { name: kurs.fachbereich_name, pfad: bereichPfad(kurs.fachbereich_name) },
+    { name: kurs.titel, pfad: kursPfad(kurs.modul_nr) },
+  ];
+
   return (
     <>
-      {details && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(courseAZAV).replace(/</g, "\\u003c") }}
-        />
-      )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: ldJson(details ? { ...courseAZAV, url: `${BASE}${kursPfad(kurs.modul_nr)}` } : kursSchema(kurs)),
+        }}
+      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(breadcrumb(pfad)) }} />
+
       <section className="py-14 text-white" style={{ background: "linear-gradient(135deg, #1e293b, #2c3892, #3f74bc)" }}>
         <div className="mx-auto max-w-6xl px-6">
-          <Link href="/weiterbildung" className="mb-5 inline-flex items-center gap-2 text-sm text-sky-200 hover:text-white">
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Alle Weiterbildungen
-          </Link>
+          <nav aria-label="Sie sind hier" className="mb-5 text-sm text-sky-200">
+            <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
+              {pfad.slice(0, -1).map((p) => (
+                <li key={p.pfad} className="flex items-center gap-1.5">
+                  <Link href={p.pfad} className="hover:text-white hover:underline">
+                    {p.name}
+                  </Link>
+                  <ChevronRight className="h-3.5 w-3.5 opacity-60" aria-hidden="true" />
+                </li>
+              ))}
+              <li aria-current="page" className="text-white/80">
+                {kurs.titel.length > 40 ? `${kurs.titel.slice(0, 40)}…` : kurs.titel}
+              </li>
+            </ol>
+          </nav>
           <div className="mb-3 flex flex-wrap items-center gap-3">
             <p className="text-sm font-semibold uppercase tracking-wide text-sky-200">{kurs.fachbereich_name}</p>
             {kurs.zugelassen && <Kennzeichen art="azav" hell />}
           </div>
           <h1 className="text-3xl font-bold md:text-4xl">{kurs.titel}</h1>
-          {details && (
-            <p className="mt-4 max-w-2xl text-slate-200">
-              Starten Sie Ihre Karriere im digitalen Marketing. Der Lehrgang ist mit dem Bildungsgutschein der Agentur
-              für Arbeit oder des Jobcenters finanzierbar.
-            </p>
-          )}
+          <p className="mt-4 max-w-2xl text-slate-200">
+            {details
+              ? "Starten Sie Ihre Karriere im digitalen Marketing. Der Lehrgang ist mit dem Bildungsgutschein der Agentur für Arbeit oder des Jobcenters finanzierbar."
+              : `${kurs.kursart_name === "Modul" ? "Weiterbildung" : kurs.kursart_name} der FDM Akademie, live im virtuellen Klassenzimmer${
+                  dauerText(kurs) ? `, ${dauerText(kurs)} in ${kurs.zeitmodell_name}` : ` in ${kurs.zeitmodell_name}`
+                }.`}
+          </p>
         </div>
       </section>
 
@@ -81,7 +139,7 @@ export default async function KursSeite({ params }: Props) {
           <div className="lg:col-span-3">
             <dl className="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
               {fakten.map(({ icon: Icon, name, wert }) => (
-                <div key={name} className="rounded-xl border border-slate-200 bg-white p-4">
+                <div key={name} className="min-w-0 rounded-xl border border-slate-200 bg-white p-4">
                   <dt className="flex items-center gap-2 text-xs font-medium text-slate-500">
                     <Icon className="h-4 w-4 text-[#3f74bc]" aria-hidden="true" />
                     {name}
@@ -109,6 +167,16 @@ export default async function KursSeite({ params }: Props) {
                     </Link>
                   ),
                 )}
+              </p>
+            )}
+
+            {!details && zwilling && (
+              <p className="mb-8 text-sm text-slate-600">
+                Diesen Kurs gibt es auch in {zwilling.zeitmodell_name}
+                {dauerText(zwilling) ? ` (${dauerText(zwilling)})` : ""}:{" "}
+                <Link href={kursPfad(zwilling.modul_nr)} className="font-semibold text-[#3f74bc] underline">
+                  {zwilling.titel}
+                </Link>
               </p>
             )}
 
@@ -170,9 +238,9 @@ export default async function KursSeite({ params }: Props) {
             ) : (
               <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-700">
                 <li>Live-Unterricht im virtuellen Klassenzimmer, Sie nehmen von zu Hause aus teil.</li>
-                {kurs.laufender_einstieg && <li>Der Einstieg ist laufend möglich.</li>}
                 {kurs.praktikumsstunden ? <li>Mit Praxisphase im Umfang von {kurs.praktikumsstunden} Stunden.</li> : null}
                 <li>Persönliche Ansprechpersonen der FDM Akademie begleiten Sie während der gesamten Weiterbildung.</li>
+                <li>Nach erfolgreichem Abschluss erhalten Sie ein Zertifikat des Bildungsträgers.</li>
               </ul>
             )}
 
@@ -192,8 +260,42 @@ export default async function KursSeite({ params }: Props) {
               <Link href="/azav" className="text-[#3f74bc] underline">
                 Bildungsgutschein
               </Link>
+              , weitere Antworten unter{" "}
+              <Link href="/faq" className="text-[#3f74bc] underline">
+                Häufige Fragen
+              </Link>
               .
             </p>
+
+            {verwandte.length > 0 && (
+              <>
+                <h2 className="mt-10 text-xl font-bold text-slate-900">
+                  Weitere Weiterbildungen im Bereich {kurs.fachbereich_name}
+                </h2>
+                <ul className="mt-4 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">
+                  {verwandte.map((k) => (
+                    <li key={k.modul_nr}>
+                      <Link
+                        href={kursPfad(k.modul_nr)}
+                        className="flex items-center justify-between gap-3 px-4 py-3 text-sm hover:bg-slate-50"
+                      >
+                        <span className="min-w-0 font-medium text-slate-900">{k.titel}</span>
+                        <span className="flex-shrink-0 text-xs text-slate-500">
+                          {[k.zeitmodell_name, dauerText(k)].filter(Boolean).join(" · ")}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={bereichPfad(kurs.fachbereich_name)}
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#3f74bc] hover:underline"
+                >
+                  Alle Weiterbildungen im Bereich {kurs.fachbereich_name}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </>
+            )}
           </div>
 
           <aside className="lg:col-span-2" id="beratung">

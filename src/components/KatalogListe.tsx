@@ -8,7 +8,7 @@ import Kennzeichen from "@/components/Kennzeichen";
 
 // Durchsuchbare Liste der geförderten Weiterbildungen (Daten kommen serverseitig aus dem CRM).
 export default function KatalogListe({ kurse }: { kurse: Weiterbildung[] }) {
-  const [suche, setSuche] = useState("");
+  const [eingabe, setSuche] = useState<string | null>(null);
   const [gewaehlt, setBereich] = useState<string | null>(null);
   const [zeit, setZeit] = useState("Alle");
 
@@ -18,6 +18,13 @@ export default function KatalogListe({ kurse }: { kurse: Weiterbildung[] }) {
     () => new URLSearchParams(window.location.search).get("bereich") ?? "",
     () => "",
   );
+  // /weiterbildung?q=Buchhaltung füllt die Suche vor.
+  const sucheAusAdresse = useSyncExternalStore(
+    () => () => {},
+    () => new URLSearchParams(window.location.search).get("q") ?? "",
+    () => "",
+  );
+  const suche = eingabe ?? sucheAusAdresse;
   const bereich =
     gewaehlt ?? (ausAdresse && kurse.some((k) => k.fachbereich_name === ausAdresse) ? ausAdresse : "Alle");
 

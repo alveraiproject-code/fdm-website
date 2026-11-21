@@ -15,12 +15,22 @@ const BASE = 'https://www.fdm-group.de'
 export const rootMetadata: Metadata = {
   metadataBase: new URL(BASE),
   title: {
-    default: 'FDM GmbH – Bildungsträger & Online-Akademie | AZAV-zertifiziert',
-    template: '%s | FDM GmbH',
+    default: 'FDM Akademie – geförderte Weiterbildung online | FDM GmbH',
+    template: '%s | FDM Akademie',
   },
   description:
-    'AZAV-zertifizierter Bildungsträger in Eislingen: geförderte Weiterbildung mit Bildungsgutschein, QCG-Förderung und über 100 KI-Online-Kurse.',
-  applicationName: 'FDM GmbH',
+    'FDM Akademie: über 650 Weiterbildungen live im virtuellen Klassenzimmer, in Vollzeit oder Teilzeit. AZAV-zugelassener Bildungsträger, Förderung mit Bildungsgutschein möglich, kostenlose Beratung.',
+  applicationName: 'FDM Akademie',
+  keywords: [
+    'geförderte Weiterbildung',
+    'Weiterbildung mit Bildungsgutschein',
+    'Online-Weiterbildung',
+    'AZAV',
+    'Qualifizierungschancengesetz',
+    'virtuelles Klassenzimmer',
+    'FDM Akademie',
+  ],
+  category: 'education',
   authors: [{ name: 'FDM GmbH', url: BASE }],
   creator: 'FDM GmbH',
   publisher: 'FDM GmbH',
@@ -40,24 +50,23 @@ export const rootMetadata: Metadata = {
     type: 'website',
     locale: 'de_DE',
     url: BASE,
-    siteName: 'FDM GmbH',
+    siteName: 'FDM Akademie',
   },
   twitter: { card: 'summary_large_image' },
-  icons: { icon: '/favicon.ico', apple: '/apple-touch-icon.png' },
 }
 
 // ---------- PRO ROUTE ----------
 type RouteKey =
   | 'home' | 'kurse' | 'azav' | 'qcg'
   | 'ueber-uns' | 'leitbild' | 'kontakt'
-  | 'impressum' | 'datenschutz'
+  | 'impressum' | 'datenschutz' | 'faq'
 
 const routes: Record<RouteKey, { path: string; title: string; description: string }> = {
   home: {
     path: '/',
-    title: 'FDM GmbH – Bildungsträger & Online-Akademie | AZAV-zertifiziert',
+    title: 'FDM Akademie – geförderte Weiterbildung online | FDM GmbH',
     description:
-      'AZAV-zertifizierter Bildungsträger in Eislingen: geförderte Weiterbildung mit Bildungsgutschein, QCG-Förderung und über 100 KI-Online-Kurse auf alvatar.de.',
+      'Über 650 Weiterbildungen live im virtuellen Klassenzimmer: IT, kaufmännisch, Gesundheit, Technik, Medien, Sprachen. AZAV-zugelassener Träger, Förderung mit Bildungsgutschein möglich.',
   },
   kurse: {
     path: '/kurse',
@@ -69,13 +78,13 @@ const routes: Record<RouteKey, { path: string; title: string; description: strin
     path: '/azav',
     title: 'Bildungsgutschein – geförderte Weiterbildung für Arbeitssuchende',
     description:
-      'Mit dem Bildungsgutschein der Agentur für Arbeit oder des Jobcenters zur geförderten Weiterbildung – bis zu 100 % kostenfrei. AZAV-zertifiziert nach §81 SGB III.',
+      'Bildungsgutschein einfach erklärt: Wer ihn bekommt, wie Sie ihn beantragen und wie Sie damit eine Weiterbildung bei der FDM Akademie starten. Kostenlose Beratung.',
   },
   qcg: {
     path: '/qcg',
     title: 'QCG-Förderung – Qualifizierungschancengesetz für Beschäftigte',
     description:
-      'Geförderte Weiterbildung für Beschäftigte nach dem Qualifizierungschancengesetz – unabhängig von Qualifikation, Alter und Betriebsgröße.',
+      'Qualifizierungschancengesetz: Zuschüsse zu Lehrgangskosten und Arbeitsentgelt für die Weiterbildung von Beschäftigten. So läuft der Antrag, so unterstützt die FDM Akademie.',
   },
   'ueber-uns': {
     path: '/ueber-uns',
@@ -99,6 +108,12 @@ const routes: Record<RouteKey, { path: string; title: string; description: strin
     path: '/impressum',
     title: 'Impressum',
     description: 'Impressum und Anbieterkennzeichnung der FDM GmbH, Eislingen/Fils.',
+  },
+  faq: {
+    path: '/faq',
+    title: 'Häufige Fragen zur geförderten Weiterbildung',
+    description:
+      'Antworten zu Bildungsgutschein, Kosten, Ablauf, Vollzeit und Teilzeit, Technik und Abschluss: die häufigsten Fragen zur Weiterbildung bei der FDM Akademie.',
   },
   datenschutz: {
     path: '/datenschutz',

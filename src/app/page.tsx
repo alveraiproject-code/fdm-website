@@ -18,7 +18,8 @@ import { courses } from "@/lib/courses";
 import { fachbereiche, ladeKatalog } from "@/lib/katalog";
 import { OME_PFAD } from "@/lib/kursdetails";
 import { buildMetadata } from "@/lib/metadata";
-import { faqSchema } from "@/lib/schema";
+import { faqSeite, fragen } from "@/lib/faq";
+import { bereichPfad, kennzahlen, ldJson, TRAEGER } from "@/lib/site";
 
 export const metadata = buildMetadata("home");
 
@@ -27,8 +28,9 @@ const homepageJsonLd = {
   "@type": "WebPage",
   "@id": "https://www.fdm-group.de/#webpage",
   url: "https://www.fdm-group.de",
-  name: "FDM GmbH – Bildungsträger & Online-Akademie",
-  description: "AZAV-zertifizierter Bildungsträger mit geförderten Weiterbildungen und KI-Online-Kursen.",
+  name: "FDM Akademie – geförderte Weiterbildung online",
+  description:
+    "Die FDM Akademie ist das Weiterbildungsangebot der FDM GmbH, eines nach AZAV zugelassenen Bildungsträgers: berufliche Weiterbildungen live im virtuellen Klassenzimmer, in Vollzeit und Teilzeit.",
   isPartOf: { "@id": "https://www.fdm-group.de/#website" },
   about: { "@id": "https://www.fdm-group.de/#organization" },
   inLanguage: "de-DE",
@@ -79,6 +81,16 @@ export default async function Home() {
   const katalog = await ladeKatalog();
   const bereiche = fachbereiche(katalog);
   const anzahl = katalog.length;
+  const zahlen = kennzahlen(katalog);
+  // Auf der Startseite stehen die fünf wichtigsten Fragen; alle weiteren unter /faq.
+  const STARTFRAGEN = [
+    "Was ist die FDM Akademie?",
+    "Wer kann eine geförderte Weiterbildung machen?",
+    "Was kostet eine Weiterbildung bei der FDM Akademie?",
+    "Wie läuft der Unterricht ab?",
+    "Was ist der Unterschied zwischen geförderter Weiterbildung und den Online-Kursen auf alvatar.de?",
+  ];
+  const startFragen = fragen({ ...zahlen, bereiche: bereiche.length }).filter((f) => STARTFRAGEN.includes(f.frage));
 
   const stats = [
     { value: anzahl > 0 ? anzahl.toLocaleString("de-DE") : "900+", label: "Weiterbildungen" },
@@ -95,7 +107,7 @@ export default async function Home() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
+        dangerouslySetInnerHTML={{ __html: ldJson(faqSeite(startFragen)) }}
       />
 
       {/* Hero */}
@@ -292,7 +304,7 @@ export default async function Home() {
               {bereiche.map((b) => (
                 <li key={b.name} className="min-w-0">
                   <Link
-                    href={`/weiterbildung?bereich=${encodeURIComponent(b.name)}`}
+                    href={bereichPfad(b.name)}
                     className="card-hover flex h-full min-w-0 flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 sm:p-5"
                   >
                     {/* Lange Wörter wie „Schlüsselkompetenzen“ trennen statt aus der Kachel laufen lassen */}
@@ -530,6 +542,40 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Kurzporträt */}
+      <section className="py-16 bg-white border-t border-slate-200">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: "#1e293b" }}>
+            Die FDM Akademie in Kürze
+          </h2>
+          <p className="text-slate-700 leading-relaxed">
+            Die FDM Akademie ist das Weiterbildungsangebot der {TRAEGER.name}, eines nach AZAV zugelassenen
+            Bildungsträgers aus {TRAEGER.ort} in Baden-Württemberg.{" "}
+            {anzahl > 0
+              ? `Sie bietet ${anzahl.toLocaleString("de-DE")} berufliche Weiterbildungen aus ${bereiche.length} Fachbereichen an, davon ${zahlen.vollzeit.toLocaleString("de-DE")} in Vollzeit und ${zahlen.teilzeit.toLocaleString("de-DE")} in Teilzeit.`
+              : "Sie bietet berufliche Weiterbildungen aus vielen Fachbereichen an, in Vollzeit und in Teilzeit."}{" "}
+            Der Unterricht findet live im virtuellen Klassenzimmer statt, sodass Teilnehmende bundesweit von zu Hause
+            aus lernen. Eine Förderung über den Bildungsgutschein der Agentur für Arbeit oder des Jobcenters sowie über
+            das Qualifizierungschancengesetz für Beschäftigte ist möglich; die Beratung dazu ist kostenlos.
+          </p>
+          <dl className="mt-8 grid gap-x-8 gap-y-4 text-sm sm:grid-cols-2">
+            {[
+              ["Träger", `${TRAEGER.name}, ${TRAEGER.strasse}, ${TRAEGER.plz} ${TRAEGER.ort}`],
+              ["Trägerzulassung", `AZAV, Zertifikat-Nr. ${TRAEGER.zertifikat}, gültig bis ${TRAEGER.zertifikatBis}`],
+              ["Unterricht", "live im virtuellen Klassenzimmer, bundesweit, Vollzeit oder Teilzeit"],
+              ["Förderwege", "Bildungsgutschein, Qualifizierungschancengesetz"],
+              ["Beratung", `kostenlos, Telefon ${TRAEGER.telefon}, Montag bis Freitag 9 bis 17 Uhr`],
+              ["Eigener Lehrgang", "Online Marketing Experte (m/w/d), nach AZAV zugelassen"],
+            ].map(([name, wert]) => (
+              <div key={name} className="flex gap-3 border-b border-slate-100 pb-3">
+                <dt className="w-32 flex-shrink-0 font-semibold text-slate-900">{name}</dt>
+                <dd className="text-slate-700">{wert}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-6">
@@ -546,13 +592,13 @@ export default async function Home() {
             </h2>
           </div>
           <div className="space-y-4">
-            {faqSchema.mainEntity.map((item) => (
-              <details key={item.name} className="group bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            {startFragen.map((item) => (
+              <details key={item.frage} className="group bg-white rounded-2xl border border-slate-200 overflow-hidden">
                 <summary
                   className="flex items-center justify-between gap-4 cursor-pointer list-none p-6 font-semibold marker:hidden"
                   style={{ color: "#1e293b" }}
                 >
-                  {item.name}
+                  {item.frage}
                   <ChevronDown
                     size={20}
                     className="flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
@@ -560,10 +606,15 @@ export default async function Home() {
                     aria-hidden="true"
                   />
                 </summary>
-                <p className="px-6 pb-6 -mt-1 text-sm text-slate-600 leading-relaxed">{item.acceptedAnswer.text}</p>
+                <p className="px-6 pb-6 -mt-1 text-sm text-slate-600 leading-relaxed">{item.antwort}</p>
               </details>
             ))}
           </div>
+          <p className="mt-6 text-center">
+            <Link href="/faq" className="inline-flex items-center gap-1 font-semibold text-[#3f74bc] hover:underline">
+              Alle Fragen und Antworten <ChevronRight size={18} aria-hidden="true" />
+            </Link>
+          </p>
         </div>
       </section>
 

@@ -1,48 +1,51 @@
 // =============================================================
-// app/sitemap.ts — Next.js Metadata Route
-// Liefert /sitemap.xml dynamisch mit lastmod, changefreq, priority.
+// app/sitemap.ts — liefert /sitemap.xml
+// Enthält die festen Seiten, alle Fachbereich-Seiten und alle Kursseiten aus dem Katalog.
 // =============================================================
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+import { fachbereiche, kursPfad, ladeKatalog } from "@/lib/katalog";
+import { BASE, bereichPfad } from "@/lib/site";
 
-const BASE = 'https://www.fdm-group.de'
+// Stündlich neu erzeugen, damit neue Kurse zeitnah erscheinen.
+export const revalidate = 3600;
 
-// Statische Routen mit Gewichtung. priority spiegelt Conversion-Relevanz.
-const routes: {
-  path: string
-  priority: number
-  changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']
-}[] = [
-  { path: '/',            priority: 1.0,  changeFrequency: 'weekly' },
-  { path: '/kurse',       priority: 0.9,  changeFrequency: 'weekly' },
-  { path: '/weiterbildung', priority: 0.9, changeFrequency: 'weekly' },
-  { path: '/azav',        priority: 0.9,  changeFrequency: 'monthly' },
-  { path: '/qcg',         priority: 0.9,  changeFrequency: 'monthly' },
-  { path: '/ueber-uns',   priority: 0.6,  changeFrequency: 'monthly' },
-  { path: '/leitbild',    priority: 0.5,  changeFrequency: 'yearly' },
-  { path: '/kontakt',     priority: 0.8,  changeFrequency: 'monthly' },
-  { path: '/impressum',   priority: 0.2,  changeFrequency: 'yearly' },
-  { path: '/datenschutz', priority: 0.2,  changeFrequency: 'yearly' },
-]
+type Eintrag = MetadataRoute.Sitemap[number];
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date()
+const fest: { path: string; priority: number; changeFrequency: Eintrag["changeFrequency"] }[] = [
+  { path: "/", priority: 1.0, changeFrequency: "weekly" },
+  { path: "/weiterbildung", priority: 0.9, changeFrequency: "daily" },
+  { path: "/azav", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/qcg", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/faq", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/kurse", priority: 0.7, changeFrequency: "weekly" },
+  { path: "/kontakt", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/ueber-uns", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/leitbild", priority: 0.4, changeFrequency: "yearly" },
+];
 
-  return routes.map(({ path, priority, changeFrequency }) => ({
-    url: `${BASE}${path}`,
-    lastModified: now, // TODO: bei CMS/MDX echtes Änderungsdatum pro Route einsetzen
-    changeFrequency,
-    priority,
-  }))
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const jetzt = new Date();
+  const katalog = await ladeKatalog();
 
-  // ---- Erweiterung bei dynamischen Kurs-Detailseiten ----
-  // Falls /kurse/[slug] existiert, hier anhängen:
-  //
-  // const courses = await getCourses()  // aus DB/MDX/API
-  // const courseEntries = courses.map((c) => ({
-  //   url: `${BASE}/kurse/${c.slug}`,
-  //   lastModified: c.updatedAt,
-  //   changeFrequency: 'monthly' as const,
-  //   priority: 0.7,
-  // }))
-  // return [...staticEntries, ...courseEntries]
+  return [
+    ...fest.map(({ path, priority, changeFrequency }) => ({
+      url: `${BASE}${path}`,
+      lastModified: jetzt,
+      changeFrequency,
+      priority,
+    })),
+    ...fachbereiche(katalog).map((b) => ({
+      url: `${BASE}${bereichPfad(b.name)}`,
+      lastModified: jetzt,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+    ...katalog.map((k) => ({
+      url: `${BASE}${kursPfad(k.modul_nr)}`,
+      lastModified: jetzt,
+      changeFrequency: "monthly" as const,
+      // Zugelassene Maßnahmen sind die wichtigsten Kursseiten.
+      priority: k.zugelassen ? 0.9 : 0.6,
+    })),
+  ];
 }

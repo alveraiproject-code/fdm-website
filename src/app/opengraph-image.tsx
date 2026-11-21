@@ -12,13 +12,13 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'FDM GmbH – AZAV-zertifizierter Bildungsträger & Online-Akademie'
+export const alt = 'FDM Akademie – geförderte Weiterbildung live im virtuellen Klassenzimmer'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 // Pro Route überschreibbar:
 const TITLE = 'Ihre Karriere. Gefördert. Zukunftssicher.'
-const SUBTITLE = 'AZAV-zertifizierter Bildungsträger · Bildungsgutschein · 100+ KI-Kurse'
+const SUBTITLE = 'FDM Akademie · über 650 Weiterbildungen live online · Bildungsgutschein möglich'
 
 export default async function Image() {
   // Self-hosted Font laden (Beispiel: Variable-Grotesk als .ttf in app/_fonts/)

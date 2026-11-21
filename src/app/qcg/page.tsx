@@ -137,7 +137,7 @@ const faqJsonLd = {
       name: "Gilt das QCG auch für Mini-Jobber oder Teilzeitkräfte?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Nein – das Qualifizierungschancengesetz gilt ausschließlich für sozialversicherungspflichtig Beschäftigte. Geringfügig Beschäftigte (450-Euro-Jobs) sind grundsätzlich ausgeschlossen.",
+        text: "Teilzeitkräfte können gefördert werden, wenn sie sozialversicherungspflichtig beschäftigt sind. Geringfügig Beschäftigte (Minijobs) sind grundsätzlich ausgeschlossen.",
       },
     },
     {
@@ -599,7 +599,7 @@ export default function QcgPage() {
             {[
               {
                 q: "Gilt das QCG auch für Mini-Jobber oder Teilzeitkräfte?",
-                a: "Nein – das Qualifizierungschancengesetz gilt ausschließlich für sozialversicherungspflichtig Beschäftigte. Geringfügig Beschäftigte (450-Euro-Jobs) sind grundsätzlich ausgeschlossen.",
+                a: "Teilzeitkräfte können gefördert werden, wenn sie sozialversicherungspflichtig beschäftigt sind. Geringfügig Beschäftigte (Minijobs) sind grundsätzlich ausgeschlossen.",
               },
               {
                 q: "Muss der Mitarbeiter der Weiterbildung zustimmen?",

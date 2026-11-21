@@ -3,13 +3,22 @@ import Link from "next/link";
 import { Award, GraduationCap, Laptop, Users } from "lucide-react";
 import AnfrageFormular from "@/components/AnfrageFormular";
 import KatalogListe from "@/components/KatalogListe";
-import { ladeKatalog } from "@/lib/katalog";
+import { fachbereiche, ladeKatalog } from "@/lib/katalog";
+import { bereichsListe, breadcrumb } from "@/lib/schema";
+import { BASE, bereichPfad, kennzahlen, ldJson } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Geförderte Weiterbildung – Kurse mit Bildungsgutschein",
+  title: "Geförderte Weiterbildung online – über 650 Kurse im Katalog",
   description:
-    "Geförderte Weiterbildungen der FDM Akademie: live im virtuellen Klassenzimmer, in Voll- oder Teilzeit. Förderung über Bildungsgutschein oder Qualifizierungschancengesetz möglich.",
-  alternates: { canonical: "https://www.fdm-group.de/weiterbildung" },
+    "Kurskatalog der FDM Akademie: über 650 Weiterbildungen live im virtuellen Klassenzimmer, in Vollzeit oder Teilzeit. Förderung über Bildungsgutschein oder Qualifizierungschancengesetz möglich.",
+  alternates: { canonical: `${BASE}/weiterbildung` },
+  openGraph: {
+    title: "Geförderte Weiterbildung online – Kurskatalog der FDM Akademie",
+    description:
+      "Über 650 Weiterbildungen live im virtuellen Klassenzimmer, in Vollzeit oder Teilzeit. Förderung mit Bildungsgutschein möglich.",
+    url: `${BASE}/weiterbildung`,
+    type: "website",
+  },
 };
 
 const vorteile = [
@@ -32,10 +41,27 @@ const vorteile = [
 
 export default async function WeiterbildungPage() {
   // Das Kennzeichen „AZAV-zugelassen“ geht nur für zugelassene Kurse an den Browser.
-  const kurse = (await ladeKatalog()).map(({ zugelassen, ...k }) => (zugelassen ? { ...k, zugelassen } : k));
+  const katalog = await ladeKatalog();
+  const kurse = katalog.map(({ zugelassen, ...k }) => (zugelassen ? { ...k, zugelassen } : k));
+  const bereiche = fachbereiche(katalog);
+  const zahlen = kennzahlen(katalog);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: ldJson(
+            breadcrumb([
+              { name: "Startseite", pfad: "/" },
+              { name: "Geförderte Weiterbildung", pfad: "/weiterbildung" },
+            ]),
+          ),
+        }}
+      />
+      {bereiche.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(bereichsListe(bereiche)) }} />
+      )}
       <section className="py-16 text-white" style={{ background: "linear-gradient(135deg, #1e293b, #2c3892, #3f74bc)" }}>
         <div className="mx-auto max-w-7xl px-6 text-center">
           <div
@@ -47,8 +73,10 @@ export default async function WeiterbildungPage() {
           </div>
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">Geförderte Weiterbildung</h1>
           <p className="mx-auto max-w-2xl text-lg" style={{ color: "#cbd5e1" }}>
-            Weiterbildungen für Ihren nächsten beruflichen Schritt, in Vollzeit oder Teilzeit. Wir
-            klären mit Ihnen, welche Förderung für Sie in Frage kommt.
+            {zahlen.gesamt > 0
+              ? `${zahlen.gesamt.toLocaleString("de-DE")} Weiterbildungen aus ${bereiche.length} Fachbereichen, live im virtuellen Klassenzimmer: ${zahlen.vollzeit.toLocaleString("de-DE")} in Vollzeit und ${zahlen.teilzeit.toLocaleString("de-DE")} in Teilzeit.`
+              : "Weiterbildungen für Ihren nächsten beruflichen Schritt, in Vollzeit oder Teilzeit."}{" "}
+            Wir klären mit Ihnen, welche Förderung für Sie in Frage kommt.
           </p>
           <a
             href="#beratung"
@@ -74,6 +102,26 @@ export default async function WeiterbildungPage() {
           ))}
         </div>
       </section>
+
+      {bereiche.length > 0 && (
+        <section className="border-b border-slate-200 py-10">
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="mb-4 text-xl font-bold text-slate-900">Weiterbildung nach Fachbereich</h2>
+            <ul className="flex flex-wrap gap-2">
+              {bereiche.map((b) => (
+                <li key={b.name}>
+                  <Link
+                    href={bereichPfad(b.name)}
+                    className="inline-block rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-[#3f74bc] hover:text-[#3f74bc]"
+                  >
+                    {b.name} <span className="text-slate-400">({b.anzahl})</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <section className="py-14">
         <div className="mx-auto max-w-7xl px-6">

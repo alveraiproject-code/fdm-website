@@ -1,228 +1,217 @@
 // =============================================================
 // JSON-LD STRUKTURIERTE DATEN — fdm-group.de
 // =============================================================
-// Verwendung in Next.js (App Router):
-//   import { schemaGraph } from '@/lib/schema'
-//   <script type="application/ld+json"
-//     dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }} />
-//
-// Globales @graph (Organization/LocalBusiness/WebSite) in app/layout.tsx einbinden.
-// Seitenspezifische Schemas (Course, FAQPage, BreadcrumbList) pro Route.
-// Validieren: https://validator.schema.org und Google Rich Results Test.
+// Globales @graph (Organisation, Website) wird in app/layout.tsx eingebunden.
+// Seitenspezifische Schemas (Course, ItemList, BreadcrumbList) pro Route.
+// Grundsatz: Nur behaupten, was auf der Seite steht und stimmt. Die Kennzeichnung als
+// förderfähig bekommen ausschließlich Kurse, die als FDM-Maßnahme zugelassen sind.
+// Prüfen: https://validator.schema.org und Google Rich Results Test.
 // =============================================================
-
-const BASE = 'https://www.fdm-group.de'
+import { dauerText, kursPfad, type Weiterbildung } from "./katalog";
+import { BASE, bereichPfad } from "./site";
 
 // ---------- GLOBAL: in layout.tsx ----------
 export const schemaGraph = {
-  '@context': 'https://schema.org',
-  '@graph': [
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      '@type': ['EducationalOrganization', 'LocalBusiness'],
-      '@id': `${BASE}/#organization`,
-      name: 'FDM GmbH',
-      legalName: 'FDM GmbH',
+      "@type": ["EducationalOrganization", "LocalBusiness"],
+      "@id": `${BASE}/#organization`,
+      name: "FDM GmbH",
+      legalName: "FDM GmbH",
+      alternateName: ["FDM Akademie", "FDM Group"],
       url: BASE,
       logo: {
-        '@type': 'ImageObject',
-        '@id': `${BASE}/#logo`,
+        "@type": "ImageObject",
+        "@id": `${BASE}/#logo`,
         url: `${BASE}/logo.png`,
-        caption: 'FDM GmbH',
+        caption: "FDM GmbH",
       },
-      image: { '@id': `${BASE}/#logo` },
+      image: { "@id": `${BASE}/#logo` },
       description:
-        'AZAV-zertifizierter Bildungsträger und Online-Akademie für berufliche Weiterbildung und KI-Kompetenz.',
-      telephone: '+49-7161-6275120',
-      email: 'info@fdm-group.de',
+        "Die FDM GmbH ist ein nach AZAV zugelassener Bildungsträger aus Eislingen/Fils. Unter dem Namen FDM Akademie bietet sie berufliche Weiterbildungen live im virtuellen Klassenzimmer an, in Vollzeit und Teilzeit, bundesweit. Eine Förderung über Bildungsgutschein oder Qualifizierungschancengesetz ist möglich.",
+      slogan: "Ihre Karriere. Gefördert. Zukunftssicher.",
+      telephone: "+49-7161-6275120",
+      email: "info@fdm-group.de",
       address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Schillerstraße 21',
-        postalCode: '73054',
-        addressLocality: 'Eislingen/Fils',
-        addressRegion: 'Baden-Württemberg',
-        addressCountry: 'DE',
+        "@type": "PostalAddress",
+        streetAddress: "Schillerstraße 21",
+        postalCode: "73054",
+        addressLocality: "Eislingen/Fils",
+        addressRegion: "Baden-Württemberg",
+        addressCountry: "DE",
       },
-      areaServed: { '@type': 'Country', name: 'Deutschland' },
-      hasCredential: {
-        '@type': 'EducationalOccupationalCredential',
-        credentialCategory: 'AZAV-Zertifizierung (§81 SGB III)',
-        recognizedBy: {
-          '@type': 'Organization',
-          name: 'GZQ GmbH (DAkkS-akkreditiert)',
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "Bildungsberatung",
+        telephone: "+49-7161-6275120",
+        email: "beratung@fdm-akademie.de",
+        availableLanguage: ["de"],
+        areaServed: "DE",
+        hoursAvailable: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "09:00",
+          closes: "17:00",
         },
-        identifier: 'Z-000473-2',
-        validThrough: '2029-10-17',
       },
-      sameAs: [
-        'https://alvatar.de',
-        // TODO: LinkedIn / weitere offizielle Profile ergänzen
+      areaServed: { "@type": "Country", name: "Deutschland" },
+      knowsAbout: [
+        "Berufliche Weiterbildung",
+        "Bildungsgutschein",
+        "AZAV",
+        "Qualifizierungschancengesetz",
+        "Online-Unterricht im virtuellen Klassenzimmer",
+        "IT-Weiterbildung",
+        "Kaufmännische Weiterbildung",
+        "Online-Marketing",
+        "Künstliche Intelligenz",
       ],
-      // TODO: echte aggregateRating erst aktivieren, wenn verifizierte Reviews vorliegen
-      // aggregateRating: { '@type': 'AggregateRating', ratingValue: '', reviewCount: '' },
+      hasCredential: {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "Trägerzulassung nach AZAV",
+        recognizedBy: {
+          "@type": "Organization",
+          name: "GZQ GmbH (DAkkS-akkreditiert)",
+        },
+        identifier: "Z-000473-2",
+        validThrough: "2029-10-17",
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Weiterbildungen der FDM Akademie",
+        url: `${BASE}/weiterbildung`,
+      },
+      sameAs: ["https://alvatar.de", "https://www.fdm-akademie.de"],
     },
     {
-      '@type': 'WebSite',
-      '@id': `${BASE}/#website`,
+      "@type": "WebSite",
+      "@id": `${BASE}/#website`,
       url: BASE,
-      name: 'FDM GmbH',
-      publisher: { '@id': `${BASE}/#organization` },
-      inLanguage: 'de-DE',
+      name: "FDM Akademie",
+      alternateName: ["FDM GmbH", "fdm-group.de"],
+      publisher: { "@id": `${BASE}/#organization` },
+      inLanguage: "de-DE",
       potentialAction: {
-        '@type': 'SearchAction',
+        "@type": "SearchAction",
         target: {
-          '@type': 'EntryPoint',
-          urlTemplate: `${BASE}/kurse?q={search_term_string}`,
+          "@type": "EntryPoint",
+          urlTemplate: `${BASE}/weiterbildung?q={search_term_string}`,
         },
-        'query-input': 'required name=search_term_string',
+        "query-input": "required name=search_term_string",
       },
     },
   ],
-}
+};
 
-// ---------- SEITE: AZAV-Lehrgang (/azav) ----------
+// ---------- Eigener, zugelassener Lehrgang ----------
 export const courseAZAV = {
-  '@context': 'https://schema.org',
-  '@type': 'Course',
-  '@id': `${BASE}/weiterbildung/FDM-OME-VZ#course`,
-  name: 'Online Marketing Experte (m/w/d)',
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "@id": `${BASE}/weiterbildung/FDM-OME-VZ#course`,
+  name: "Online Marketing Experte (m/w/d)",
   description:
-    'AZAV-zertifizierter Lehrgang für den umfassenden Einstieg in das Online-Marketing. Finanzierbar über den Bildungsgutschein der Agentur für Arbeit oder des Jobcenters – für Teilnehmende vollständig kostenfrei.',
-  provider: { '@id': `${BASE}/#organization` },
+    "Nach AZAV zugelassener Lehrgang der FDM GmbH für den umfassenden Einstieg in das Online-Marketing: 9 Lernmodule von Suchmaschinenoptimierung bis Performance Marketing, 1.920 Unterrichtseinheiten, in Vollzeit (48 Wochen) oder Teilzeit (96 Wochen), vollständig online. Mit einem Bildungsgutschein der Agentur für Arbeit oder des Jobcenters finanzierbar.",
+  provider: { "@id": `${BASE}/#organization` },
   url: `${BASE}/weiterbildung/FDM-OME-VZ`,
-  inLanguage: 'de-DE',
-  educationalCredentialAwarded:
-    'Abschlusszertifikat des Bildungsträgers (AZAV §81 SGB III)',
-  identifier: '621/214/24', // Maßnahme-ID
+  inLanguage: "de-DE",
+  educationalCredentialAwarded: "Abschlusszertifikat als Online Marketing Experte (m/w/d)",
+  identifier: "621/214/24", // Maßnahme-ID
+  financialAidEligible: "Bildungsgutschein (Agentur für Arbeit, Jobcenter)",
   hasCourseInstance: {
-    '@type': 'CourseInstance',
-    courseMode: 'online',
-    courseWorkload: 'PT1920H', // 1.920 Unterrichtsstunden
-    // 48 Wochen, laufender Einstieg
+    "@type": "CourseInstance",
+    courseMode: "online",
+    courseWorkload: "PT1440H", // 1.920 Unterrichtseinheiten zu je 45 Minuten
     location: {
-      '@type': 'VirtualLocation',
+      "@type": "VirtualLocation",
       url: `${BASE}/weiterbildung/FDM-OME-VZ`,
     },
   },
   offers: {
-    '@type': 'Offer',
-    category: 'Bildungsgutschein / AZAV-gefördert',
-    price: '0',
-    priceCurrency: 'EUR',
-    availability: 'https://schema.org/InStock',
+    "@type": "Offer",
+    category: "Paid",
+    availability: "https://schema.org/InStock",
     url: `${BASE}/weiterbildung/FDM-OME-VZ`,
   },
-}
+};
 
-// ---------- SEITE: alvatar-Kurse (/kurse) ----------
-// Pro Kurs ein Course-Objekt. Hier 2 Beispiele aus Live-Daten – Rest analog mappen.
-export const alvatarCourses = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Course',
-    name: 'ChatGPT Meisterkurs für Einsteiger',
-    description: 'Praxisnaher Einsteigerkurs zu ChatGPT. 5 Module · 13 Lektionen.',
-    provider: { '@id': `${BASE}/#organization` },
-    url: 'https://alvatar.de',
-    inLanguage: 'de-DE',
-    educationalLevel: 'Beginner',
+// ---------- Kursseite: eine Weiterbildung aus dem Katalog ----------
+export function kursSchema(k: Weiterbildung) {
+  const url = `${BASE}${kursPfad(k.modul_nr)}`;
+  const stunden = k.lerneinheiten ? Math.round(k.lerneinheiten * 0.75) : null;
+  const dauer = dauerText(k);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "@id": `${url}#course`,
+    name: k.titel,
+    description: [
+      // Kurzbeschreibungen enden oft ohne Punkt; für einen sauberen Satzanschluss ergänzen.
+      k.kurzbeschreibung ? k.kurzbeschreibung.trim().replace(/([^.!?])$/, "$1.") : null,
+      `${k.kursart_name} der FDM Akademie, live im virtuellen Klassenzimmer, ${k.zeitmodell_name}${dauer ? `, ${dauer}` : ""}${k.lerneinheiten ? `, ${k.lerneinheiten} Unterrichtseinheiten` : ""}.`,
+    ]
+      .filter(Boolean)
+      .join(" "),
+    courseCode: k.modul_nr,
+    url,
+    inLanguage: "de-DE",
+    provider: { "@id": `${BASE}/#organization` },
+    about: k.fachbereich_name,
+    educationalCredentialAwarded: "Zertifikat des Bildungsträgers",
+    // Nur zugelassene Maßnahmen werden als förderfähig ausgezeichnet.
+    ...(k.zugelassen ? { financialAidEligible: "Bildungsgutschein (Agentur für Arbeit, Jobcenter)" } : {}),
     hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: 'online',
-      location: { '@type': 'VirtualLocation', url: 'https://alvatar.de' },
+      "@type": "CourseInstance",
+      courseMode: ["online", k.zeitmodell === "teilzeit" ? "part-time" : "full-time"],
+      ...(stunden ? { courseWorkload: `PT${stunden}H` } : {}),
+      location: { "@type": "VirtualLocation", url },
     },
     offers: {
-      '@type': 'Offer',
-      price: '29.00',
-      priceCurrency: 'EUR',
-      availability: 'https://schema.org/InStock',
-      url: 'https://alvatar.de',
+      "@type": "Offer",
+      category: "Paid",
+      url,
     },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Course',
-    name: 'Claude von Anthropic Meisterkurs',
-    description: 'Praxisnaher Einsteigerkurs zu Claude. 6 Module · 13 Lektionen.',
-    provider: { '@id': `${BASE}/#organization` },
-    url: 'https://alvatar.de',
-    inLanguage: 'de-DE',
-    educationalLevel: 'Beginner',
-    hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: 'online',
-      location: { '@type': 'VirtualLocation', url: 'https://alvatar.de' },
-    },
-    offers: {
-      '@type': 'Offer',
-      price: '49.00',
-      priceCurrency: 'EUR',
-      availability: 'https://schema.org/InStock',
-      url: 'https://alvatar.de',
-    },
-  },
-  // TODO: Gemini (39€), Copilot (49€), KI-Tools Büroalltag (24€),
-  //       Datenanalyse mit KI (49€) und übrige Kurse analog ergänzen.
-]
-
-// ---------- WIEDERVERWENDBAR: FAQPage ----------
-export const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'Wer kann eine geförderte Weiterbildung bei der FDM GmbH machen?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Arbeitssuchende können über einen Bildungsgutschein der Agentur für Arbeit oder des Jobcenters an AZAV-zertifizierten Maßnahmen teilnehmen. Beschäftigte können über die QCG-Förderung (Qualifizierungschancengesetz) ihres Arbeitgebers gefördert werden.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Was kostet eine geförderte Weiterbildung?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Mit einem bewilligten Bildungsgutschein ist die Weiterbildung für Teilnehmende vollständig kostenfrei. Die Kosten werden von der Agentur für Arbeit oder dem Jobcenter übernommen.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Sind die Kurse der FDM GmbH online?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Ja. Alle geförderten Maßnahmen und Akademie-Kurse finden zu 100 % online statt – flexibel, ortsunabhängig und im eigenen Tempo.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Was ist der Unterschied zwischen geförderter Weiterbildung und den Online-Kursen?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Geförderte Weiterbildungen der FDM Akademie finden live im virtuellen Klassenzimmer statt, dauern mehrere Wochen bis Monate und können über einen Bildungsgutschein oder das Qualifizierungschancengesetz finanziert werden. Die Online-Kurse auf alvatar.de sind kurze Selbstlernkurse für Selbstzahler. Sie sind nicht nach AZAV zugelassen und können nicht mit einem Bildungsgutschein bezahlt werden.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Was bedeutet AZAV-Zertifizierung?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'AZAV steht für die Akkreditierungs- und Zulassungsverordnung Arbeitsförderung. Sie ist die Voraussetzung dafür, dass ein Bildungsträger nach §81 SGB III geförderte Maßnahmen durchführen darf. Die FDM GmbH ist durch die GZQ GmbH (DAkkS-akkreditiert) zertifiziert, Zertifikat-Nr. Z-000473-2.',
-      },
-    },
-  ],
+  };
 }
 
-// ---------- WIEDERVERWENDBAR: BreadcrumbList (Helper) ----------
-// items: [{ name: 'Startseite', url: BASE }, { name: 'AZAV-Förderung', url: `${BASE}/weiterbildung/FDM-OME-VZ` }]
-export const breadcrumb = (
-  items: { name: string; url: string }[],
-) => ({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
+// ---------- Liste von Kursen (Fachbereich, Katalog) ----------
+export const kursListe = (name: string, url: string, kurse: Weiterbildung[]) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name,
+  url,
+  numberOfItems: kurse.length,
+  itemListElement: kurse.map((k, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: k.titel,
+    url: `${BASE}${kursPfad(k.modul_nr)}`,
+  })),
+});
+
+// ---------- Übersicht der Fachbereiche ----------
+export const bereichsListe = (bereiche: { name: string; anzahl: number }[]) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Fachbereiche der FDM Akademie",
+  url: `${BASE}/weiterbildung`,
+  numberOfItems: bereiche.length,
+  itemListElement: bereiche.map((b, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: `${b.name} (${b.anzahl} Weiterbildungen)`,
+    url: `${BASE}${bereichPfad(b.name)}`,
+  })),
+});
+
+// ---------- BreadcrumbList ----------
+export const breadcrumb = (items: { name: string; pfad: string }[]) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
   itemListElement: items.map((item, i) => ({
-    '@type': 'ListItem',
+    "@type": "ListItem",
     position: i + 1,
     name: item.name,
-    item: item.url,
+    item: `${BASE}${item.pfad}`,
   })),
-})
+});
