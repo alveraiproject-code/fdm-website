@@ -66,6 +66,15 @@ const schritte = [
   { titel: "Abschluss", text: "Sie schließen mit einem Zertifikat ab und gehen den nächsten beruflichen Schritt." },
 ];
 
+// Setzt in langen zusammengesetzten Wörtern eine weiche Trennstelle, damit sie auf schmalen Bildschirmen
+// an der Wortfuge mit Trennstrich umbrechen (z. B. „Schlüssel-kompetenzen“) statt mitten im Wort.
+const WORTFUGEN = ["kompetenzen", "management", "technik", "gestaltung", "wirtschaft", "verwaltung", "entwicklung"];
+const trennbar = (name: string) =>
+  WORTFUGEN.reduce(
+    (text, teil) => text.replace(new RegExp("([A-Za-z\u00C4\u00D6\u00DC\u00E4\u00F6\u00FC\u00DF]{4,})(" + teil + ")", "g"), "$1\u00AD$2"),
+    name,
+  );
+
 export default async function Home() {
   const katalog = await ladeKatalog();
   const bereiche = fachbereiche(katalog);
@@ -135,15 +144,15 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {stats.map((s) => (
                 <div
                   key={s.label}
-                  className="rounded-2xl p-6 border border-white/20 text-center"
+                  className="min-w-0 rounded-2xl p-4 sm:p-6 border border-white/20 text-center"
                   style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(8px)" }}
                 >
-                  <div className="text-4xl font-bold text-white mb-1">{s.value}</div>
-                  <div className="text-slate-300 text-sm">{s.label}</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-white mb-1">{s.value}</div>
+                  <div className="text-slate-300 text-xs sm:text-sm hyphens-auto [overflow-wrap:anywhere]">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -154,15 +163,18 @@ export default async function Home() {
       {/* Trust badges */}
       <section className="bg-slate-50 border-b border-slate-200 py-5">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
-            <Image
-              src="/gzq-zertifikat.svg"
-              alt="GZQ AZAV Zertifizierung"
-              width={48}
-              height={48}
-              className="flex-shrink-0"
-              style={{ height: "auto" }}
-            />
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:gap-10">
+            {/* Auf dem Handy steht das Siegel in einer eigenen Zeile, damit die Liste darunter sauber zentriert ist. */}
+            <div className="flex w-full justify-center sm:w-auto">
+              <Image
+                src="/gzq-zertifikat.svg"
+                alt="GZQ AZAV Zertifizierung"
+                width={48}
+                height={48}
+                className="flex-shrink-0"
+                style={{ height: "auto" }}
+              />
+            </div>
             {[
               "AZAV-zertifiziert (GZQ / DAkkS)",
               "Maßnahmenzertifikat §81 SGB III",
@@ -198,7 +210,7 @@ export default async function Home() {
                 {[
                   "Live-Unterricht im virtuellen Klassenzimmer",
                   "Weiterbildungen in Vollzeit oder Teilzeit",
-                  "Förderung über Bildungsgutschein oder Qualifizierungschancengesetz möglich",
+                  "Förderung über Bildungsgutschein oder Qualifizierungs\u00ADchancengesetz möglich",
                   "Persönliche Beratung und Begleitung bis zum Abschluss",
                 ].map((punkt) => (
                   <li key={punkt} className="flex items-start gap-2.5 text-sm">
@@ -276,15 +288,19 @@ export default async function Home() {
                 Alle {anzahl.toLocaleString("de-DE")} Weiterbildungen <ChevronRight size={18} aria-hidden="true" />
               </Link>
             </div>
-            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
               {bereiche.map((b) => (
-                <li key={b.name}>
+                <li key={b.name} className="min-w-0">
                   <Link
                     href={`/weiterbildung?bereich=${encodeURIComponent(b.name)}`}
-                    className="card-hover flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5"
+                    className="card-hover flex h-full min-w-0 flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 sm:p-5"
                   >
-                    <span className="font-semibold leading-snug" style={{ color: "#1e293b" }}>
-                      {b.name}
+                    {/* Lange Wörter wie „Schlüsselkompetenzen“ trennen statt aus der Kachel laufen lassen */}
+                    <span
+                      className="text-[15px] sm:text-base font-semibold leading-snug hyphens-auto [overflow-wrap:anywhere]"
+                      style={{ color: "#1e293b" }}
+                    >
+                      {trennbar(b.name)}
                     </span>
                     <span className="mt-3 text-sm text-[#3f74bc]">
                       {b.anzahl} {b.anzahl === 1 ? "Kurs" : "Kurse"}

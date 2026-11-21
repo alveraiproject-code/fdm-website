@@ -36,6 +36,15 @@ body {
   overflow-x: hidden;
 }
 
+/* Auf schmalen Bildschirmen dürfen lange zusammengesetzte Wörter auch im Fließtext und in Listen
+   getrennt werden, damit nichts über den Rand läuft. */
+@media (max-width: 640px) {
+  p, li, dd, dt {
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+}
+
 /* Prevent long German compound words from causing horizontal overflow */
 h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
