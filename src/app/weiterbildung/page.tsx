@@ -119,6 +119,13 @@ export default async function WeiterbildungPage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-5 text-sm text-slate-600">
+              Sie möchten ein Thema von Grund auf lernen? Unsere{" "}
+              <Link href="/weiterbildung/kursketten" className="font-semibold text-[#3f74bc] underline">
+                Kursketten
+              </Link>{" "}
+              verbinden aufeinander aufbauende Weiterbildungen zu einem durchgehenden Lernweg.
+            </p>
           </div>
         </section>
       )}

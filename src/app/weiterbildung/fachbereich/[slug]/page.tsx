@@ -5,6 +5,7 @@ import { ArrowRight, ChevronRight, Clock } from "lucide-react";
 import AnfrageFormular from "@/components/AnfrageFormular";
 import Kennzeichen from "@/components/Kennzeichen";
 import { dauerText, fachbereiche, kursPfad, ladeKatalog } from "@/lib/katalog";
+import { dauerInWorten, kettenPfad, ladeKetten } from "@/lib/ketten";
 import { breadcrumb, kursListe } from "@/lib/schema";
 import { BASE, bereichPfad, bereichSlug, bereichText, kennzahlen, ldJson } from "@/lib/site";
 
@@ -23,7 +24,8 @@ async function ladeBereich(params: Props["params"]) {
           (a, b) => Number(b.zugelassen ?? false) - Number(a.zugelassen ?? false) || a.titel.localeCompare(b.titel, "de"),
         )
     : [];
-  return { bereich, kurse, bereiche };
+  const ketten = bereich ? (await ladeKetten(katalog)).filter((k) => k.fachbereich_name === bereich.name) : [];
+  return { bereich, kurse, bereiche, ketten };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -45,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function FachbereichSeite({ params }: Props) {
-  const { bereich, kurse, bereiche } = await ladeBereich(params);
+  const { bereich, kurse, bereiche, ketten } = await ladeBereich(params);
   if (!bereich) notFound();
   const z = kennzahlen(kurse);
   const text = bereichText(bereich.name);
@@ -131,6 +133,37 @@ export default async function FachbereichSeite({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {ketten.length > 0 && (
+        <section className="border-b border-slate-200 py-12">
+          <div className="mx-auto max-w-6xl px-6">
+            <h2 className="mb-2 text-2xl font-bold text-slate-900">Kursketten im Bereich {bereich.name}</h2>
+            <p className="mb-6 max-w-3xl text-sm text-slate-600">
+              Aufeinander aufbauende Weiterbildungen, die Schritt für Schritt von den Grundlagen zur Vertiefung führen.
+              Jede Stufe ist ein eigener Kurs mit eigenem Zertifikat.
+            </p>
+            <ul className="grid gap-3 md:grid-cols-2">
+              {ketten.map((k) => (
+                <li key={k.slug} className="min-w-0">
+                  <Link
+                    href={kettenPfad(k)}
+                    className="card-hover flex h-full items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3"
+                  >
+                    <span className="min-w-0">
+                      <span className="block font-semibold text-slate-900 [overflow-wrap:anywhere]">{k.titel}</span>
+                      <span className="block text-xs text-slate-500">
+                        {k.zeitmodell_name} · {k.grund.stufen} Stufen · {k.grund.ue.toLocaleString("de-DE")} UE ·{" "}
+                        {dauerInWorten(k.grund.wochen)}
+                      </span>
+                    </span>
+                    <ArrowRight className="h-4 w-4 flex-shrink-0 text-[#3f74bc]" aria-hidden="true" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <section className="py-14">
         <div className="mx-auto max-w-6xl px-6">

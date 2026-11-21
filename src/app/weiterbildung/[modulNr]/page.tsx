@@ -5,6 +5,7 @@ import { ArrowRight, Award, BookOpen, CalendarClock, CheckCircle, ChevronRight, 
 import AnfrageFormular from "@/components/AnfrageFormular";
 import Kennzeichen from "@/components/Kennzeichen";
 import { dauerText, kursPfad, ladeKatalog, type Weiterbildung } from "@/lib/katalog";
+import { kettenPfad, kettenVonKurs, ladeKetten } from "@/lib/ketten";
 import { kursdetails } from "@/lib/kursdetails";
 import { breadcrumb, courseAZAV, kursSchema } from "@/lib/schema";
 import { BASE, andereZeitform, bereichPfad, ldJson } from "@/lib/site";
@@ -64,6 +65,7 @@ export default async function KursSeite({ params }: Props) {
   if (!kurs) notFound();
   const details = kursdetails(kurs.modul_nr);
   const zwilling = andereZeitform(kurs, katalog);
+  const inKetten = kettenVonKurs(kurs.modul_nr, await ladeKetten(katalog));
   // Weitere Kurse desselben Fachbereichs im selben Zeitmodell, alphabetisch um den aktuellen Kurs herum.
   const verwandte = (() => {
     const gleiche = katalog
@@ -181,6 +183,55 @@ export default async function KursSeite({ params }: Props) {
                 </Link>
               </p>
             )}
+
+            {inKetten.map(({ kette, stufe }) => {
+              const davor = kette.stufen.find((s) => s.nr === stufe.nr - 1);
+              const danach = kette.stufen.find((s) => s.nr === stufe.nr + 1);
+              return (
+                <div key={kette.slug} className="mb-8 rounded-2xl border border-blue-200 bg-blue-50 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#3f74bc]">
+                    Teil einer Kurskette · Stufe {stufe.nr} von {kette.stufen.length}
+                    {stufe.optional ? " · optionale Erweiterung" : ""}
+                  </p>
+                  <p className="mt-1 font-semibold text-slate-900">
+                    <Link href={kettenPfad(kette)} className="hover:text-[#3f74bc] hover:underline">
+                      {kette.titel}
+                    </Link>
+                  </p>
+                  <p className="mt-2 text-sm text-slate-700">
+                    Dieser Kurs gehört zu einer Folge aufeinander aufbauender Weiterbildungen.
+                    {davor ? (
+                      <>
+                        {" "}
+                        Davor steht{" "}
+                        <Link href={kursPfad(davor.kurs.modul_nr)} className="text-[#3f74bc] underline">
+                          {davor.kurs.titel}
+                        </Link>
+                        .
+                      </>
+                    ) : (
+                      " Er ist der Einstieg in die Kette."
+                    )}
+                    {danach && (
+                      <>
+                        {" "}
+                        Danach folgt{" "}
+                        <Link href={kursPfad(danach.kurs.modul_nr)} className="text-[#3f74bc] underline">
+                          {danach.kurs.titel}
+                        </Link>
+                        .
+                      </>
+                    )}
+                  </p>
+                  <Link
+                    href={kettenPfad(kette)}
+                    className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#2c3892] hover:underline"
+                  >
+                    Zur Kurskette mit allen Stufen <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                </div>
+              );
+            })}
 
             {kurs.kurzbeschreibung && (
               <>

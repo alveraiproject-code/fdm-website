@@ -5,6 +5,7 @@
 // =============================================================
 import { fragen } from "./faq";
 import { dauerText, fachbereiche, kursPfad, ladeKatalog, type Weiterbildung } from "./katalog";
+import { dauerInWorten, kettenPfad, ladeKetten } from "./ketten";
 import { BASE, bereichPfad, bereichText, kennzahlen } from "./site";
 
 const zeile = (k: Weiterbildung) =>
@@ -20,6 +21,7 @@ const zeile = (k: Weiterbildung) =>
 export async function llmsText(vollstaendig: boolean) {
   const katalog = await ladeKatalog();
   const bereiche = fachbereiche(katalog);
+  const ketten = await ladeKetten(katalog);
   const z = kennzahlen(katalog);
   const faq = fragen({ ...z, bereiche: bereiche.length });
   const zugelassen = katalog.filter((k) => k.zugelassen);
@@ -52,6 +54,7 @@ export async function llmsText(vollstaendig: boolean) {
     "## Wichtige Seiten",
     "",
     `- [Geförderte Weiterbildung – Kurskatalog](${BASE}/weiterbildung): alle Weiterbildungen mit Suche nach Thema, Fachbereich und Zeitmodell`,
+    `- [Kursketten](${BASE}/weiterbildung/kursketten): aufeinander aufbauende Weiterbildungen als durchgehender Lernweg`,
     `- [Bildungsgutschein](${BASE}/azav): Voraussetzungen und Weg zum Bildungsgutschein`,
     `- [Qualifizierungschancengesetz](${BASE}/qcg): Förderung für Beschäftigte und Arbeitgeber`,
     `- [Häufige Fragen](${BASE}/faq): Antworten zu Ablauf, Förderung, Kosten und Teilnahme`,
@@ -72,6 +75,23 @@ export async function llmsText(vollstaendig: boolean) {
       const t = bereichText(b.name);
       teile.push(
         `- [${b.name}](${BASE}${bereichPfad(b.name)}): ${b.anzahl} Weiterbildungen${t ? `. Themen: ${t.themen}` : ""}`,
+      );
+    }
+    teile.push("");
+  }
+
+  if (ketten.length > 0) {
+    teile.push(
+      "## Kursketten",
+      "",
+      "Eine Kurskette verbindet einzelne Weiterbildungen zu einem durchgehenden Lernweg. Die Stufen bauen aufeinander auf; jede Stufe ist ein eigener Kurs mit eigenem Zertifikat. Teilnehmende beginnen in der Regel mit Stufe 1 und belegen so viele Stufen, wie ihr Ziel und der Rahmen ihrer Förderung zulassen.",
+      "",
+    );
+    for (const k of ketten) {
+      teile.push(
+        `- [${k.name}](${BASE}${kettenPfad(k)}): ${k.grund.stufen} Stufen, ${k.grund.ue} Unterrichtseinheiten, ${dauerInWorten(k.grund.wochen)}. Stufen: ${k.stufen
+          .map((s) => `${s.nr}. ${s.kurs.titel}${s.optional ? " (optional)" : ""}`)
+          .join(" → ")}${vollstaendig && k.beschreibung ? `. ${k.beschreibung}` : ""}`,
       );
     }
     teile.push("");

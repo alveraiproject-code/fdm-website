@@ -4,6 +4,7 @@
 // =============================================================
 import type { MetadataRoute } from "next";
 import { fachbereiche, kursPfad, ladeKatalog } from "@/lib/katalog";
+import { kettenPfad, ladeKetten } from "@/lib/ketten";
 import { BASE, bereichPfad } from "@/lib/site";
 
 // Stündlich neu erzeugen, damit neue Kurse zeitnah erscheinen.
@@ -14,6 +15,7 @@ type Eintrag = MetadataRoute.Sitemap[number];
 const fest: { path: string; priority: number; changeFrequency: Eintrag["changeFrequency"] }[] = [
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
   { path: "/weiterbildung", priority: 0.9, changeFrequency: "daily" },
+  { path: "/weiterbildung/kursketten", priority: 0.9, changeFrequency: "weekly" },
   { path: "/azav", priority: 0.9, changeFrequency: "monthly" },
   { path: "/qcg", priority: 0.9, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.8, changeFrequency: "monthly" },
@@ -26,6 +28,7 @@ const fest: { path: string; priority: number; changeFrequency: Eintrag["changeFr
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const jetzt = new Date();
   const katalog = await ladeKatalog();
+  const ketten = await ladeKetten(katalog);
 
   return [
     ...fest.map(({ path, priority, changeFrequency }) => ({
@@ -36,6 +39,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...fachbereiche(katalog).map((b) => ({
       url: `${BASE}${bereichPfad(b.name)}`,
+      lastModified: jetzt,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+    ...ketten.map((k) => ({
+      url: `${BASE}${kettenPfad(k)}`,
       lastModified: jetzt,
       changeFrequency: "weekly" as const,
       priority: 0.8,

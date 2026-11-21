@@ -45,6 +45,7 @@ export default function Footer() {
               {[
                 { href: "/", label: "Startseite" },
                 { href: "/weiterbildung", label: "Geförderte Weiterbildung" },
+                { href: "/weiterbildung/kursketten", label: "Kursketten" },
                 { href: "/kurse", label: "Online-Kurse (Selbstzahler)" },
                 { href: "/azav", label: "Bildungsgutschein" },
                 { href: "/qcg", label: "QCG-Förderung" },

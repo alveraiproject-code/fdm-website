@@ -23,6 +23,12 @@ export function fragen(z: { gesamt: number; vollzeit: number; teilzeit: number; 
     },
     {
       rubrik: "Über die FDM Akademie",
+      frage: "Was ist eine Kurskette?",
+      antwort:
+        "Eine Kurskette verbindet einzelne Weiterbildungen der FDM Akademie zu einem durchgehenden Lernweg, zum Beispiel Finanzbuchhaltung mit DATEV in den Stufen Basics, Aufbaukurs und Expertenkurs. Die Stufen bauen aufeinander auf; jede Stufe ist ein eigener Kurs mit eigenem Zertifikat. Teilnehmende beginnen in der Regel mit Stufe 1 und belegen so viele Stufen, wie ihr Ziel und der Rahmen ihres Bildungsgutscheins zulassen. Wer Vorkenntnisse mitbringt, kann nach Absprache auf einer späteren Stufe einsteigen.",
+    },
+    {
+      rubrik: "Über die FDM Akademie",
       frage: "Wie läuft der Unterricht ab?",
       antwort:
         "Der Unterricht findet live im virtuellen Klassenzimmer statt: Dozentinnen und Dozenten unterrichten in Echtzeit, die Teilnehmenden nehmen von zu Hause aus teil und können Fragen stellen. Es gibt feste Unterrichtszeiten, je nach Kurs in Vollzeit oder in Teilzeit. Persönliche Ansprechpersonen der FDM Akademie begleiten die Teilnehmenden von der Beratung bis zum Abschluss.",
