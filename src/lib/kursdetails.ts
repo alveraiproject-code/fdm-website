@@ -17,7 +17,7 @@ export interface Kursdetails {
 }
 
 const onlineMarketingExperte: Kursdetails = {
-  massnahme: "01/1024",
+  massnahme: "621/214/24",
   teilnehmer: "max. 15 Personen",
   abschluss: "Abschlusszertifikat als Online Marketing Experte (m/w/d)",
   varianten: [

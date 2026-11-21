@@ -92,7 +92,7 @@ export const courseAZAV = {
   inLanguage: 'de-DE',
   educationalCredentialAwarded:
     'Abschlusszertifikat des Bildungsträgers (AZAV §81 SGB III)',
-  identifier: '01/1024', // Maßnahme-ID
+  identifier: '621/214/24', // Maßnahme-ID
   hasCourseInstance: {
     '@type': 'CourseInstance',
     courseMode: 'online',

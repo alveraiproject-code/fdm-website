@@ -156,7 +156,7 @@ export default function BildungsgutscheinPage() {
               </span>
               <span className="mt-2 text-sm text-slate-600">
                 1.920 Unterrichtseinheiten · 48 Wochen in Vollzeit oder 96 Wochen in Teilzeit · laufender Einstieg ·
-                Maßnahme-ID 01/1024
+                Maßnahme-ID 621/214/24
               </span>
               <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-semibold text-[#3f74bc]">
                 Zum Lehrgang <ArrowRight size={15} aria-hidden="true" />

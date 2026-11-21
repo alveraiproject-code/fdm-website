@@ -318,7 +318,7 @@ export default async function Home() {
                   "9 Lernmodule von SEO bis Performance Marketing",
                   "Abschlusszertifikat des Bildungsträgers",
                   "Laufender Einstieg möglich",
-                  "Maßnahme-ID: 01/1024",
+                  "Maßnahme-ID: 621/214/24",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-slate-700">
                     <CheckCircle size={16} style={{ color: "#3f74bc", marginTop: 2 }} className="flex-shrink-0" aria-hidden="true" />
