@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Award, BookOpen, CalendarClock, ChevronRight, Clock, Layers, Laptop } from "lucide-react";
 import AnfrageFormular from "@/components/AnfrageFormular";
+import BeratungSprung from "@/components/BeratungSprung";
 import Kennzeichen from "@/components/Kennzeichen";
 import { dauerText, kursPfad, ladeKatalog } from "@/lib/katalog";
 import { andereKette, dauerInWorten, kettenPfad, ladeKetten, type Kurskette } from "@/lib/ketten";
@@ -328,7 +329,7 @@ export default async function KettenSeite({ params }: Props) {
             </p>
           </div>
 
-          <aside className="min-w-0 lg:col-span-2" id="beratung">
+          <aside className="min-w-0 scroll-mt-24 lg:col-span-2" id="beratung">
             <div className="lg:sticky lg:top-28">
               <h2 className="mb-4 text-xl font-bold text-slate-900">Beratung zu dieser Kurskette</h2>
               <AnfrageFormular
@@ -339,6 +340,7 @@ export default async function KettenSeite({ params }: Props) {
             </div>
           </aside>
         </div>
+        <BeratungSprung text="Beratung zu dieser Kurskette anfragen" />
       </section>
     </>
   );

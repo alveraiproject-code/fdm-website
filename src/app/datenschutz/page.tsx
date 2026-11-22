@@ -187,6 +187,20 @@ export default function DatenschutzPage() {
                 verarbeitet.
               </li>
               <li>
+                <strong>Vercel Inc.</strong>, USA: Reichweitenmessung dieser
+                Website (Vercel Web Analytics). Die Messung kommt ohne Cookies
+                aus und speichert nichts auf Ihrem Gerät. Erfasst werden die
+                aufgerufene Seite, die verweisende Seite, Land, Gerätetyp,
+                Betriebssystem und Browser. Ihre IP-Adresse wird nicht
+                gespeichert; Besuche werden über einen anonymen Kennwert
+                gezählt, der täglich verfällt, sodass Sie nicht über mehrere
+                Tage oder Websites hinweg wiedererkannt werden. Nach dem
+                Absenden eines Formulars wird zusätzlich gezählt, dass eine
+                Anfrage gesendet wurde, ohne Angaben aus dem Formular.
+                Rechtsgrundlage ist unser berechtigtes Interesse, unser Angebot
+                zu verbessern (Art. 6 Abs. 1 lit. f DSGVO).
+              </li>
+              <li>
                 <strong>Supabase Inc.</strong>, USA: Datenbank unseres CRM. Die
                 Daten werden in einem Rechenzentrum in Frankfurt am Main
                 gespeichert.

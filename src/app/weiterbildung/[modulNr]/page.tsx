@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Award, BookOpen, CalendarClock, CheckCircle, ChevronRight, Clock, FileText, GraduationCap, Users } from "lucide-react";
 import AnfrageFormular from "@/components/AnfrageFormular";
+import BeratungSprung from "@/components/BeratungSprung";
 import Kennzeichen from "@/components/Kennzeichen";
 import { faqSeite } from "@/lib/faq";
 import { dauerText, kursPfad, ladeKatalog, ladeKurstext, type Weiterbildung } from "@/lib/katalog";
@@ -391,13 +392,14 @@ export default async function KursSeite({ params }: Props) {
             )}
           </div>
 
-          <aside className="lg:col-span-2" id="beratung">
+          <aside className="scroll-mt-24 lg:col-span-2" id="beratung">
             <div className="lg:sticky lg:top-28">
               <h2 className="mb-4 text-xl font-bold text-slate-900">Beratung zu diesem Kurs</h2>
               <AnfrageFormular kurs={kurs.modul_nr} kursTitel={kurs.titel} quelle={`fdm-group.de/weiterbildung/${kurs.modul_nr}`} />
             </div>
           </aside>
         </div>
+        <BeratungSprung text="Beratung zu diesem Kurs anfragen" />
       </section>
     </>
   );

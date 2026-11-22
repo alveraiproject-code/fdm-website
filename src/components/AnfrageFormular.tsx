@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { CheckCircle, Send } from "lucide-react";
+import { track } from "@vercel/analytics";
 import { CRM_URL } from "@/lib/katalog";
 
 const SITUATIONEN: [string, string][] = [
@@ -12,6 +13,13 @@ const SITUATIONEN: [string, string][] = [
   ["kurzarbeit", "In Kurzarbeit"],
   ["selbststaendig", "Selbstständig"],
   ["sonstiges", "Sonstiges"],
+];
+
+const GUTSCHEIN: [string, string][] = [
+  ["Bildungsgutschein liegt vor", "Ja, liegt mir vor"],
+  ["Bildungsgutschein ist beantragt oder zugesagt", "Beantragt oder zugesagt"],
+  ["Noch kein Bildungsgutschein", "Noch nicht"],
+  ["Weiß nicht, ob ein Bildungsgutschein in Frage kommt", "Weiß ich nicht"],
 ];
 
 const feld =
@@ -42,6 +50,8 @@ export default function AnfrageFormular({
     setStand("sendet");
     const f = new FormData(e.currentTarget);
     const text = (name: string) => String(f.get(name) ?? "");
+    // Die Angabe zum Bildungsgutschein steht am Anfang der Nachricht, damit sie im CRM sofort zu sehen ist.
+    const nachricht = [text("gutschein") && `${text("gutschein")}.`, text("nachricht").trim()].filter(Boolean).join("\n\n");
     try {
       const antwort = await fetch(`${CRM_URL}/api/anfrage`, {
         method: "POST",
@@ -55,7 +65,7 @@ export default function AnfrageFormular({
           plz: text("plz"),
           ort: text("ort"),
           beschaeftigungsstatus: text("beschaeftigungsstatus"),
-          nachricht: text("nachricht"),
+          nachricht,
           firma_website: text("firma_website"),
           einwilligung: f.get("einwilligung") === "on",
           geladen: geladen.current,
@@ -70,6 +80,8 @@ export default function AnfrageFormular({
         return;
       }
       setStand("gesendet");
+      // Zählt nur, dass eine Anfrage gesendet wurde und von welcher Art Seite; keine Angaben aus dem Formular.
+      track("Anfrage gesendet", { seite: kurs ? "Kurs" : "Allgemein" });
     } catch {
       setFehler("Ihre Anfrage konnte nicht gesendet werden. Bitte prüfen Sie Ihre Verbindung oder rufen Sie uns an.");
       setStand("offen");
@@ -148,11 +160,22 @@ export default function AnfrageFormular({
           </select>
         </label>
         <label className="sm:col-span-2">
+          <span className={beschriftung}>Haben Sie bereits einen Bildungsgutschein?</span>
+          <select name="gutschein" className={feld} defaultValue="">
+            <option value="">– bitte wählen –</option>
+            {GUTSCHEIN.map(([wert, name]) => (
+              <option key={wert} value={wert}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="sm:col-span-2">
           <span className={beschriftung}>Ihre Nachricht</span>
           <textarea
             name="nachricht"
             rows={4}
-            maxLength={3000}
+            maxLength={2900}
             className={feld}
             placeholder="Was möchten Sie lernen oder erreichen? Gibt es einen Wunschtermin?"
           />
