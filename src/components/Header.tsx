@@ -8,6 +8,7 @@ import { Menu, X, Phone, Mail, ChevronDown, Award, Building2 } from "lucide-reac
 const mainNavLinks = [
   { href: "/", label: "Startseite" },
   { href: "/weiterbildung", label: "Geförderte Weiterbildung" },
+  { href: "/ratgeber", label: "Ratgeber" },
   { href: "/ueber-uns", label: "Über uns" },
   { href: "/kontakt", label: "Kontakt" },
 ];

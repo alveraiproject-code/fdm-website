@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ChevronRight, Clock } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, Clock } from "lucide-react";
 import AnfrageFormular from "@/components/AnfrageFormular";
 import Kennzeichen from "@/components/Kennzeichen";
+import { bereichMehr } from "@/lib/bereiche";
 import { dauerText, fachbereiche, kursPfad, ladeKatalog } from "@/lib/katalog";
 import { dauerInWorten, kettenPfad, ladeKetten } from "@/lib/ketten";
 import { breadcrumb, kursListe } from "@/lib/schema";
@@ -51,6 +52,7 @@ export default async function FachbereichSeite({ params }: Props) {
   if (!bereich) notFound();
   const z = kennzahlen(kurse);
   const text = bereichText(bereich.name);
+  const mehr = bereichMehr(bereich.name);
   const pfad = [
     { name: "Startseite", pfad: "/" },
     { name: "Geförderte Weiterbildung", pfad: "/weiterbildung" },
@@ -133,6 +135,43 @@ export default async function FachbereichSeite({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {mehr && (
+        <section className="border-b border-slate-200 py-12">
+          <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-5">
+            <div className="min-w-0 lg:col-span-3">
+              <h2 className="text-2xl font-bold text-slate-900">{bereich.name}: Worum es geht</h2>
+              <p className="mt-3 leading-relaxed text-slate-700">{mehr.einstieg}</p>
+              <h2 className="mt-8 text-xl font-bold text-slate-900">So finden Sie den passenden Einstieg</h2>
+              <p className="mt-3 leading-relaxed text-slate-700">{mehr.weg}</p>
+              <p className="mt-4 text-sm text-slate-600">
+                Wie Sie eine Weiterbildung bei der Agentur für Arbeit begründen, lesen Sie im Ratgeber{" "}
+                <Link href="/ratgeber/gespraech-arbeitsagentur-weiterbildung" className="text-[#3f74bc] underline">
+                  Gespräch bei der Agentur für Arbeit
+                </Link>
+                .
+              </p>
+            </div>
+            <div className="min-w-0 lg:col-span-2">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                <h2 className="font-bold text-slate-900">Typische Tätigkeiten und Berufsziele</h2>
+                <ul className="mt-4 space-y-2.5 text-sm text-slate-700">
+                  {mehr.ziele.map((ziel) => (
+                    <li key={ziel} className="flex items-start gap-2">
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#3f74bc]" aria-hidden="true" />
+                      <span>{ziel}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-xs text-slate-500">
+                  Die Kurse vermitteln Kenntnisse für diese Tätigkeiten. Welche Voraussetzungen eine bestimmte Stelle
+                  zusätzlich verlangt, hängt vom Arbeitgeber ab.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {ketten.length > 0 && (
         <section className="border-b border-slate-200 py-12">

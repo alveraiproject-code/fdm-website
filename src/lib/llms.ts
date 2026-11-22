@@ -6,6 +6,8 @@
 import { fragen } from "./faq";
 import { dauerText, fachbereiche, kursPfad, ladeKatalog, type Weiterbildung } from "./katalog";
 import { dauerInWorten, kettenPfad, ladeKetten } from "./ketten";
+import { bereichMehr } from "./bereiche";
+import { RATGEBER, ratgeberPfad } from "./ratgeber";
 import { BASE, bereichPfad, bereichText, kennzahlen } from "./site";
 
 const zeile = (k: Weiterbildung) =>
@@ -58,6 +60,7 @@ export async function llmsText(vollstaendig: boolean) {
     `- [Bildungsgutschein](${BASE}/azav): Voraussetzungen und Weg zum Bildungsgutschein`,
     `- [Qualifizierungschancengesetz](${BASE}/qcg): Förderung für Beschäftigte und Arbeitgeber`,
     `- [Häufige Fragen](${BASE}/faq): Antworten zu Ablauf, Förderung, Kosten und Teilnahme`,
+    `- [Ratgeber](${BASE}/ratgeber): Artikel zu Bildungsgutschein, Gespräch bei der Agentur für Arbeit, Ablehnung, Arbeitslosengeld und Online-Unterricht`,
     `- [Online Marketing Experte (m/w/d)](${BASE}/weiterbildung/FDM-OME-VZ): eigener, nach AZAV zugelassener Lehrgang`,
     `- [Online-Kurse für Selbstzahler](${BASE}/kurse): KI-Kurse auf alvatar.de`,
     `- [Über die FDM GmbH](${BASE}/ueber-uns): Unternehmen, Zulassung, Geschäftsführung`,
@@ -74,7 +77,9 @@ export async function llmsText(vollstaendig: boolean) {
     for (const b of bereiche) {
       const t = bereichText(b.name);
       teile.push(
-        `- [${b.name}](${BASE}${bereichPfad(b.name)}): ${b.anzahl} Weiterbildungen${t ? `. Themen: ${t.themen}` : ""}`,
+        `- [${b.name}](${BASE}${bereichPfad(b.name)}): ${b.anzahl} Weiterbildungen${t ? `. Themen: ${t.themen}` : ""}${
+          vollstaendig && bereichMehr(b.name) ? `. Typische Tätigkeiten: ${bereichMehr(b.name)!.ziele.join("; ")}` : ""
+        }`,
       );
     }
     teile.push("");
@@ -96,6 +101,12 @@ export async function llmsText(vollstaendig: boolean) {
     }
     teile.push("");
   }
+
+  teile.push("## Ratgeber", "");
+  for (const a of RATGEBER) {
+    teile.push(`- [${a.titel}](${BASE}${ratgeberPfad(a.slug)}): ${vollstaendig ? a.kurz : a.beschreibung}`);
+  }
+  teile.push("");
 
   teile.push("## Häufige Fragen", "");
   for (const f of faq) teile.push(`### ${f.frage}`, "", f.antwort, "");

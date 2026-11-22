@@ -5,6 +5,7 @@
 import type { MetadataRoute } from "next";
 import { fachbereiche, kursPfad, ladeKatalog } from "@/lib/katalog";
 import { kettenPfad, ladeKetten } from "@/lib/ketten";
+import { RATGEBER, RATGEBER_STAND, ratgeberPfad } from "@/lib/ratgeber";
 import { BASE, bereichPfad } from "@/lib/site";
 
 // Stündlich neu erzeugen, damit neue Kurse zeitnah erscheinen.
@@ -19,6 +20,7 @@ const fest: { path: string; priority: number; changeFrequency: Eintrag["changeFr
   { path: "/azav", priority: 0.9, changeFrequency: "monthly" },
   { path: "/qcg", priority: 0.9, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/ratgeber", priority: 0.8, changeFrequency: "monthly" },
   { path: "/kurse", priority: 0.7, changeFrequency: "weekly" },
   { path: "/kontakt", priority: 0.7, changeFrequency: "monthly" },
   { path: "/ueber-uns", priority: 0.6, changeFrequency: "monthly" },
@@ -36,6 +38,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: jetzt,
       changeFrequency,
       priority,
+    })),
+    ...RATGEBER.map((a) => ({
+      url: `${BASE}${ratgeberPfad(a.slug)}`,
+      lastModified: new Date(RATGEBER_STAND),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
     ...fachbereiche(katalog).map((b) => ({
       url: `${BASE}${bereichPfad(b.name)}`,
