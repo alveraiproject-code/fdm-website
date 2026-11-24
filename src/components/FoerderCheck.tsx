@@ -70,6 +70,7 @@ function einordnung(situation: string, zahlung: string) {
 
 export default function FoerderCheck({ quelle }: { quelle: string }) {
   const geladen = useRef(0);
+  const rahmen = useRef<HTMLDivElement>(null);
   const [schritt, setSchritt] = useState(1);
   const [situation, setSituation] = useState("");
   const [zweite, setZweite] = useState("");
@@ -81,6 +82,18 @@ export default function FoerderCheck({ quelle }: { quelle: string }) {
   useEffect(() => {
     geladen.current = Date.now();
   }, []);
+
+  // Nach jedem Schritt und nach dem Senden den Kasten wieder ins Bild holen: Auf dem Handy ändert sich
+  // seine Höhe, und ohne das stünde zum Beispiel die Bestätigung außerhalb des sichtbaren Bereichs.
+  const gesendet = stand === "gesendet";
+  const erster = useRef(true);
+  useEffect(() => {
+    if (erster.current) {
+      erster.current = false;
+      return;
+    }
+    rahmen.current?.scrollIntoView({ block: "start", behavior: "smooth" });
+  }, [schritt, gesendet]);
 
   const hatZweite = mitGutschein(situation) || istBeschaeftigt(situation);
 
@@ -141,7 +154,7 @@ export default function FoerderCheck({ quelle }: { quelle: string }) {
 
   if (stand === "gesendet") {
     return (
-      <div className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center" role="status">
+      <div ref={rahmen} className="scroll-mt-28 rounded-2xl border border-green-200 bg-green-50 p-8 text-center" role="status">
         <CheckCircle className="mx-auto mb-3 h-10 w-10 text-green-600" aria-hidden="true" />
         <h3 className="text-xl font-bold text-slate-900">Vielen Dank für Ihre Angaben</h3>
         <p className="mt-2 text-sm text-slate-600">
@@ -169,7 +182,7 @@ export default function FoerderCheck({ quelle }: { quelle: string }) {
   );
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div ref={rahmen} className="scroll-mt-28 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="mb-5 flex items-center justify-between gap-3">
         <p className="text-xs font-semibold uppercase tracking-wider text-[#3f74bc]">
           Schritt {schritt} von 4

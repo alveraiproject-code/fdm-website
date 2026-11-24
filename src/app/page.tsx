@@ -202,8 +202,8 @@ export default async function Home() {
 
       {/* Förder-Check */}
       <section id="foerder-check" className="scroll-mt-24 bg-white py-16">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-2">
-          <div>
+        <div className="mx-auto grid max-w-6xl gap-x-10 gap-y-8 px-6 lg:grid-cols-2">
+          <div className="lg:col-start-1">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: "#1e293b" }}>
               Welche Förderung kommt für Sie in Frage?
             </h2>
@@ -211,7 +211,13 @@ export default async function Home() {
               Beantworten Sie drei kurze Fragen. Sie sehen sofort, welcher Förderweg zu Ihrer Situation passt, und
               erhalten von uns passende Weiterbildungen per E-Mail. Kostenlos und unverbindlich.
             </p>
-            <ul className="mt-6 space-y-3 text-sm text-slate-700">
+          </div>
+          {/* Auf dem Handy stehen die Fragen direkt unter der Überschrift, die Erläuterungen darunter. */}
+          <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+            <FoerderCheck quelle="fdm-group.de/ (Förder-Check)" />
+          </div>
+          <div className="lg:col-start-1">
+            <ul className="space-y-3 text-sm text-slate-700">
               {[
                 "Dauert etwa zwei Minuten",
                 "Über die Förderung entscheidet die Agentur für Arbeit oder das Jobcenter; wir bereiten das Gespräch mit Ihnen vor",
@@ -245,7 +251,6 @@ export default async function Home() {
               </div>
             </div>
           </div>
-          <FoerderCheck quelle="fdm-group.de/ (Förder-Check)" />
         </div>
       </section>
 
