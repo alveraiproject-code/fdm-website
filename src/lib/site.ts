@@ -96,7 +96,7 @@ const BEREICH_TEXTE: Record<string, { themen: string; fuerWen: string }> = {
   },
   "Marketing und Vertrieb": {
     themen:
-      "Online-Marketing und Social Media, Marketinginstrumente, Kundenbeziehungsmanagement (CRM), digitaler Vertrieb und der Lehrgang Online Marketing Experte",
+      "Online-Marketing und Social Media, Marketinginstrumente, Kundenbeziehungsmanagement (CRM) und digitaler Vertrieb",
     fuerWen:
       "Quereinsteiger ins Marketing, Vertriebsmitarbeitende und Selbstständige, die Kunden digital gewinnen möchten",
   },

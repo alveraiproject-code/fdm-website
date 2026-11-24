@@ -33,8 +33,8 @@ export async function ladeKatalog(): Promise<Weiterbildung[]> {
     });
     if (!antwort.ok) return [];
     const daten = (await antwort.json()) as { kurse?: Weiterbildung[] };
-    // Zugelassene Kurse stehen vorn, danach alphabetisch (so liefert es das CRM).
-    return [...(daten.kurse ?? [])].sort((a, b) => Number(b.zugelassen ?? false) - Number(a.zugelassen ?? false));
+    // Alphabetisch, wie es das CRM liefert.
+    return daten.kurse ?? [];
   } catch {
     return [];
   }

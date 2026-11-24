@@ -1,9 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Award, Building2, CheckCircle, GraduationCap, Phone, Sparkles } from "lucide-react";
-import Kennzeichen from "@/components/Kennzeichen";
 import { buildMetadata } from "@/lib/metadata";
-import { OME_PFAD } from "@/lib/kursdetails";
+import FoerderCheckAbschnitt from "@/components/FoerderCheckAbschnitt";
 
 export const metadata = buildMetadata("azav");
 
@@ -146,22 +145,7 @@ export default function BildungsgutscheinPage() {
           <h2 className="text-3xl font-bold text-center mb-10" style={{ color: "#1e293b" }}>
             Passende Weiterbildungen
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Link href={OME_PFAD} className="card-hover flex flex-col rounded-2xl border border-slate-200 bg-white p-6">
-              <span className="mb-3">
-                <Kennzeichen art="azav" />
-              </span>
-              <span className="text-xl font-bold" style={{ color: "#1e293b" }}>
-                Online Marketing Experte (m/w/d)
-              </span>
-              <span className="mt-2 text-sm text-slate-600">
-                1.920 Unterrichtseinheiten · 48 Wochen in Vollzeit oder 96 Wochen in Teilzeit · laufender Einstieg ·
-                Maßnahme-ID 621/214/24
-              </span>
-              <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-semibold text-[#3f74bc]">
-                Zum Lehrgang <ArrowRight size={15} aria-hidden="true" />
-              </span>
-            </Link>
+          <div className="mx-auto max-w-xl">
             <Link href="/weiterbildung" className="card-hover flex flex-col rounded-2xl border border-slate-200 bg-white p-6">
               <span className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#3f74bc]">FDM Akademie</span>
               <span className="text-xl font-bold" style={{ color: "#1e293b" }}>
@@ -179,6 +163,12 @@ export default function BildungsgutscheinPage() {
           </div>
         </div>
       </section>
+
+      <FoerderCheckAbschnitt
+        quelle="fdm-group.de/azav (Förder-Check)"
+        titel="Kommt ein Bildungsgutschein für Sie in Frage?"
+        hintergrund="bg-slate-50"
+      />
 
       {/* QCG Hinweis */}
       <section className="py-12" style={{ background: "linear-gradient(135deg, #1a4731 0%, #166534 60%, #15803d 100%)" }}>

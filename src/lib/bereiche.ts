@@ -138,7 +138,7 @@ const BEREICHE: Record<string, BereichMehr> = {
       "Marketingassistenz",
       "Aufbau der eigenen Kundengewinnung als Selbstständige",
     ],
-    weg: "Für einen umfassenden Einstieg gibt es den Lehrgang Online Marketing Experte der FDM GmbH, der alle wichtigen Felder in einem Lehrgang verbindet. Wer nur einen Teilbereich braucht, wählt einzelne Module, zum Beispiel zu Social Media oder zum digitalen Vertrieb, und baut bei Bedarf darauf auf.",
+    weg: "Der Einstieg gelingt über einzelne Module, zum Beispiel zu Online-Marketing, Social Media oder zum digitalen Vertrieb. Wer mehrere Felder abdecken möchte, kombiniert die Module zu einem längeren Lernweg; welche Reihenfolge sinnvoll ist, klären wir in der Beratung.",
   },
   "3D und Digital Design": {
     einstieg:

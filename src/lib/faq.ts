@@ -19,7 +19,7 @@ export function fragen(z: { gesamt: number; vollzeit: number; teilzeit: number; 
     {
       rubrik: "Über die FDM Akademie",
       frage: "Welche Weiterbildungen bietet die FDM Akademie an?",
-      antwort: `Das Kursangebot umfasst ${anzahl} aus ${bereiche}, darunter IT und EDV, kaufmännische Berufe, Sprachen, Technik und CAD, Gesundheit und Pflege, Medien und Design, Umwelt und Energie, Management, Qualitätsmanagement, Marketing und Künstliche Intelligenz. Die meisten Kurse sind einzelne Module von einer bis zu mehreren Wochen Dauer, die sich zu einer längeren Qualifizierung kombinieren lassen. Ein eigener, nach AZAV zugelassener Lehrgang der FDM GmbH ist der Online Marketing Experte (m/w/d) mit 1.920 Unterrichtseinheiten.`,
+      antwort: `Das Kursangebot umfasst ${anzahl} aus ${bereiche}, darunter IT und EDV, kaufmännische Berufe, Sprachen, Technik und CAD, Gesundheit und Pflege, Medien und Design, Umwelt und Energie, Management, Qualitätsmanagement, Marketing und Künstliche Intelligenz. Die meisten Kurse sind einzelne Module von einer bis zu mehreren Wochen Dauer, die sich zu einer längeren Qualifizierung kombinieren lassen.`,
     },
     {
       rubrik: "Über die FDM Akademie",

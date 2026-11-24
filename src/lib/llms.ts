@@ -61,7 +61,6 @@ export async function llmsText(vollstaendig: boolean) {
     `- [Qualifizierungschancengesetz](${BASE}/qcg): Förderung für Beschäftigte und Arbeitgeber`,
     `- [Häufige Fragen](${BASE}/faq): Antworten zu Ablauf, Förderung, Kosten und Teilnahme`,
     `- [Ratgeber](${BASE}/ratgeber): Artikel zu Bildungsgutschein, Gespräch bei der Agentur für Arbeit, Ablehnung, Arbeitslosengeld und Online-Unterricht`,
-    `- [Online Marketing Experte (m/w/d)](${BASE}/weiterbildung/FDM-OME-VZ): eigener, nach AZAV zugelassener Lehrgang`,
     `- [Online-Kurse für Selbstzahler](${BASE}/kurse): KI-Kurse auf alvatar.de`,
     `- [Über die FDM GmbH](${BASE}/ueber-uns): Unternehmen, Zulassung, Geschäftsführung`,
     `- [Kontakt](${BASE}/kontakt)`,

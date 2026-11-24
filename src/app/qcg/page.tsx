@@ -15,8 +15,7 @@ import {
   Info,
 } from "lucide-react";
 import BeratungCta from "@/components/BeratungCta";
-import Kennzeichen from "@/components/Kennzeichen";
-import { OME_PFAD } from "@/lib/kursdetails";
+import FoerderCheckAbschnitt from "@/components/FoerderCheckAbschnitt";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata("qcg");
@@ -523,22 +522,7 @@ export default function QcgPage() {
               Ihnen und Ihrer Agentur für Arbeit.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Link href={OME_PFAD} className="card-hover flex flex-col rounded-2xl border border-slate-200 bg-white p-6">
-              <span className="mb-3">
-                <Kennzeichen art="azav" />
-              </span>
-              <span className="text-xl font-bold" style={{ color: "#1e293b" }}>
-                Online Marketing Experte (m/w/d)
-              </span>
-              <span className="mt-2 text-sm text-slate-600">
-                1.920 Unterrichtseinheiten · 48 Wochen in Vollzeit oder 96 Wochen in Teilzeit · laufender Einstieg ·
-                Maßnahme-ID 621/214/24
-              </span>
-              <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-semibold text-[#3f74bc]">
-                Zum Lehrgang <ArrowRight size={15} aria-hidden="true" />
-              </span>
-            </Link>
+          <div className="mx-auto max-w-xl">
             <Link href="/weiterbildung" className="card-hover flex flex-col rounded-2xl border border-slate-200 bg-white p-6">
               <span className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#3f74bc]">FDM Akademie</span>
               <span className="text-xl font-bold" style={{ color: "#1e293b" }}>
@@ -641,6 +625,11 @@ export default function QcgPage() {
           </div>
         </div>
       </section>
+
+      <FoerderCheckAbschnitt
+        quelle="fdm-group.de/qcg (Förder-Check)"
+        titel="Passt die Förderung für Beschäftigte zu Ihrer Situation?"
+      />
 
       <BeratungCta
         titel="Jetzt Förderung prüfen lassen"

@@ -13,10 +13,9 @@ import {
   ChevronDown,
   XCircle,
 } from "lucide-react";
-import FoerderCheck from "@/components/FoerderCheck";
+import FoerderCheckAbschnitt from "@/components/FoerderCheckAbschnitt";
 import Kennzeichen from "@/components/Kennzeichen";
 import { fachbereiche, ladeKatalog } from "@/lib/katalog";
-import { OME_PFAD } from "@/lib/kursdetails";
 import { buildMetadata } from "@/lib/metadata";
 import { faqSeite, fragen } from "@/lib/faq";
 import { bereichPfad, kennzahlen, ldJson, TRAEGER } from "@/lib/site";
@@ -200,59 +199,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Förder-Check */}
-      <section id="foerder-check" className="scroll-mt-24 bg-white py-16">
-        <div className="mx-auto grid max-w-6xl gap-x-10 gap-y-8 px-6 lg:grid-cols-2">
-          <div className="lg:col-start-1">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: "#1e293b" }}>
-              Welche Förderung kommt für Sie in Frage?
-            </h2>
-            <p className="text-slate-600 leading-relaxed">
-              Beantworten Sie drei kurze Fragen. Sie sehen sofort, welcher Förderweg zu Ihrer Situation passt, und
-              erhalten von uns passende Weiterbildungen per E-Mail. Kostenlos und unverbindlich.
-            </p>
-          </div>
-          {/* Auf dem Handy stehen die Fragen direkt unter der Überschrift, die Erläuterungen darunter. */}
-          <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
-            <FoerderCheck quelle="fdm-group.de/ (Förder-Check)" />
-          </div>
-          <div className="lg:col-start-1">
-            <ul className="space-y-3 text-sm text-slate-700">
-              {[
-                "Dauert etwa zwei Minuten",
-                "Über die Förderung entscheidet die Agentur für Arbeit oder das Jobcenter; wir bereiten das Gespräch mit Ihnen vor",
-                "Persönliche Beratung statt Warteschleife",
-              ].map((punkt) => (
-                <li key={punkt} className="flex items-start gap-2.5">
-                  <CheckCircle size={17} className="flex-shrink-0 mt-0.5" style={{ color: "#3f74bc" }} aria-hidden="true" />
-                  {punkt}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 flex items-center gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-              <div
-                className="w-14 h-14 flex-shrink-0 rounded-full flex items-center justify-center text-lg font-bold text-white"
-                style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}
-                aria-hidden="true"
-              >
-                DA
-              </div>
-              <div className="text-sm">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Ihr Ansprechpartner</p>
-                <p className="font-bold" style={{ color: "#1e293b" }}>
-                  Dursun Alver, Geschäftsführer
-                </p>
-                <p className="text-slate-600">
-                  <a href={`tel:${TRAEGER.telefonLink}`} className="text-[#3f74bc] underline">
-                    {TRAEGER.telefon}
-                  </a>
-                  , Montag bis Freitag 9 bis 17 Uhr
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FoerderCheckAbschnitt quelle="fdm-group.de/ (Förder-Check)" />
 
       {/* Zwei Wege */}
       <section className="py-20 bg-white">
@@ -377,83 +324,6 @@ export default async function Home() {
         </section>
       )}
 
-      {/* Zugelassener Lehrgang */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="mb-4">
-                <Kennzeichen art="azav" />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: "#1e293b" }}>
-                Online Marketing Experte <span className="gradient-text">(m/w/d)</span>
-              </h2>
-              <p className="text-slate-600 leading-relaxed mb-6">
-                Unser eigener Lehrgang für den umfassenden Einstieg ins Online-Marketing. Finanzierbar über den
-                Bildungsgutschein der Agentur für Arbeit oder des Jobcenters.
-              </p>
-              <ul className="space-y-3 mb-8">
-                {[
-                  "1.920 Unterrichtseinheiten, 48 Wochen in Vollzeit oder 96 Wochen in Teilzeit",
-                  "9 Lernmodule von SEO bis Performance Marketing",
-                  "Abschlusszertifikat des Bildungsträgers",
-                  "Laufender Einstieg möglich",
-                  "Maßnahme-ID: 621/214/24",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm text-slate-700">
-                    <CheckCircle size={16} style={{ color: "#3f74bc", marginTop: 2 }} className="flex-shrink-0" aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={OME_PFAD}
-                className="inline-flex items-center gap-2 px-6 py-3 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
-                style={{ background: "#3f74bc" }}
-              >
-                Zum Lehrgang
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-            </div>
-
-            <div className="rounded-3xl p-8 text-white relative overflow-hidden" style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}>
-              <div
-                className="absolute inset-0 opacity-[0.06]"
-                style={{ backgroundImage: "url(/dot-grid.svg)", backgroundSize: "28px 28px" }}
-                aria-hidden="true"
-              />
-              <div className="flex items-center gap-3 mb-6 relative">
-                <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.2)" }}>
-                  <Award size={28} aria-hidden="true" />
-                </div>
-                <div>
-                  <div className="text-xs text-slate-300 uppercase tracking-wider">Zertifikat</div>
-                  <div className="font-bold text-lg">AZAV §81 SGB III</div>
-                </div>
-              </div>
-              <div className="space-y-4 relative">
-                {[
-                  { label: "Zertifizierer", value: "GZQ GmbH / DAkkS" },
-                  { label: "Fachbereich", value: "FB4 – Berufliche Weiterbildung" },
-                  { label: "Gültig bis", value: "17. Oktober 2029" },
-                  { label: "Zertifikat-Nr.", value: "Z-000473-2" },
-                  { label: "Maßnahmen-Nr.", value: "Z-000483-2" },
-                ].map((row) => (
-                  <div
-                    key={row.label}
-                    className="flex justify-between items-center pb-3 text-sm"
-                    style={{ borderBottom: "1px solid rgba(255,255,255,0.2)" }}
-                  >
-                    <span className="text-slate-300">{row.label}</span>
-                    <span className="font-semibold text-right">{row.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Ablauf */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-5xl mx-auto px-6">
@@ -571,7 +441,6 @@ export default async function Home() {
               ["Unterricht", "live im virtuellen Klassenzimmer, bundesweit, Vollzeit oder Teilzeit"],
               ["Förderwege", "Bildungsgutschein, Qualifizierungschancengesetz"],
               ["Beratung", `kostenlos, Telefon ${TRAEGER.telefon}, Montag bis Freitag 9 bis 17 Uhr`],
-              ["Eigener Lehrgang", "Online Marketing Experte (m/w/d), nach AZAV zugelassen"],
             ].map(([name, wert]) => (
               <div key={name} className="flex gap-3 border-b border-slate-100 pb-3">
                 <dt className="w-32 flex-shrink-0 font-semibold text-slate-900">{name}</dt>
