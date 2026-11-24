@@ -13,8 +13,8 @@ import {
   ChevronDown,
   XCircle,
 } from "lucide-react";
+import FoerderCheck from "@/components/FoerderCheck";
 import Kennzeichen from "@/components/Kennzeichen";
-import { courses } from "@/lib/courses";
 import { fachbereiche, ladeKatalog } from "@/lib/katalog";
 import { OME_PFAD } from "@/lib/kursdetails";
 import { buildMetadata } from "@/lib/metadata";
@@ -35,8 +35,6 @@ const homepageJsonLd = {
   about: { "@id": "https://www.fdm-group.de/#organization" },
   inLanguage: "de-DE",
 };
-
-const featuredCourses = courses.slice(0, 6);
 
 const usps = [
   {
@@ -145,14 +143,14 @@ export default async function Home() {
                   <GraduationCap size={18} aria-hidden="true" />
                   Weiterbildung finden
                 </Link>
-                <Link
-                  href="/weiterbildung#beratung"
+                <a
+                  href="#foerder-check"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 font-semibold rounded-xl border border-white/30 hover:bg-white/10 transition-colors"
                   style={{ background: "rgba(81,173,229,0.15)" }}
                 >
                   <Users size={18} aria-hidden="true" />
-                  Kostenlose Beratung
-                </Link>
+                  Förder-Check starten
+                </a>
               </div>
             </div>
 
@@ -199,6 +197,55 @@ export default async function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Förder-Check */}
+      <section id="foerder-check" className="scroll-mt-24 bg-white py-16">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-2">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: "#1e293b" }}>
+              Welche Förderung kommt für Sie in Frage?
+            </h2>
+            <p className="text-slate-600 leading-relaxed">
+              Beantworten Sie drei kurze Fragen. Sie sehen sofort, welcher Förderweg zu Ihrer Situation passt, und
+              erhalten von uns passende Weiterbildungen per E-Mail. Kostenlos und unverbindlich.
+            </p>
+            <ul className="mt-6 space-y-3 text-sm text-slate-700">
+              {[
+                "Dauert etwa zwei Minuten",
+                "Über die Förderung entscheidet die Agentur für Arbeit oder das Jobcenter; wir bereiten das Gespräch mit Ihnen vor",
+                "Persönliche Beratung statt Warteschleife",
+              ].map((punkt) => (
+                <li key={punkt} className="flex items-start gap-2.5">
+                  <CheckCircle size={17} className="flex-shrink-0 mt-0.5" style={{ color: "#3f74bc" }} aria-hidden="true" />
+                  {punkt}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex items-center gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <div
+                className="w-14 h-14 flex-shrink-0 rounded-full flex items-center justify-center text-lg font-bold text-white"
+                style={{ background: "linear-gradient(135deg, #2c3892, #3f74bc)" }}
+                aria-hidden="true"
+              >
+                DA
+              </div>
+              <div className="text-sm">
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Ihr Ansprechpartner</p>
+                <p className="font-bold" style={{ color: "#1e293b" }}>
+                  Dursun Alver, Geschäftsführer
+                </p>
+                <p className="text-slate-600">
+                  <a href={`tel:${TRAEGER.telefonLink}`} className="text-[#3f74bc] underline">
+                    {TRAEGER.telefon}
+                  </a>
+                  , Montag bis Freitag 9 bis 17 Uhr
+                </p>
+              </div>
+            </div>
+          </div>
+          <FoerderCheck quelle="fdm-group.de/ (Förder-Check)" />
         </div>
       </section>
 
@@ -471,27 +518,18 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Online-Kurse Teaser */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-12">
+      {/* Online-Kurse: kurzer Hinweis */}
+      <section className="py-10 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 md:flex-row md:items-center md:justify-between">
             <div>
-              <div className="flex flex-wrap items-center gap-3 mb-3">
-                <span
-                  className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-1.5 rounded-full"
-                  style={{ background: "#eff6ff", color: "#3f74bc" }}
-                >
-                  <Laptop size={14} aria-hidden="true" />
-                  alvatar.de – Online-Akademie
-                </span>
+              <div className="mb-2 flex flex-wrap items-center gap-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">alvatar.de</span>
                 <Kennzeichen art="selbstzahler" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "#1e293b" }}>
-                Online-Kurse für Selbstzahler
-              </h2>
-              <p className="text-slate-600 mt-2 max-w-lg">
-                Über 100 kurze Selbstlernkurse rund um Künstliche Intelligenz, Automatisierung und digitale
-                Kompetenzen. Diese Kurse buchen Sie selbst; eine Förderung ist hier nicht möglich.
+              <p className="text-sm text-slate-700">
+                Kurze Selbstlernkurse zu Künstlicher Intelligenz und digitalen Kompetenzen buchen Sie direkt online.
+                Eine Förderung ist dort nicht möglich.
               </p>
             </div>
             <Link
@@ -499,45 +537,8 @@ export default async function Home() {
               className="flex-shrink-0 inline-flex items-center gap-1 font-semibold hover:gap-2 transition-all"
               style={{ color: "#3f74bc" }}
             >
-              Alle Online-Kurse ansehen <ChevronRight size={18} aria-hidden="true" />
+              Online-Kurse ansehen <ChevronRight size={18} aria-hidden="true" />
             </Link>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {featuredCourses.map((course) => (
-              <a
-                key={course.title}
-                href="https://alvatar.de"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-2xl border border-slate-200 p-5 card-hover group"
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <span
-                    className="text-xs font-semibold px-2.5 py-1 rounded-full"
-                    style={
-                      course.level === "Einsteiger"
-                        ? { background: "#f0fdf4", color: "#15803d" }
-                        : course.level === "Fortgeschritten"
-                          ? { background: "#fffbeb", color: "#b45309" }
-                          : { background: "#faf5ff", color: "#7e22ce" }
-                    }
-                  >
-                    {course.level}
-                  </span>
-                  <span className="font-bold" style={{ color: "#3f74bc" }}>
-                    {course.price}
-                  </span>
-                </div>
-                <h3
-                  className="font-semibold text-sm mb-2 leading-snug group-hover:text-[#3f74bc] transition-colors"
-                  style={{ color: "#1e293b" }}
-                >
-                  {course.title}
-                </h3>
-                <p className="text-xs text-slate-500">{course.modules}</p>
-              </a>
-            ))}
           </div>
         </div>
       </section>
