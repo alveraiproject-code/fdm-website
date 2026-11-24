@@ -50,7 +50,7 @@ const BEREICHE = [
 const ZEITMODELLE = ["Vollzeit", "Teilzeit", "Das ist mir noch nicht klar"];
 
 const feld =
-  "w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-[#3f74bc] focus:ring-2 focus:ring-[#3f74bc]/20";
+  "w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-900 outline-none sm:text-sm focus:border-[#3f74bc] focus:ring-2 focus:ring-[#3f74bc]/20";
 const beschriftung = "mb-1 block text-xs font-medium text-slate-600";
 const wahlKnopf =
   "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-left text-sm font-medium text-slate-800 transition hover:border-[#3f74bc] hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-[#3f74bc]/30";
