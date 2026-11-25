@@ -20,7 +20,7 @@ export type RatgeberArtikel = {
   links: { name: string; pfad: string }[];
 };
 
-export const RATGEBER_STAND = "2026-11-22";
+export const RATGEBER_STAND = "2026-11-25";
 export const ratgeberPfad = (slug: string) => `/ratgeber/${slug}`;
 
 export const RATGEBER: RatgeberArtikel[] = [
@@ -435,6 +435,269 @@ export const RATGEBER: RatgeberArtikel[] = [
       { name: "Alle Weiterbildungen", pfad: "/weiterbildung" },
       { name: "Häufige Fragen", pfad: "/faq" },
       { name: "Weiterbildung während der Arbeitslosigkeit", pfad: "/ratgeber/weiterbildung-waehrend-arbeitslosigkeit" },
+    ],
+  },
+  {
+    slug: "vollzeit-oder-teilzeit-weiterbildung",
+    titel: "Weiterbildung in Vollzeit oder Teilzeit: Was passt zu Ihnen?",
+    beschreibung:
+      "Vollzeit oder Teilzeit: Unterschiede bei Dauer, Tagesablauf und Förderung einer beruflichen Weiterbildung und woran Sie erkennen, welches Zeitmodell zu Ihrer Lage passt.",
+    kurz: "Vollzeit und Teilzeit unterscheiden sich nicht im Inhalt, sondern im Tempo: Der Kurs hat denselben Umfang in Unterrichtseinheiten, in Teilzeit verteilt er sich auf weniger Stunden am Tag und dauert deshalb länger. Vollzeit passt, wenn Sie schnell fertig werden wollen und den Tag frei haben. Teilzeit passt, wenn Sie Kinder betreuen, Angehörige pflegen oder neben einer Beschäftigung lernen.",
+    abschnitte: [
+      {
+        titel: "Der Unterschied in einem Satz",
+        absaetze: [
+          "Eine Weiterbildung wird in Unterrichtseinheiten gemessen; eine Unterrichtseinheit dauert 45 Minuten. Ein Kurs mit 200 Unterrichtseinheiten bleibt in Vollzeit wie in Teilzeit ein Kurs mit 200 Unterrichtseinheiten. In Vollzeit lernen Sie ganztägig an fünf Tagen in der Woche, in Teilzeit ist der Unterrichtstag kürzer. Dadurch dauert derselbe Kurs in Teilzeit ungefähr doppelt so lange.",
+        ],
+      },
+      {
+        titel: "Wann Vollzeit die bessere Wahl ist",
+        absaetze: ["Vollzeit eignet sich vor allem in diesen Fällen:"],
+        punkte: [
+          "Sie sind arbeitslos oder arbeitsuchend und möchten möglichst bald wieder arbeiten",
+          "Sie können sich tagsüber ganz auf den Unterricht konzentrieren",
+          "Sie lernen leichter, wenn Sie jeden Tag am Stoff bleiben",
+          "Ihr Bildungsgutschein nennt eine Höchstdauer, die sich in Teilzeit nicht einhalten ließe",
+        ],
+      },
+      {
+        titel: "Wann Teilzeit die bessere Wahl ist",
+        absaetze: ["Teilzeit ist kein Kurs zweiter Klasse, sondern für bestimmte Lebenslagen gemacht:"],
+        punkte: [
+          "Sie betreuen Kinder oder pflegen Angehörige",
+          "Sie arbeiten in Teilzeit oder in einem Minijob und möchten das beibehalten",
+          "Sie sind beschäftigt und bilden sich mit Unterstützung Ihres Arbeitgebers weiter",
+          "Sie brauchen aus gesundheitlichen Gründen kürzere Lerntage",
+        ],
+      },
+      {
+        titel: "Was das Zeitmodell für die Förderung bedeutet",
+        absaetze: [
+          "Auf einem Bildungsgutschein steht neben dem Bildungsziel und der Dauer auch, ob die Weiterbildung in Vollzeit oder in Teilzeit stattfindet. Der Kurs muss dazu passen. Sagen Sie Ihrer Vermittlungsfachkraft deshalb schon im ersten Gespräch, welches Zeitmodell Sie brauchen und warum. Ein nachvollziehbarer Grund wie Kinderbetreuung wird in der Regel akzeptiert.",
+          "Bei der Förderung für Beschäftigte nach dem Qualifizierungschancengesetz stimmen Sie das Zeitmodell mit Ihrem Arbeitgeber ab, weil die Weiterbildung ganz oder teilweise in die Arbeitszeit fällt. Über die Förderung entscheidet in beiden Fällen die Agentur für Arbeit oder das Jobcenter.",
+        ],
+      },
+      {
+        titel: "So finden Sie Kurse im passenden Zeitmodell",
+        absaetze: [
+          "Im Kurskatalog der FDM Akademie lässt sich nach Vollzeit und Teilzeit filtern. Nicht jeder Kurs wird in beiden Zeitmodellen angeboten; gerade bei längeren Lernwegen aus mehreren Kursen lohnt sich deshalb ein Blick, ob alle Bausteine im gewünschten Zeitmodell verfügbar sind. In der Beratung stellen wir Ihnen einen Weg zusammen, der vollständig in Ihr Zeitmodell passt.",
+        ],
+      },
+    ],
+    fragen: [
+      {
+        frage: "Ist der Abschluss in Teilzeit weniger wert als in Vollzeit?",
+        antwort:
+          "Nein. Inhalt, Umfang und Zertifikat sind gleich. Auf dem Zertifikat stehen die Inhalte und die Zahl der Unterrichtseinheiten, nicht das Zeitmodell als Wertung.",
+      },
+      {
+        frage: "Kann ich während des Kurses von Vollzeit in Teilzeit wechseln?",
+        antwort:
+          "Das ist nur in Absprache möglich und bei einer geförderten Weiterbildung nur mit Zustimmung des Kostenträgers, weil das Zeitmodell Teil der Bewilligung ist. Klären Sie das Zeitmodell deshalb vor dem Start.",
+      },
+      {
+        frage: "Wie lange dauert ein Kurs in Teilzeit?",
+        antwort:
+          "Ungefähr doppelt so lange wie in Vollzeit. Die genaue Dauer steht bei jedem Kurs im Katalog.",
+      },
+    ],
+    links: [
+      { name: "Alle Weiterbildungen mit Filter nach Zeitmodell", pfad: "/weiterbildung" },
+      { name: "Online-Weiterbildung im virtuellen Klassenzimmer", pfad: "/ratgeber/online-weiterbildung-ablauf" },
+      { name: "Förder-Check", pfad: "/#foerder-check" },
+    ],
+  },
+  {
+    slug: "quereinstieg-buchhaltung-weiterbildung",
+    titel: "Quereinstieg in die Buchhaltung: Mit welcher Weiterbildung er gelingt",
+    beschreibung:
+      "Quereinstieg in Buchhaltung und Rechnungswesen: welche Kenntnisse Arbeitgeber erwarten, welche Rolle DATEV spielt und wie sich Kurse zu einem sinnvollen Lernweg verbinden lassen.",
+    kurz: "Für den Quereinstieg in die Buchhaltung brauchen Sie kein Studium, aber belegbare Kenntnisse: die Grundlagen der Finanzbuchhaltung, sicheren Umgang mit einer gängigen Buchhaltungssoftware und am besten erste Übung mit echten Geschäftsvorfällen. Am häufigsten verlangen Stellenanzeigen DATEV. Ein Lernweg aus aufeinander aufbauenden Kursen führt in einigen Wochen bis wenigen Monaten dorthin.",
+    abschnitte: [
+      {
+        titel: "Für wen sich der Quereinstieg eignet",
+        absaetze: [
+          "Buchhaltung passt zu Menschen, die gern genau arbeiten, mit Zahlen umgehen können und Ordnung in Abläufe bringen. Viele Quereinsteiger kommen aus dem Einzelhandel, aus Büro- und Verwaltungsberufen, aus der Gastronomie oder kehren nach einer Familienzeit in den Beruf zurück. Eine kaufmännische Ausbildung hilft, ist aber nicht in jedem Fall Voraussetzung: Für Tätigkeiten wie das Kontieren und Buchen laufender Geschäftsvorfälle zählen vor allem nachweisbare Kenntnisse.",
+        ],
+      },
+      {
+        titel: "Was Arbeitgeber erwarten",
+        absaetze: ["In Stellenanzeigen für Buchhaltungskräfte tauchen immer wieder dieselben Punkte auf:"],
+        punkte: [
+          "Grundlagen der doppelten Buchführung: Konten, Buchungssätze, Belege",
+          "Umgang mit DATEV oder einer vergleichbaren Buchhaltungssoftware",
+          "Kenntnisse der Umsatzsteuer im Tagesgeschäft",
+          "Sicheres Arbeiten mit Tabellenkalkulation",
+          "Sorgfalt, Verschwiegenheit und Termintreue",
+        ],
+      },
+      {
+        titel: "Ein sinnvoller Lernweg",
+        absaetze: [
+          "Bewährt hat sich ein Aufbau in Stufen. Am Anfang stehen die Grundlagen der Finanzbuchhaltung, danach folgt ein Aufbaukurs mit anspruchsvolleren Buchungen und dem Jahresabschluss. Wer weitergehen möchte, ergänzt Kosten- und Leistungsrechnung, Controlling oder die Lohn- und Gehaltsabrechnung. Die Kurse bauen aufeinander auf; eine spätere Stufe ohne die Grundlagen zu belegen, ist nicht sinnvoll.",
+          "Bei der FDM Akademie sind solche Lernwege als Kursketten zusammengestellt, zum Beispiel Finanzbuchhaltung mit DATEV, Rechnungswesen oder Lohn und Gehalt mit DATEV. Sie sehen dort auf einen Blick, welche Kurse in welcher Reihenfolge dazugehören und wie lange der gesamte Weg dauert.",
+        ],
+      },
+      {
+        titel: "Förderung des Quereinstiegs",
+        absaetze: [
+          "Wer arbeitslos oder von Arbeitslosigkeit bedroht ist, kann für eine solche Weiterbildung einen Bildungsgutschein bekommen, wenn sie die Chancen auf eine Stelle verbessert. Buchhaltungskenntnisse lassen sich gut begründen, weil sie in fast jeder Branche gebraucht werden. Über die Förderung entscheidet Ihre Agentur für Arbeit oder Ihr Jobcenter; legen Sie im Gespräch am besten zwei oder drei aktuelle Stellenanzeigen vor, die die Kenntnisse verlangen.",
+        ],
+      },
+    ],
+    fragen: [
+      {
+        frage: "Kann ich ohne kaufmännische Ausbildung in der Buchhaltung arbeiten?",
+        antwort:
+          "Für unterstützende Tätigkeiten wie das Vorbereiten, Kontieren und Buchen von Belegen ja, wenn Sie die Kenntnisse nachweisen können. Für Positionen mit Verantwortung für den Jahresabschluss verlangen Arbeitgeber meist eine kaufmännische Ausbildung oder eine Aufstiegsfortbildung.",
+      },
+      {
+        frage: "Wie lange dauert eine Weiterbildung in der Buchhaltung?",
+        antwort:
+          "Ein einzelner Kurs dauert in Vollzeit meist vier Wochen. Ein Lernweg aus Grundlagen- und Aufbaukurs dauert entsprechend etwa acht Wochen, mit weiteren Bausteinen einige Monate. In Teilzeit verlängert sich die Dauer.",
+      },
+      {
+        frage: "Warum ist DATEV so wichtig?",
+        antwort:
+          "DATEV ist die Software, mit der sehr viele Steuerkanzleien und Unternehmen in Deutschland ihre Buchhaltung führen. Wer damit geübt ist, kann in vielen Betrieben ohne lange Einarbeitung mitarbeiten.",
+      },
+    ],
+    links: [
+      { name: "Fachbereich Kaufmännisch", pfad: "/weiterbildung/fachbereich/kaufmaennisch" },
+      { name: "Kurskette Finanzbuchhaltung mit DATEV", pfad: "/weiterbildung/kurskette/finanzbuchhaltung-mit-datev-vollzeit" },
+      { name: "Kurskette Rechnungswesen", pfad: "/weiterbildung/kurskette/rechnungswesen-vollzeit" },
+      { name: "Kurskette Lohn und Gehalt mit DATEV", pfad: "/weiterbildung/kurskette/lohn-und-gehalt-mit-datev-vollzeit" },
+    ],
+  },
+  {
+    slug: "quereinstieg-it-weiterbildung",
+    titel: "Quereinstieg in die IT: Welche Weiterbildung für den Anfang sinnvoll ist",
+    beschreibung:
+      "Quereinstieg in die IT ohne Studium: welche Richtungen es gibt, womit Einsteiger beginnen sollten und wie Herstellerzertifikate und aufeinander aufbauende Kurse beim Jobeinstieg helfen.",
+    kurz: "Der Quereinstieg in die IT gelingt am ehesten mit einem klaren Ziel statt mit einem Kurs für alles. Entscheiden Sie zuerst, ob Sie programmieren, Systeme betreuen oder Anwender unterstützen möchten. Beginnen Sie dann mit den Grundlagen dieser Richtung und bauen Sie Schritt für Schritt auf. Zertifikate und kleine eigene Projekte zählen bei der Bewerbung oft mehr als der bisherige Beruf.",
+    abschnitte: [
+      {
+        titel: "Drei Richtungen für Einsteiger",
+        absaetze: ["IT ist kein einzelner Beruf. Für den Einstieg haben sich drei Richtungen bewährt:"],
+        punkte: [
+          "Programmierung und Webentwicklung: Sie schreiben Software oder bauen Webseiten, zum Beispiel mit Python, Java, JavaScript, HTML und CSS",
+          "Systeme und Netzwerke: Sie richten Rechner, Server und Benutzerkonten ein und halten sie am Laufen, zum Beispiel mit Windows Server",
+          "Anwenderbetreuung und Büro-IT: Sie helfen Kolleginnen und Kollegen bei Fragen zu Programmen und Geräten und beherrschen die gängigen Office-Anwendungen sicher",
+        ],
+      },
+      {
+        titel: "Womit Sie anfangen sollten",
+        absaetze: [
+          "Wer noch wenig Erfahrung hat, beginnt mit den Grundlagen: Wie arbeitet ein Betriebssystem, wie ist ein Netzwerk aufgebaut, wie denkt man in Abläufen und Daten? Darauf folgt die erste Vertiefung in der gewählten Richtung. Für die Programmierung ist Python ein häufiger Einstieg, weil die Sprache gut lesbar ist und in vielen Bereichen eingesetzt wird. Für die Webentwicklung führt der Weg über HTML und CSS zu JavaScript.",
+          "Wichtig ist die Reihenfolge. Ein Aufbaukurs ohne die Grundlagen überfordert und hinterlässt Lücken, die im Bewerbungsgespräch auffallen. Kursketten zeigen, welche Kurse in welcher Reihenfolge zusammengehören.",
+        ],
+      },
+      {
+        titel: "Was bei der Bewerbung zählt",
+        absaetze: [
+          "Arbeitgeber wollen sehen, dass Sie das Gelernte anwenden können. Hilfreich sind Zertifikate, die Inhalte und Umfang der Weiterbildung ausweisen, Herstellerzertifikate, auf die manche Kurse vorbereiten, und eigene kleine Projekte, die Sie zeigen können. Ihr bisheriger Beruf ist dabei kein Nachteil: Wer aus dem Handel, der Logistik oder dem Gesundheitswesen kommt, versteht die Abläufe, für die Software gebaut wird.",
+        ],
+      },
+      {
+        titel: "Förderung",
+        absaetze: [
+          "IT-Weiterbildungen lassen sich gegenüber der Agentur für Arbeit oder dem Jobcenter gut begründen, wenn Sie ein konkretes Berufsziel nennen und passende Stellenanzeigen vorlegen. Über die Förderung entscheidet der Kostenträger. Beschäftigte können mit ihrem Arbeitgeber klären, ob eine Förderung nach dem Qualifizierungschancengesetz in Frage kommt.",
+        ],
+      },
+    ],
+    fragen: [
+      {
+        frage: "Bin ich mit über 40 zu alt für den Quereinstieg in die IT?",
+        antwort:
+          "Nein. In der IT zählt, was Sie können. Berufs- und Lebenserfahrung sind im Umgang mit Kunden und in der Projektarbeit ein Vorteil.",
+      },
+      {
+        frage: "Muss ich gut in Mathematik sein?",
+        antwort:
+          "Für die meisten Einstiegsaufgaben reichen logisches Denken und Sorgfalt. Höhere Mathematik brauchen Sie nur in einzelnen Spezialgebieten.",
+      },
+      {
+        frage: "Wie lange dauert der Quereinstieg?",
+        antwort:
+          "Das hängt vom Ziel ab. Ein einzelner Kurs dauert in Vollzeit meist wenige Wochen, ein Lernweg aus mehreren aufeinander aufbauenden Kursen einige Monate.",
+      },
+    ],
+    links: [
+      { name: "Fachbereich IT und EDV", pfad: "/weiterbildung/fachbereich/it-und-edv" },
+      { name: "Kurskette Python-Programmierung", pfad: "/weiterbildung/kurskette/python-programmierung-vollzeit" },
+      { name: "Kurskette Webseiten mit HTML und CSS", pfad: "/weiterbildung/kurskette/webseiten-mit-html-und-css-vollzeit" },
+      { name: "Kurskette Windows Server Hybrid", pfad: "/weiterbildung/kurskette/windows-server-hybrid-vollzeit" },
+    ],
+  },
+  {
+    slug: "ki-weiterbildung-fuer-beschaeftigte",
+    titel: "Künstliche Intelligenz im Büro: Weiterbildung für Beschäftigte und Unternehmen",
+    beschreibung:
+      "KI im Büroalltag einführen: was Beschäftigte lernen sollten, wie eine Weiterbildung zu Künstlicher Intelligenz aufgebaut ist und wie Arbeitgeber die Förderung für Beschäftigte nutzen können.",
+    kurz: "Damit Künstliche Intelligenz im Büro wirklich Arbeit abnimmt, müssen die Menschen, die damit arbeiten, die Werkzeuge verstehen: was sie können, wo sie Fehler machen und was beim Datenschutz zu beachten ist. Eine Weiterbildung vermittelt genau das, in Teilzeit auch neben der Arbeit. Für Beschäftigte kann der Arbeitgeber eine Förderung nach dem Qualifizierungschancengesetz beantragen.",
+    abschnitte: [
+      {
+        titel: "Wobei KI im Büro hilft",
+        absaetze: ["Typische Aufgaben, bei denen KI-Werkzeuge heute spürbar entlasten:"],
+        punkte: [
+          "Texte entwerfen, kürzen und umformulieren, zum Beispiel E-Mails, Angebote und Protokolle",
+          "Unterlagen zusammenfassen und nach bestimmten Angaben durchsuchen",
+          "Tabellen auswerten und Auswertungen vorbereiten",
+          "Wiederkehrende Abläufe vorbereiten, etwa Antworten auf häufige Kundenanfragen",
+          "Ideen sammeln und Entwürfe für Präsentationen erstellen",
+        ],
+      },
+      {
+        titel: "Was Beschäftigte dafür lernen sollten",
+        absaetze: [
+          "Der Nutzen hängt weniger vom Werkzeug ab als vom Umgang damit. In einer Weiterbildung lernen Teilnehmende, Aufgaben so zu beschreiben, dass brauchbare Ergebnisse entstehen, Ergebnisse zu prüfen statt sie ungelesen zu übernehmen, und zu erkennen, welche Aufgaben sich eignen und welche nicht. Dazu kommen die Regeln: Welche Daten dürfen in ein KI-Werkzeug eingegeben werden, was gilt für personenbezogene Daten und Betriebsgeheimnisse, und wer haftet für Fehler?",
+        ],
+      },
+      {
+        titel: "Wie eine Weiterbildung aufgebaut ist",
+        absaetze: [
+          "Die Kurse zur Künstlichen Intelligenz bei der FDM Akademie sind Module, die sich kombinieren lassen: vom Einstieg in die Grundlagen über die Anwendung im Büro bis zu Vertiefungen für einzelne Aufgabenbereiche. Der Unterricht findet live im virtuellen Klassenzimmer statt. Für Beschäftigte ist Teilzeit üblich, damit der Betrieb weiterläuft.",
+        ],
+      },
+      {
+        titel: "Förderung für Beschäftigte",
+        absaetze: [
+          "Nach dem Qualifizierungschancengesetz kann die Agentur für Arbeit die Lehrgangskosten für Beschäftigte ganz oder teilweise übernehmen und dem Arbeitgeber einen Zuschuss zum Arbeitsentgelt zahlen. Wie hoch die Förderung ausfällt, hängt unter anderem von der Größe des Betriebs ab. Voraussetzung ist unter anderem, dass die Weiterbildung mehr als 120 Stunden umfasst und über eine kurze Einweisung am Arbeitsplatz hinausgeht.",
+          "Den Antrag stellt der Arbeitgeber, und zwar vor Beginn der Weiterbildung. Über die Förderung entscheidet die Agentur für Arbeit. Wir stellen Ihnen die Unterlagen zum Kurs zusammen und begleiten Sie und Ihren Arbeitgeber bei der Antragstellung.",
+        ],
+      },
+      {
+        titel: "So gehen Unternehmen vor",
+        absaetze: ["In der Praxis hat sich diese Reihenfolge bewährt:"],
+        punkte: [
+          "Festlegen, welche Aufgaben im Betrieb mit KI unterstützt werden sollen und wer daran arbeitet",
+          "Passende Module auswählen und ein Angebot für die Agentur für Arbeit anfordern",
+          "Mit dem Arbeitgeber-Service der Agentur für Arbeit sprechen und den Antrag vor Kursbeginn stellen",
+          "Nach der Entscheidung der Agentur den Start festlegen",
+        ],
+      },
+    ],
+    fragen: [
+      {
+        frage: "Brauchen Teilnehmende Vorkenntnisse in Programmierung?",
+        antwort:
+          "Nein. Die Einstiegsmodule setzen sicheren Umgang mit dem Computer und den üblichen Büroprogrammen voraus, aber keine Programmierkenntnisse.",
+      },
+      {
+        frage: "Können mehrere Beschäftigte eines Betriebs gemeinsam teilnehmen?",
+        antwort:
+          "Ja. Der Arbeitgeber kann die Förderung für mehrere Beschäftigte beantragen. Sprechen Sie uns an, damit wir die Teilnahme gemeinsam planen.",
+      },
+      {
+        frage: "Gilt die Förderung auch für kleine Betriebe?",
+        antwort:
+          "Ja. Die Förderung für Beschäftigte steht Betrieben jeder Größe offen; kleine Betriebe werden in der Regel stärker gefördert als große. Die Entscheidung trifft die Agentur für Arbeit.",
+      },
+    ],
+    links: [
+      { name: "Fachbereich Künstliche Intelligenz", pfad: "/weiterbildung/fachbereich/kuenstliche-intelligenz" },
+      { name: "Qualifizierungschancengesetz", pfad: "/qcg" },
+      { name: "Förder-Check für Beschäftigte", pfad: "/qcg#foerder-check" },
     ],
   },
 ];

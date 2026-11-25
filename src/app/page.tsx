@@ -18,6 +18,7 @@ import Kennzeichen from "@/components/Kennzeichen";
 import { fachbereiche, ladeKatalog } from "@/lib/katalog";
 import { buildMetadata } from "@/lib/metadata";
 import { faqSeite, fragen } from "@/lib/faq";
+import { RATGEBER, ratgeberPfad } from "@/lib/ratgeber";
 import { bereichPfad, kennzahlen, ldJson, TRAEGER } from "@/lib/site";
 
 export const metadata = buildMetadata("home");
@@ -448,6 +449,39 @@ export default async function Home() {
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      {/* Ratgeber */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "#1e293b" }}>
+              Aus dem Ratgeber
+            </h2>
+            <Link
+              href="/ratgeber"
+              className="flex-shrink-0 inline-flex items-center gap-1 font-semibold hover:gap-2 transition-all"
+              style={{ color: "#3f74bc" }}
+            >
+              Alle Artikel <ChevronRight size={18} aria-hidden="true" />
+            </Link>
+          </div>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {RATGEBER.slice(-4).map((a) => (
+              <li key={a.slug} className="min-w-0">
+                <Link
+                  href={ratgeberPfad(a.slug)}
+                  className="card-hover flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5"
+                >
+                  <span className="font-semibold leading-snug" style={{ color: "#1e293b" }}>
+                    {a.titel}
+                  </span>
+                  <span className="mt-2 text-sm text-slate-600">{a.beschreibung}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

@@ -26,7 +26,6 @@ export async function llmsText(vollstaendig: boolean) {
   const ketten = await ladeKetten(katalog);
   const z = kennzahlen(katalog);
   const faq = fragen({ ...z, bereiche: bereiche.length });
-  const zugelassen = katalog.filter((k) => k.zugelassen);
 
   const teile: string[] = [
     "# FDM Akademie (FDM GmbH)",
@@ -44,6 +43,7 @@ export async function llmsText(vollstaendig: boolean) {
       : "- Kursangebot: Weiterbildungen in Vollzeit und Teilzeit",
     "- Zielgruppen: Arbeitsuchende und Arbeitslose (Bildungsgutschein), Beschäftigte und Unternehmen (Qualifizierungschancengesetz), Selbstzahler",
     "- Beratung: kostenlos und unverbindlich, Telefon +49 7161 6275120 (Mo–Fr 9–17 Uhr), E-Mail beratung@fdm-akademie.de",
+    `- Förder-Check (drei Fragen, dann Einordnung des Förderwegs): ${BASE}/#foerder-check`,
     `- Beratung online anfragen: ${BASE}/weiterbildung#beratung`,
     "- Zweites Angebot der FDM GmbH: alvatar.de, kurze Selbstlernkurse zu Künstlicher Intelligenz für Selbstzahler (nicht nach AZAV zugelassen, kein Bildungsgutschein)",
     "",
@@ -60,16 +60,13 @@ export async function llmsText(vollstaendig: boolean) {
     `- [Bildungsgutschein](${BASE}/azav): Voraussetzungen und Weg zum Bildungsgutschein`,
     `- [Qualifizierungschancengesetz](${BASE}/qcg): Förderung für Beschäftigte und Arbeitgeber`,
     `- [Häufige Fragen](${BASE}/faq): Antworten zu Ablauf, Förderung, Kosten und Teilnahme`,
-    `- [Ratgeber](${BASE}/ratgeber): Artikel zu Bildungsgutschein, Gespräch bei der Agentur für Arbeit, Ablehnung, Arbeitslosengeld und Online-Unterricht`,
+    `- [Ratgeber](${BASE}/ratgeber): Artikel zu Bildungsgutschein, Gespräch bei der Agentur für Arbeit, Ablehnung, Arbeitslosengeld, Online-Unterricht, Vollzeit oder Teilzeit, Quereinstieg in Buchhaltung und IT sowie Künstlicher Intelligenz im Büro`,
     `- [Online-Kurse für Selbstzahler](${BASE}/kurse): KI-Kurse auf alvatar.de`,
     `- [Über die FDM GmbH](${BASE}/ueber-uns): Unternehmen, Zulassung, Geschäftsführung`,
     `- [Kontakt](${BASE}/kontakt)`,
     "",
   ];
 
-  if (zugelassen.length > 0) {
-    teile.push("## Nach AZAV zugelassene Maßnahmen", "", ...zugelassen.map(zeile), "");
-  }
 
   if (bereiche.length > 0) {
     teile.push("## Fachbereiche", "");
