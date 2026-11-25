@@ -31,7 +31,25 @@ export function fragen(z: { gesamt: number; vollzeit: number; teilzeit: number; 
       rubrik: "Über die FDM Akademie",
       frage: "Wie läuft der Unterricht ab?",
       antwort:
-        "Der Unterricht findet live im virtuellen Klassenzimmer statt: Dozentinnen und Dozenten unterrichten in Echtzeit, die Teilnehmenden nehmen von zu Hause aus teil und können Fragen stellen. Es gibt feste Unterrichtszeiten, je nach Kurs in Vollzeit oder in Teilzeit. Persönliche Ansprechpersonen der FDM Akademie begleiten die Teilnehmenden von der Beratung bis zum Abschluss.",
+        "Der Unterricht findet live im virtuellen Klassenzimmer über Microsoft Teams statt: Trainerinnen und Trainer unterrichten in Echtzeit, die Teilnehmenden nehmen von zu Hause aus an ihrem Computer teil und können Fragen stellen. Zum Lerntag gehören Live-Unterricht, Gruppenarbeiten, Workshops, Fachtutoring, Coaching und Lernbegleitung. Es gibt feste Unterrichtszeiten, je nach Kurs in Vollzeit oder in Teilzeit. Persönliche Ansprechpersonen der FDM Akademie begleiten die Teilnehmenden von der Beratung bis zum Abschluss.",
+    },
+    {
+      rubrik: "Über die FDM Akademie",
+      frage: "Wie sieht ein Lerntag in Vollzeit aus?",
+      antwort:
+        "Ein Lerntag in Vollzeit beginnt um 8:00 Uhr und endet um 16:15 Uhr, montags bis freitags. Er besteht aus zehn Unterrichtseinheiten zu je 45 Minuten, die meist als Doppelstunden stattfinden. Dazwischen liegen drei kurze Pausen von je fünf Minuten und eine Mittagspause von 30 Minuten. Im Training lernen die Teilnehmenden gemeinsam in der Gruppe mit Trainerinnen und Trainern, in der Lernbegleitung arbeiten sie in ihrem eigenen Tempo an Übungen und Projektaufgaben und erhalten bei Bedarf Unterstützung. Teilzeitkurse finden vormittags statt.",
+    },
+    {
+      rubrik: "Teilnahme",
+      frage: "In welcher Sprache findet der Unterricht statt?",
+      antwort:
+        "Alle Weiterbildungen der FDM Akademie finden ausschließlich auf Deutsch statt. Teilnehmende sollten Deutsch mindestens auf dem Niveau B1 bis B2 verstehen, damit sie dem Live-Unterricht folgen und die Aufgaben bearbeiten können. Unterricht, Unterlagen oder Untertitel in anderen Sprachen gibt es nicht.",
+    },
+    {
+      rubrik: "Teilnahme",
+      frage: "Bekomme ich Lernmaterial?",
+      antwort:
+        "Ja. Die Lernmittel für die Weiterbildung stellt die FDM Akademie. Sie sind in den Lehrgangskosten enthalten.",
     },
     {
       rubrik: "Über die FDM Akademie",
@@ -81,7 +99,7 @@ export function fragen(z: { gesamt: number; vollzeit: number; teilzeit: number; 
       rubrik: "Teilnahme",
       frage: "Welche technische Ausstattung brauche ich?",
       antwort:
-        "Sie brauchen einen Computer oder Laptop, eine stabile Internetverbindung sowie Mikrofon und Kamera, am besten ein Headset. Spezielle Software, die für einen Kurs nötig ist, wird im Kurs bereitgestellt oder dort erklärt. Ob Ihre Ausstattung ausreicht, klärt die FDM Akademie vor dem Start mit Ihnen.",
+        "Empfohlen wird ein PC oder Laptop mit Windows 10 oder Windows 11, mindestens 8 GB Arbeitsspeicher und einem aktuellen Mehrkern-Prozessor, dazu Mikrofon und Kamera, am besten ein Headset. Der Unterricht findet in Microsoft Teams statt; Virenschutz und Firewall dürfen die Verbindung mit Teams nicht blockieren. Die Internetverbindung sollte mindestens 6 MBit/s im Download und 1 MBit/s im Upload erreichen. Spezielle Software, die für einen Kurs nötig ist, wird im Kurs bereitgestellt oder dort erklärt. Ob Ihre Ausstattung ausreicht, klärt die FDM Akademie vor dem Start mit Ihnen.",
     },
     {
       rubrik: "Teilnahme",
