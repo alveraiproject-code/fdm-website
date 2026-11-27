@@ -102,7 +102,15 @@ export default function AnfrageFormular({
   }
 
   return (
-    <form onSubmit={absenden} className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <form
+      onSubmit={absenden}
+      // Ohne laufendes JavaScript schickt der Browser das Formular auf dem gewöhnlichen Weg an das CRM.
+      action={`${CRM_URL}/api/anfrage`}
+      method="post"
+      className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+    >
+      <input type="hidden" name="quelle" value={quelle ?? "fdm-group.de"} />
+      <input type="hidden" name="kurs" value={kurs ?? ""} />
       {kursTitel && (
         <p className="rounded-lg bg-blue-50 p-3 text-sm text-slate-700">
           Ihre Anfrage zum Kurs: <strong>{kursTitel}</strong>

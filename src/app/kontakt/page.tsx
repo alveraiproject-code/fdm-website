@@ -248,7 +248,14 @@ export default function KontaktPage() {
                       </p>
                     </div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                    <form
+                      onSubmit={handleSubmit}
+                      // Ohne laufendes JavaScript schickt der Browser das Formular auf dem gewöhnlichen Weg an das CRM.
+                      action={`${CRM_URL}/api/anfrage`}
+                      method="post"
+                      className="space-y-5"
+                    >
+                      <input type="hidden" name="quelle" value="fdm-group.de/kontakt" />
                       <h2 className="font-bold text-xl mb-6" style={{ color: "#1e293b" }}>
                         Nachricht senden
                       </h2>
