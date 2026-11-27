@@ -1,5 +1,6 @@
 "use client";
 
+import Themenbild from "@/components/Themenbild";
 import { useState } from "react";
 import { ArrowRight, Search, Filter } from "lucide-react";
 import Link from "next/link";
@@ -33,22 +34,27 @@ export default function KursePage() {
         className="py-16 text-white"
         style={{ background: "linear-gradient(135deg, #1e293b, #2c3892, #3f74bc)" }}
       >
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <div
-            className="inline-flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-full mb-4 border border-white/20"
-            style={{ background: "rgba(255,255,255,0.1)", color: "#bae6fd" }}
-          >
-            alvatar.de – Online-Akademie
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Online-Kurse für Selbstzahler
-          </h1>
-          <p className="max-w-2xl mx-auto text-lg" style={{ color: "#cbd5e1" }}>
-            Über 100 Selbstlernkurse zu KI, Automatisierung und digitalen
-            Kompetenzen. Sofort buchbar auf alvatar.de, im eigenen Tempo.
-          </p>
-          <div className="mt-5">
-            <Kennzeichen art="selbstzahler" hell />
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+            <div>
+              <div
+                className="inline-flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-full mb-4 border border-white/20"
+                style={{ background: "rgba(255,255,255,0.1)", color: "#bae6fd" }}
+              >
+                alvatar.de – Online-Akademie
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                Online-Kurse für Selbstzahler
+              </h1>
+              <p className="max-w-2xl text-lg" style={{ color: "#cbd5e1" }}>
+                Über 100 Selbstlernkurse zu KI, Automatisierung und digitalen
+                Kompetenzen. Sofort buchbar auf alvatar.de, im eigenen Tempo.
+              </p>
+              <div className="mt-5">
+                <Kennzeichen art="selbstzahler" hell />
+              </div>
+            </div>
+            <Themenbild thema="selbstlernen" zuerst klasse="aspect-[2/1] lg:aspect-[3/2]" />
           </div>
         </div>
       </section>

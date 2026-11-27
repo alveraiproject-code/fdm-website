@@ -1,3 +1,5 @@
+import { bildZumThema } from "@/lib/bilder";
+import Themenbild from "@/components/Themenbild";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -64,6 +66,7 @@ export default async function RatgeberArtikelSeite({ params }: Props) {
             "@id": `${url}#article`,
             headline: artikel.titel,
             description: artikel.beschreibung,
+            image: `${BASE}${bildZumThema(artikel.slug).src}`,
             abstract: artikel.kurz,
             url,
             mainEntityOfPage: url,
@@ -129,6 +132,7 @@ export default async function RatgeberArtikelSeite({ params }: Props) {
             </ol>
           </nav>
 
+          <Themenbild thema={artikel.slug} klasse="mt-8 aspect-[2/1]" />
           {artikel.abschnitte.map((a) => (
             <section key={a.titel} id={anker(a.titel)} className="scroll-mt-24">
               <h2 className="mt-10 text-2xl font-bold text-slate-900">{a.titel}</h2>

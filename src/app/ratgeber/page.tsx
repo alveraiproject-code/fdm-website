@@ -1,3 +1,4 @@
+import Themenbild from "@/components/Themenbild";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
@@ -77,6 +78,7 @@ export default function RatgeberSeite() {
                   href={ratgeberPfad(a.slug)}
                   className="card-hover flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6"
                 >
+                  <Themenbild thema={a.slug} dekorativ klasse="mb-4 aspect-[2/1]" sizes="(min-width: 768px) 410px, 90vw" />
                   <h2 className="text-lg font-bold leading-snug text-slate-900">{a.titel}</h2>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{a.beschreibung}</p>
                   <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold text-[#2c3892]">

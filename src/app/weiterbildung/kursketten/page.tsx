@@ -1,3 +1,4 @@
+import Themenbild from "@/components/Themenbild";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ChevronRight, Layers } from "lucide-react";
@@ -128,7 +129,10 @@ export default async function KursketteUebersicht() {
           )}
           {sortiert.map(([bereich, gruppen]) => (
             <div key={bereich}>
-              <h2 className="mb-5 text-2xl font-bold text-slate-900">{bereich}</h2>
+              <div className="mb-5 flex items-center gap-4">
+                <Themenbild thema={bereich} dekorativ klasse="h-16 w-24 shrink-0" sizes="96px" />
+                <h2 className="text-2xl font-bold text-slate-900">{bereich}</h2>
+              </div>
               <ul className="grid gap-4 md:grid-cols-2">
                 {gruppen.map((gruppe) => {
                   const k = gruppe[0];

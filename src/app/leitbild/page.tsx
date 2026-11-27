@@ -1,3 +1,4 @@
+import Themenbild from "@/components/Themenbild";
 import Image from "next/image";
 import Link from "next/link";
 import BeratungCta from "@/components/BeratungCta";
@@ -150,6 +151,7 @@ export default function LeitbildPage() {
           <h2 className="text-2xl font-bold mb-6" style={{ color: "#1e293b" }}>
             Unsere Werte
           </h2>
+          <Themenbild thema="unterricht" klasse="mb-5 aspect-[5/2]" />
           <div className="grid md:grid-cols-2 gap-5">
             {werte.map((w) => (
               <div

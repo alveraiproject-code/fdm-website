@@ -1,3 +1,4 @@
+import Themenbild from "@/components/Themenbild";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Award, Building2, CheckCircle, GraduationCap, Phone, Sparkles } from "lucide-react";
@@ -71,8 +72,12 @@ export default function BildungsgutscheinPage() {
               </div>
             </div>
 
+            <Themenbild thema="gutschein" zuerst klasse="aspect-[2/1] lg:aspect-[3/2]" />
+          </div>
+        </div>
+        <div className="mx-auto mt-8 max-w-7xl px-6">
             <div
-              className="rounded-3xl p-8"
+              className="rounded-2xl p-5"
               style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)" }}
             >
               <div className="flex items-center gap-3 mb-5">
@@ -86,7 +91,6 @@ export default function BildungsgutscheinPage() {
                 bis 17.10.2029.
               </p>
             </div>
-          </div>
         </div>
       </section>
 

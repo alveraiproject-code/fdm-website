@@ -1,3 +1,4 @@
+import Themenbild from "@/components/Themenbild";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -90,12 +91,6 @@ export default async function Home() {
   ];
   const startFragen = fragen({ ...zahlen, bereiche: bereiche.length }).filter((f) => STARTFRAGEN.includes(f.frage));
 
-  const stats = [
-    { value: anzahl > 0 ? anzahl.toLocaleString("de-DE") : "900+", label: "Weiterbildungen" },
-    { value: bereiche.length > 0 ? String(bereiche.length) : "15", label: "Fachbereiche" },
-    { value: "AZAV", label: "Zertifizierter Träger" },
-    { value: "100%", label: "Online" },
-  ];
 
   return (
     <>
@@ -118,7 +113,7 @@ export default async function Home() {
           }}
           aria-hidden="true"
         />
-        <div className="max-w-7xl mx-auto px-6 py-20 md:py-28 relative">
+        <div className="max-w-7xl mx-auto px-6 py-12 md:py-16 relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-sky-200 text-sm font-medium px-4 py-1.5 rounded-full mb-6 border border-white/20">
@@ -154,18 +149,7 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              {stats.map((s) => (
-                <div
-                  key={s.label}
-                  className="min-w-0 rounded-2xl p-4 sm:p-6 border border-white/20 text-center"
-                  style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(8px)" }}
-                >
-                  <div className="text-3xl sm:text-4xl font-bold text-white mb-1">{s.value}</div>
-                  <div className="text-slate-300 text-xs sm:text-sm hyphens-auto [overflow-wrap:anywhere]">{s.label}</div>
-                </div>
-              ))}
-            </div>
+            <Themenbild thema="unterricht" zuerst klasse="aspect-[2/1] lg:aspect-[3/2]" />
           </div>
         </div>
       </section>
@@ -474,6 +458,7 @@ export default async function Home() {
                   href={ratgeberPfad(a.slug)}
                   className="card-hover flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5"
                 >
+                  <Themenbild thema={a.slug} dekorativ klasse="mb-4 aspect-[2/1]" sizes="(min-width: 768px) 25vw, 92vw" />
                   <span className="font-semibold leading-snug" style={{ color: "#1e293b" }}>
                     {a.titel}
                   </span>

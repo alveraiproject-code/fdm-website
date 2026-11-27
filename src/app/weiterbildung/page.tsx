@@ -1,3 +1,4 @@
+import Themenbild from "@/components/Themenbild";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Award, GraduationCap, Laptop, Users } from "lucide-react";
@@ -112,8 +113,9 @@ export default async function WeiterbildungPage() {
                 <li key={b.name}>
                   <Link
                     href={bereichPfad(b.name)}
-                    className="inline-block rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-[#3f74bc] hover:text-[#3f74bc]"
+                    className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white pl-1 pr-3 py-1 text-sm font-medium text-slate-700 transition hover:border-[#3f74bc] hover:text-[#3f74bc]"
                   >
+                    <Themenbild thema={b.name} dekorativ klasse="h-10 w-14 shrink-0" sizes="56px" />
                     {b.name} <span className="text-slate-400">({b.anzahl})</span>
                   </Link>
                 </li>

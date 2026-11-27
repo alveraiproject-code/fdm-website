@@ -1,5 +1,6 @@
 "use client";
 
+import Themenbild from "@/components/Themenbild";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Phone, Mail, MapPin, Clock, Send, CheckCircle } from "lucide-react";
@@ -134,6 +135,7 @@ export default function KontaktPage() {
                 <h2 className="font-bold text-lg mb-5" style={{ color: "#1e293b" }}>
                   Direktkontakt
                 </h2>
+                <Themenbild thema="beratung" klasse="mb-5 aspect-[5/2]" />
                 <address className="not-italic space-y-4">
                   <a
                     href="tel:+4971616275120"

@@ -1,3 +1,4 @@
+import Themenbild from "@/components/Themenbild";
 import Link from "next/link";
 import {
   CheckCircle,
@@ -214,43 +215,48 @@ export default function QcgPage() {
           }}
         />
         <div className="max-w-7xl mx-auto px-6 relative">
-          <div className="max-w-3xl">
-            <div
-              className="inline-flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-full mb-6 border border-white/20"
-              style={{ background: "rgba(255,255,255,0.1)", color: "#bae6fd" }}
-            >
-              <Award size={14} />
-              Gefördert nach §82 SGB III
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+            <div>
+              <div className="max-w-3xl">
+                <div
+                  className="inline-flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-full mb-6 border border-white/20"
+                  style={{ background: "rgba(255,255,255,0.1)", color: "#bae6fd" }}
+                >
+                  <Award size={14} />
+                  Gefördert nach §82 SGB III
+                </div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                  Qualifizierungs&shy;chancengesetz
+                  <span className="block text-2xl md:text-3xl lg:text-4xl mt-2 font-semibold" style={{ color: "#51ade5" }}>
+                    Weiterbildung für Beschäftigte – staatlich gefördert
+                  </span>
+                </h1>
+                <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: "#cbd5e1" }}>
+                  Das Qualifizierungschancengesetz (QCG) ermöglicht es Unternehmen,
+                  ihre Mitarbeiterinnen und Mitarbeiter weiterzubilden – bei einem
+                  Großteil der Kosten springt die Agentur für Arbeit ein.
+                  Als AZAV-zertifizierter Bildungsträger ist FDM GmbH direkt anerkannt.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link
+                    href="/weiterbildung#beratung"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white font-semibold rounded-xl hover:bg-slate-100 transition-colors"
+                    style={{ color: "#2c3892" }}
+                  >
+                    <Building2 size={18} />
+                    Beratung für Arbeitgeber
+                  </Link>
+                  <a
+                    href="#foerderhoehe"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl border border-white/30 hover:bg-white/10 transition-colors"
+                  >
+                    Förderhöhe ansehen
+                    <ChevronRight size={17} />
+                  </a>
+                </div>
+              </div>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Qualifizierungs&shy;chancengesetz
-              <span className="block text-2xl md:text-3xl lg:text-4xl mt-2 font-semibold" style={{ color: "#51ade5" }}>
-                Weiterbildung für Beschäftigte – staatlich gefördert
-              </span>
-            </h1>
-            <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: "#cbd5e1" }}>
-              Das Qualifizierungschancengesetz (QCG) ermöglicht es Unternehmen,
-              ihre Mitarbeiterinnen und Mitarbeiter weiterzubilden – bei einem
-              Großteil der Kosten springt die Agentur für Arbeit ein.
-              Als AZAV-zertifizierter Bildungsträger ist FDM GmbH direkt anerkannt.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/weiterbildung#beratung"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white font-semibold rounded-xl hover:bg-slate-100 transition-colors"
-                style={{ color: "#2c3892" }}
-              >
-                <Building2 size={18} />
-                Beratung für Arbeitgeber
-              </Link>
-              <a
-                href="#foerderhoehe"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl border border-white/30 hover:bg-white/10 transition-colors"
-              >
-                Förderhöhe ansehen
-                <ChevronRight size={17} />
-              </a>
-            </div>
+            <Themenbild thema="arbeitgeber" zuerst klasse="aspect-[2/1] lg:aspect-[3/2]" />
           </div>
         </div>
 

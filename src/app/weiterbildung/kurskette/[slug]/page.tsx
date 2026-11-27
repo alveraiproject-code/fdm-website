@@ -1,3 +1,4 @@
+import Themenbild from "@/components/Themenbild";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -162,6 +163,7 @@ export default async function KettenSeite({ params }: Props) {
               </p>
             )}
 
+            <Themenbild thema={kette.fachbereich_name} klasse="mb-6 aspect-[2/1]" />
             <h2 className="text-xl font-bold text-slate-900">Was ist eine Kurskette?</h2>
             <p className="mt-3 text-slate-700">
               Eine Kurskette verbindet einzelne Weiterbildungen der FDM Akademie zu einem durchgehenden Lernweg. Jede

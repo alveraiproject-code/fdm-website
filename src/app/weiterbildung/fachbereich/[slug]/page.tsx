@@ -1,3 +1,4 @@
+import Themenbild from "@/components/Themenbild";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -86,18 +87,23 @@ export default async function FachbereichSeite({ params }: Props) {
               </li>
             </ol>
           </nav>
-          <h1 className="text-3xl font-bold md:text-4xl">Weiterbildung {bereich.name}</h1>
-          <p className="mt-4 max-w-3xl text-lg text-slate-200">
-            {z.gesamt} {z.gesamt === 1 ? "Weiterbildung" : "Weiterbildungen"} der FDM Akademie im Bereich {bereich.name}
-            , live im virtuellen Klassenzimmer: {z.vollzeit} in Vollzeit
-            {z.teilzeit > 0 ? ` und ${z.teilzeit} in Teilzeit` : ""}. Sie nehmen bundesweit von zu Hause aus teil.
-          </p>
-          <a
-            href="#beratung"
-            className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#2c3892] transition hover:bg-slate-100"
-          >
-            Kostenlose Beratung anfragen
-          </a>
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+            <div>
+              <h1 className="text-3xl font-bold md:text-4xl">Weiterbildung {bereich.name}</h1>
+              <p className="mt-4 max-w-3xl text-lg text-slate-200">
+                {z.gesamt} {z.gesamt === 1 ? "Weiterbildung" : "Weiterbildungen"} der FDM Akademie im Bereich {bereich.name}
+                , live im virtuellen Klassenzimmer: {z.vollzeit} in Vollzeit
+                {z.teilzeit > 0 ? ` und ${z.teilzeit} in Teilzeit` : ""}. Sie nehmen bundesweit von zu Hause aus teil.
+              </p>
+              <a
+                href="#beratung"
+                className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#2c3892] transition hover:bg-slate-100"
+              >
+                Kostenlose Beratung anfragen
+              </a>
+            </div>
+            <Themenbild thema={bereich.name} zuerst klasse="aspect-[2/1] lg:aspect-[3/2]" />
+          </div>
         </div>
       </section>
 
