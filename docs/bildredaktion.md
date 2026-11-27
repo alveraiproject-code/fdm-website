@@ -57,3 +57,32 @@ Die Regeln in `kursMotive` wurden bei der Übernahme erweitert, weil das allgeme
 - Nach jeder Änderung an den Regeln die Verteilung über den ganzen Katalog prüfen: Kein Motiv soll bei mehr als etwa 45 verschiedenen Kursen stehen.
 - Die Motive sollen keinen bestimmten Ort zeigen. In vier Bildern war im Hintergrund der Berliner Fernsehturm zu sehen; er wurde retuschiert. Neue Motive ohne erkennbare Wahrzeichen anlegen.
 - Bilder werden mit einem Jahr Browser-Cache ausgeliefert. Wird ein Motiv inhaltlich geändert, bekommt es einen neuen Dateinamen; sonst sehen wiederkehrende Besucher weiter die alte Fassung.
+
+## Serie 3
+
+| Dateiname | Alt-Text |
+| --- | --- |
+| [kita-assistenz-bastelangebot-vorbereiten.webp](../public/bilder/kita-assistenz-bastelangebot-vorbereiten.webp) | Eine Frau bereitet an einem niedrigen Tisch in einer Kita Bastelmaterial vor. |
+| [paedagogik-fallbesprechung-foerderplan.webp](../public/bilder/paedagogik-fallbesprechung-foerderplan.webp) | Zwei Fachkräfte besprechen an einem Tisch einen Förderplan. |
+| [coaching-gespraech-zielklaerung.webp](../public/bilder/coaching-gespraech-zielklaerung.webp) | Eine Coachin hört einem Klienten zu, der sein Anliegen erklärt. |
+| [ausbildereignung-unterweisung-arbeitsplatz.webp](../public/bilder/ausbildereignung-unterweisung-arbeitsplatz.webp) | Ein Ausbilder erklärt einer Auszubildenden einen Arbeitsschritt. |
+| [berufsbezogenes-deutsch-gespraech-ueben.webp](../public/bilder/berufsbezogenes-deutsch-gespraech-ueben.webp) | Zwei Erwachsene üben mit Arbeitsblättern ein Gespräch aus dem Berufsalltag. |
+| [wirtschaftsenglisch-besprechung-ueben.webp](../public/bilder/wirtschaftsenglisch-besprechung-ueben.webp) | Eine Frau stellt zwei Kollegen an einem Flipchart ein Diagramm vor. |
+| [cloud-administration-dienste-ueberwachen.webp](../public/bilder/cloud-administration-dienste-ueberwachen.webp) | Ein Administrator prüft Auslastungsdiagramme auf zwei Monitoren. |
+| [it-sicherheit-zugriffe-pruefen.webp](../public/bilder/it-sicherheit-zugriffe-pruefen.webp) | Eine IT-Fachfrau prüft Sicherheitswarnungen am Bildschirm. |
+| [datenschutz-unterlagen-pruefen.webp](../public/bilder/datenschutz-unterlagen-pruefen.webp) | Ein Mann gleicht Unterlagen in einem Ordner mit einer Checkliste ab. |
+| [office-tabellenkalkulation-auswerten.webp](../public/bilder/office-tabellenkalkulation-auswerten.webp) | Eine Frau wertet am Laptop eine Tabelle mit Diagramm aus. |
+| [computergrundlagen-erste-schritte.webp](../public/bilder/computergrundlagen-erste-schritte.webp) | Eine Frau folgt am Laptop Schritt für Schritt einer gedruckten Anleitung. |
+| [webentwicklung-seitenentwurf-umsetzen.webp](../public/bilder/webentwicklung-seitenentwurf-umsetzen.webp) | Ein Entwickler vergleicht eine Skizze mit dem Seitenaufbau am Bildschirm. |
+| [lagerlogistik-wareneingang-erfassen.webp](../public/bilder/lagerlogistik-wareneingang-erfassen.webp) | Eine Lagermitarbeiterin erfasst einen Karton mit dem Handscanner. |
+| [sps-technik-steuerung-programmieren.webp](../public/bilder/sps-technik-steuerung-programmieren.webp) | Ein Techniker programmiert mit dem Laptop eine Steuerung im Schaltschrank. |
+| [cnc-fraesen-maschine-einrichten.webp](../public/bilder/cnc-fraesen-maschine-einrichten.webp) | Eine Fachkraft richtet an einer CNC-Fräsmaschine ein Werkstück ein. |
+| [elektrotechnik-messung-pruefen.webp](../public/bilder/elektrotechnik-messung-pruefen.webp) | Ein Elektriker misst an einer Übungstafel eine Schaltung durch. |
+| [facility-management-gebaeudetechnik-pruefen.webp](../public/bilder/facility-management-gebaeudetechnik-pruefen.webp) | Eine Fachkraft prüft mit einem Tablet eine Anlage im Technikraum. |
+| [technische-redaktion-anleitung-erstellen.webp](../public/bilder/technische-redaktion-anleitung-erstellen.webp) | Ein Redakteur gleicht ein Gerät mit seiner Anleitung am Bildschirm ab. |
+| [aufstiegsfortbildung-lerngruppe-pruefungsvorbereitung.webp](../public/bilder/aufstiegsfortbildung-lerngruppe-pruefungsvorbereitung.webp) | Drei Berufstätige bereiten sich gemeinsam auf eine Prüfung vor. |
+| [immobilien-grundriss-besprechen.webp](../public/bilder/immobilien-grundriss-besprechen.webp) | Eine Immobilienfachfrau erläutert einem Kunden einen Grundriss. |
+| [personalwesen-bewerbungsgespraech-fuehren.webp](../public/bilder/personalwesen-bewerbungsgespraech-fuehren.webp) | Eine Personalerin führt mit einem Bewerber ein Gespräch. |
+| [arztpraxis-empfang-terminplanung.webp](../public/bilder/arztpraxis-empfang-terminplanung.webp) | Eine medizinische Fachangestellte plant am Empfang einer Praxis Termine. |
+| [seniorenbetreuung-aktivierung-gespraech.webp](../public/bilder/seniorenbetreuung-aktivierung-gespraech.webp) | Eine Betreuungskraft sieht mit einer älteren Frau ein Fotoalbum an. |
+| [umweltmanagement-betriebsbegehung-pruefen.webp](../public/bilder/umweltmanagement-betriebsbegehung-pruefen.webp) | Zwei Fachkräfte prüfen bei einer Begehung den Betriebshof. |
