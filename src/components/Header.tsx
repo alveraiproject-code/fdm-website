@@ -52,12 +52,12 @@ export default function Header() {
             07161 – 6275120
           </a>
           <a
-            href="mailto:info@fdm-group.de"
+            href="mailto:beratung@fdm-akademie.de"
             className="flex items-center gap-1.5 hover:text-sky-300 transition-colors"
-            aria-label="E-Mail: info@fdm-group.de"
+            aria-label="E-Mail: beratung@fdm-akademie.de"
           >
             <Mail size={13} aria-hidden="true" />
-            info@fdm-group.de
+            beratung@fdm-akademie.de
           </a>
         </div>
       </div>

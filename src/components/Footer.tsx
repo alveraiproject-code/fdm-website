@@ -125,11 +125,11 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:info@fdm-group.de"
+                  href="mailto:beratung@fdm-akademie.de"
                   className="flex items-center gap-2.5 hover:text-white transition-colors"
                 >
                   <Mail size={15} className="text-[#51ade5] flex-shrink-0" />
-                  info@fdm-group.de
+                  beratung@fdm-akademie.de
                 </a>
               </li>
             </ul>

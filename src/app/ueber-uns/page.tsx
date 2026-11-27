@@ -222,8 +222,8 @@ export default function UeberUnsPage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail size={18} style={{ color: "#3f74bc" }} className="flex-shrink-0" aria-hidden="true" />
-                  <a href="mailto:info@fdm-group.de" className="hover:text-[#3f74bc]">
-                    info@fdm-group.de
+                  <a href="mailto:beratung@fdm-akademie.de" className="hover:text-[#3f74bc]">
+                    beratung@fdm-akademie.de
                   </a>
                 </div>
               </address>

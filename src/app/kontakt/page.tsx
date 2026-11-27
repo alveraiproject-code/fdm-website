@@ -62,8 +62,9 @@ export default function KontaktPage() {
 
   const subjects = [
     "Allgemeine Anfrage",
+    "Geförderte Weiterbildung (Bildungsgutschein)",
+    "Weiterbildung für Beschäftigte (QCG)",
     "Online-Kurse alvatar.de",
-    "Förderung für Unternehmen (QCG)",
     "Kooperationsanfrage",
     "Sonstiges",
   ];
@@ -158,9 +159,9 @@ export default function KontaktPage() {
                   </a>
 
                   <a
-                    href="mailto:info@fdm-group.de"
+                    href="mailto:beratung@fdm-akademie.de"
                     className="flex items-center gap-3 text-slate-700 hover:text-[#3f74bc] transition-colors"
-                    aria-label="E-Mail: info@fdm-group.de"
+                    aria-label="E-Mail: beratung@fdm-akademie.de"
                   >
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -171,7 +172,7 @@ export default function KontaktPage() {
                     </div>
                     <div>
                       <p className="text-xs text-slate-500">E-Mail</p>
-                      <p className="font-semibold text-sm">info@fdm-group.de</p>
+                      <p className="font-semibold text-sm">beratung@fdm-akademie.de</p>
                     </div>
                   </a>
 
@@ -247,6 +248,14 @@ export default function KontaktPage() {
                       <p className="text-slate-600 text-sm">
                         Ihre Nachricht ist bei uns angekommen. Wir melden uns innerhalb von zwei Werktagen bei Ihnen.
                       </p>
+                      <p className="mx-auto mt-4 max-w-md text-slate-600 text-sm">
+                        Sie erhalten in den nächsten Minuten eine Eingangsbestätigung per E-Mail. Kommt sie nicht an,
+                        sehen Sie bitte im Spam-Ordner nach oder rufen Sie uns an:{" "}
+                        <a href="tel:+4971616275120" className="font-semibold text-[#3f74bc] hover:underline">
+                          07161 – 6275120
+                        </a>
+                        .
+                      </p>
                     </div>
                   ) : (
                     <form
@@ -257,9 +266,15 @@ export default function KontaktPage() {
                       className="space-y-5"
                     >
                       <input type="hidden" name="quelle" value="fdm-group.de/kontakt" />
-                      <h2 className="font-bold text-xl mb-6" style={{ color: "#1e293b" }}>
-                        Nachricht senden
-                      </h2>
+                      <div className="mb-6">
+                        <h2 className="font-bold text-xl" style={{ color: "#1e293b" }}>
+                          Nachricht senden
+                        </h2>
+                        <p className="mt-1.5 text-sm text-slate-600">
+                          Ihre Nachricht geht direkt an unser Beratungsteam. Sie erhalten sofort eine
+                          Eingangsbestätigung und innerhalb von zwei Werktagen eine Antwort per E-Mail.
+                        </p>
+                      </div>
 
                       {/* Spamschutz: für Menschen unsichtbar, darf nicht ausgefüllt werden */}
                       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
@@ -310,7 +325,7 @@ export default function KontaktPage() {
                         </div>
                         <div>
                           <label htmlFor="telefon" className="block text-sm font-medium mb-1.5 text-slate-700">
-                            Telefon <span className="text-slate-400 font-normal">(optional)</span>
+                            Telefon <span className="text-slate-400 font-normal">(optional, für Rückfragen)</span>
                           </label>
                           <input type="tel" id="telefon" name="telefon" autoComplete="tel" maxLength={50} className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#3f74bc]/30 focus:border-[#3f74bc]" />
                         </div>
@@ -338,10 +353,10 @@ export default function KontaktPage() {
                           id="nachricht"
                           name="nachricht"
                           required
-                          rows={5}
+                          rows={6}
                           maxLength={2900}
-                          placeholder="Wie können wir Ihnen helfen?"
-                          className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#3f74bc]/30 focus:border-[#3f74bc] resize-none"
+                          placeholder="Wie können wir Ihnen helfen? Bei Fragen zu einer Weiterbildung helfen uns Ihr Berufsziel und Ihre aktuelle Situation."
+                          className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#3f74bc]/30 focus:border-[#3f74bc] resize-y"
                         />
                       </div>
 

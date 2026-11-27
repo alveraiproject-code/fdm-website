@@ -32,7 +32,7 @@ export const schemaGraph = {
         "Die FDM GmbH ist ein nach AZAV zugelassener Bildungsträger aus Eislingen/Fils. Unter dem Namen FDM Akademie bietet sie berufliche Weiterbildungen live im virtuellen Klassenzimmer an, in Vollzeit und Teilzeit, bundesweit. Eine Förderung über Bildungsgutschein oder Qualifizierungschancengesetz ist möglich.",
       slogan: "Ihre Karriere. Gefördert. Zukunftssicher.",
       telephone: "+49-7161-6275120",
-      email: "info@fdm-group.de",
+      email: "beratung@fdm-akademie.de",
       address: {
         "@type": "PostalAddress",
         streetAddress: "Schillerstraße 21",
