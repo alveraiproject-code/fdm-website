@@ -90,3 +90,19 @@ Die Regeln in `kursMotive` wurden bei der Übernahme erweitert, weil das allgeme
 ### Einbindung der Serie 3 (27.11.2026)
 
 Die 24 Motive stehen in `src/lib/bilder.ts` unter Schlüsseln der Form `thema/<name>` (zum Beispiel `thema/kita`, `thema/cloud`, `thema/lager`) und werden über die Regeln in `kursMotive` den Kursen zugeordnet. Damit ersetzen sie die Behelfsmotive aus dem Nachtrag oben: Pädagogik, Coaching, Cloud, Büro, Logistik, SPS, CNC, Aufstiegsfortbildungen, Personal, Arztpraxis, Seniorenbetreuung und Umweltmanagement haben jetzt ein eigenes Bild. Nach der Einbindung steht kein Motiv bei mehr als 35 verschiedenen Kursen. Der Auftrag an die Bildlieferung steht in [bildauftrag-serie-3.md](bildauftrag-serie-3.md).
+
+## Serie 4
+
+| Dateiname | Alt-Text |
+| --- | --- |
+| [bildbearbeitung-foto-retuschieren.webp](../public/bilder/bildbearbeitung-foto-retuschieren.webp) | Eine Bildbearbeiterin vergleicht am Monitor ein Foto vor und nach der Retusche. |
+| [vektorgrafik-illustration-zeichnen.webp](../public/bilder/vektorgrafik-illustration-zeichnen.webp) | Ein Illustrator zeichnet mit dem Grafiktablett eine Vektorgrafik. |
+| [printlayout-broschuere-pruefen.webp](../public/bilder/printlayout-broschuere-pruefen.webp) | Eine Mediengestalterin vergleicht einen Ausdruck mit dem Seitenlayout am Bildschirm. |
+| [videoschnitt-zeitleiste-bearbeiten.webp](../public/bilder/videoschnitt-zeitleiste-bearbeiten.webp) | Ein Cutter bearbeitet an einem Schnittplatz die Zeitleiste eines Videos. |
+| [motion-design-animation-anlegen.webp](../public/bilder/motion-design-animation-anlegen.webp) | Eine Motion-Designerin legt am Bildschirm die Bewegungsphasen einer Animation an. |
+| [ux-design-prototyp-testen.webp](../public/bilder/ux-design-prototyp-testen.webp) | Zwei Personen testen einen App-Entwurf auf dem Smartphone und machen Notizen. |
+| [website-inhalte-pflegen.webp](../public/bilder/website-inhalte-pflegen.webp) | Ein Mann bearbeitet am Laptop die Inhalte einer Website und prüft sie auf dem Tablet. |
+| [ki-kreativarbeit-bildideen-auswaehlen.webp](../public/bilder/ki-kreativarbeit-bildideen-auswaehlen.webp) | Eine Gestalterin wählt am Monitor aus mehreren Bildentwürfen einen aus. |
+| [3d-animation-figur-posieren.webp](../public/bilder/3d-animation-figur-posieren.webp) | Ein 3D-Artist stellt am Monitor die Pose einer Figur ein, daneben steht eine Gliederpuppe. |
+| [echtzeit-3d-szene-begehen.webp](../public/bilder/echtzeit-3d-szene-begehen.webp) | Eine Entwicklerin bewegt sich am Monitor durch einen virtuellen Innenraum. |
+| [digital-fashion-kleidung-virtuell.webp](../public/bilder/digital-fashion-kleidung-virtuell.webp) | Eine Modedesignerin vergleicht ein Stoffmuster mit einem virtuellen Kleidungsstück am Monitor. |
