@@ -76,21 +76,134 @@ const motive: Record<string, Motiv> = {
   "Schutz und Sicherheit": {
     "datei": "objektschutz-lageplan",
     "alt": "Zwei Fachkräfte besprechen einen Gebäudeplan."
+  },
+  "kurs/IT und EDV": {
+    "datei": "softwareentwicklung-programmieren-lernprojekt",
+    "alt": "Eine Lernende prüft ein Programm am Bildschirm."
+  },
+  "kurs/Sprachen und Schlüsselkompetenzen": {
+    "datei": "sprachkurs-dialog-uebungskarten",
+    "alt": "Zwei junge Erwachsene üben einen Dialog mit Bildkarten."
+  },
+  "kurs/Kaufmännisch": {
+    "datei": "finanzbuchhaltung-belege-kontieren",
+    "alt": "Ein Lernender ordnet Belege neben Taschenrechner und Buchungsunterlagen."
+  },
+  "kurs/Technik und CAD": {
+    "datei": "cad-konstruktion-prototyp-pruefen",
+    "alt": "Eine Konstrukteurin vergleicht einen Prototyp mit dem CAD-Modell."
+  },
+  "kurs/Gesundheit und Pflege": {
+    "datei": "pflege-kommunikation-fallbesprechung",
+    "alt": "Zwei Pflegekräfte besprechen gemeinsam einen Übungsfall."
+  },
+  "kurs/Medien und Design": {
+    "datei": "mediendesign-farbkonzept-layout",
+    "alt": "Eine Designerin stimmt Farbmuster und Layoutentwürfe an einer Pinnwand ab."
+  },
+  "kurs/Umwelt und Energie": {
+    "datei": "energieberatung-waermebild-gebaeude",
+    "alt": "Ein junger Mann untersucht eine Gebäudefassade mit einer Wärmebildkamera."
+  },
+  "kurs/Management und Personal": {
+    "datei": "personalentwicklung-teamworkshop-moderieren",
+    "alt": "Eine Moderatorin und ein Kollege ordnen Themen an einer Workshoptafel."
+  },
+  "kurs/Qualitätsmanagement": {
+    "datei": "qualitaetssicherung-messschieber-werkstueck",
+    "alt": "Ein Techniker prüft mit einem Messschieber die Maße eines Werkstücks."
+  },
+  "kurs/Marketing und Vertrieb": {
+    "datei": "online-marketing-content-storyboard",
+    "alt": "Zwei Lernende wählen Bildmotive für das Storyboard einer Produktkampagne aus."
+  },
+  "kurs/3D und Digital Design": {
+    "datei": "3d-modellierung-materialstudie",
+    "alt": "Ein 3D-Gestalter vergleicht Materialproben mit einem digital gerenderten Stuhl."
+  },
+  "kurs/Künstliche Intelligenz": {
+    "datei": "ki-datenanalyse-ergebnis-pruefen",
+    "alt": "Eine Lernende vergleicht zwei Punktdiagramme bei einer Datenanalyse."
+  },
+  "kurs/Hotel und Gastronomie": {
+    "datei": "gastgewerbe-veranstaltung-tischplanung",
+    "alt": "Zwei Mitarbeitende im Gastgewerbe planen die Tischanordnung für eine Veranstaltung."
+  },
+  "kurs/Schutz und Sicherheit": {
+    "datei": "objektschutz-zutrittskontrolle-empfang",
+    "alt": "Eine Mitarbeiterin am Empfang erklärt einem Besucher die Nutzung seiner Zutrittskarte."
+  },
+  "bildungsgutschein-beantragen": {
+    "datei": "bildungsgutschein-antrag-unterlagen-ordnen",
+    "alt": "Ein junger Mann sortiert Kursunterlagen für seinen Beratungstermin."
+  },
+  "gespraech-arbeitsagentur-weiterbildung": {
+    "datei": "weiterbildungsberatung-gespraech-vorbereiten",
+    "alt": "Eine Frau übt mit einem Gesprächspartner, ihr Weiterbildungsziel zu erklären."
+  },
+  "vollzeit-oder-teilzeit-weiterbildung": {
+    "datei": "weiterbildung-wochenplan-lernzeiten",
+    "alt": "Ein Lernender plant seine Lernzeiten mit farbigen Blöcken in einem Wochenplan."
+  },
+  "online-weiterbildung-ablauf": {
+    "datei": "online-unterricht-rueckfrage-uebung",
+    "alt": "Eine Teilnehmerin stellt im Online-Unterricht eine Frage zu ihrer Übung."
+  },
+  "ueber-uns": {
+    "datei": "akademie-berufliche-weiterbildung-lernprojekt",
+    "alt": "Zwei Lernende betrachten gemeinsam das Ergebnis einer Übung auf einem Tablet."
+  },
+  "leitbild": {
+    "datei": "lernfeedback-weiterbildung-gemeinsam",
+    "alt": "Zwei Lernende geben einander Rückmeldung zu einer bearbeiteten Aufgabe."
   }
 };
 
 const artikelMotive: Record<string, string> = {
-  "bildungsgutschein-beantragen": "gutschein",
-  "gespraech-arbeitsagentur-weiterbildung": "beratung",
   "bildungsgutschein-abgelehnt": "gutschein",
   "weiterbildung-waehrend-arbeitslosigkeit": "unterricht",
-  "umschulung-oder-weiterbildung": "beratung",
-  "online-weiterbildung-ablauf": "unterricht",
-  "vollzeit-oder-teilzeit-weiterbildung": "selbstlernen",
+  "umschulung-oder-weiterbildung": "selbstlernen",
   "quereinstieg-buchhaltung-weiterbildung": "Kaufmännisch",
   "quereinstieg-it-weiterbildung": "IT und EDV",
   "ki-weiterbildung-fuer-beschaeftigte": "Künstliche Intelligenz"
 };
+
+// Ein konkretes Kursthema hat Vorrang vor der organisatorischen Fachbereichszuordnung.
+const kursMotive: ReadonlyArray<[RegExp, string]> = [
+  [/deutsch|englisch|fremdsprache|sprachtraining|verhandlungstechnik/i, "kurs/Sprachen und Schlüsselkompetenzen"],
+  [/architekturvisualisierung/i, "3D und Digital Design"],
+  [/\b(?:cgi|blender|zbrush|unreal engine)\b|3d.modell/i, "kurs/3D und Digital Design"],
+  [/programmier|softwareentwicklung|anwendungsentwicklung|python|javascript|\bjava\b|c\+\+/i, "kurs/IT und EDV"],
+  [/netzwerk|server|cloud-infrastruktur|infrastrukturbetrieb/i, "IT und EDV"],
+  [/buchhaltung|datev|lohn.{0,12}abrechnung|rechnungswesen|belegerfassung/i, "kurs/Kaufmännisch"],
+  [/social media|content creator|online.marketing experte|praxisprojekt im marketing/i, "kurs/Marketing und Vertrieb"],
+  [/suchmaschinen|\bseo\b|\bsem\b|webanalyse|performance.marketing/i, "Marketing und Vertrieb"],
+  [/indesign|illustrator|grafik.{0,12}design|layout|farbgestaltung/i, "kurs/Medien und Design"],
+  [/datenanaly|data.science|datenvisualisierung|business intelligence|power bi/i, "kurs/Künstliche Intelligenz"],
+  [/copilot|ki.{0,14}büro|prompt/i, "Künstliche Intelligenz"],
+  [/energieberat|energieeffizienz|wohngebäude/i, "kurs/Umwelt und Energie"],
+  [/photovoltaik|sonnenenergie|energiemanagement/i, "Umwelt und Energie"],
+  [/teamarbeit|scrum|projektmanagement|moderation/i, "kurs/Management und Personal"],
+  [/personalverwaltung|personalrecht|mitarbeiterführung/i, "Management und Personal"],
+  [/pflegeberat|praxisanleitung|demenz|betreuungskraft/i, "kurs/Gesundheit und Pflege"],
+  [/praxismanage|dokumentation.*pflege|e-health/i, "Gesundheit und Pflege"],
+  [/veranstaltung|eventmanage|bedienung und service/i, "kurs/Hotel und Gastronomie"],
+  [/\brezeption|hotelmanagement/i, "Hotel und Gastronomie"],
+  [/auditor|auditverfahren|prozessmanagement/i, "Qualitätsmanagement"],
+  [/qualitätsfachkraft|qualitätsmanagement|qualitätssicherung/i, "kurs/Qualitätsmanagement"],
+  [/objektschutz|bewachung|sicherheitskraft/i, "kurs/Schutz und Sicherheit"],
+  [/solidworks|autocad|inventor|konstruktion/i, "kurs/Technik und CAD"],
+  [/\b(?:word|excel|powerpoint|outlook)\b|büroverwaltung/i, "selbstlernen"],
+  [/lern- und arbeitstechniken|zeitmanagement|selbstmanagement/i, "vollzeit-oder-teilzeit-weiterbildung"],
+];
+
+export function kursMotiv(titel: string, bereich: string) {
+  const thema = titel.split(/\s+(?:ZG|Zielgruppe)\s*:/i, 1)[0];
+  for (const [muster, motiv] of kursMotive) {
+    if (muster.test(thema)) return motiv;
+  }
+  return motive[`kurs/${bereich}`] ? `kurs/${bereich}` : bereich;
+}
 
 export function bildZumThema(thema: string) {
   const motiv = motive[artikelMotive[thema] ?? thema] ?? motive.unterricht;

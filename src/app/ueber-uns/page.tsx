@@ -58,7 +58,7 @@ export default function UeberUnsPage() {
               </p>
             </div>
 
-            <Themenbild thema="beratung" zuerst klasse="aspect-[2/1] lg:aspect-[3/2]" />
+            <Themenbild thema="ueber-uns" zuerst klasse="aspect-[2/1] lg:aspect-[3/2]" />
           </div>
         </div>
         <div className="mx-auto mt-8 max-w-7xl px-6">

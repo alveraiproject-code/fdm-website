@@ -1,3 +1,4 @@
+import { kursMotiv } from "@/lib/bilder";
 import Themenbild from "@/components/Themenbild";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -295,7 +296,7 @@ export default async function KursSeite({ params }: Props) {
               </>
             )}
 
-            <Themenbild thema={kurs.fachbereich_name} klasse="my-7 aspect-[2/1]" />
+            <Themenbild thema={kursMotiv(kurs.titel, kurs.fachbereich_name)} klasse="my-7 aspect-[2/1]" />
             {text?.abschnitte.map((a) => (
               <div key={a.ueberschrift}>
                 <h2 className="mt-8 text-xl font-bold text-slate-900">{a.ueberschrift}</h2>

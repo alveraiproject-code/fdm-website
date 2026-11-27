@@ -1,0 +1,46 @@
+# Bildredaktion der FDM Akademie
+
+Diese Anleitung gilt für die öffentlichen Seiten von fdm-group.de. Die Bildauswahl ist in `src/lib/bilder.ts` hinterlegt. Alle 20 neuen WebP-Dateien liegen in `public/bilder/`. Die Bildkomponente ist `src/components/Themenbild.tsx`.
+
+## Zuordnung der 20 neuen Motive
+
+Bei Kursen nennt die Tabelle eine konkrete Beispielseite. Weitere fachlich passende Kurse verwenden dasselbe Motiv. Die Kursbilder stehen im Inhaltsbereich nach den Kursfakten. Bei Ratgeberartikeln steht die Illustration im Artikel nach dem Inhaltsverzeichnis. Karten verweisen mit dem Artikelmotiv auf denselben Beitrag.
+
+| Bilddatei | Zielseite oder Beispiel | Einsatz und Alternativtext |
+| --- | --- | --- |
+| [softwareentwicklung-programmieren-lernprojekt.webp](../public/bilder/softwareentwicklung-programmieren-lernprojekt.webp) | Python, Grundlagen · `/weiterbildung/VZ-LF-E-9901` | Eine Lernende prüft ein Programm am Bildschirm. |
+| [sprachkurs-dialog-uebungskarten.webp](../public/bilder/sprachkurs-dialog-uebungskarten.webp) | Wirtschaftsenglisch - Advanced Business English B2.2 · `/weiterbildung/VZ-S-2123` | Zwei junge Erwachsene üben einen Dialog mit Bildkarten. |
+| [finanzbuchhaltung-belege-kontieren.webp](../public/bilder/finanzbuchhaltung-belege-kontieren.webp) | Finanzbuchhaltung mit DATEV, Basics · `/weiterbildung/VZ-K-2812` | Ein Lernender ordnet Belege neben Taschenrechner und Buchungsunterlagen. |
+| [cad-konstruktion-prototyp-pruefen.webp](../public/bilder/cad-konstruktion-prototyp-pruefen.webp) | SolidWorks®, Basics · `/weiterbildung/VZ-G-493` | Eine Konstrukteurin vergleicht einen Prototyp mit dem CAD-Modell. |
+| [pflege-kommunikation-fallbesprechung.webp](../public/bilder/pflege-kommunikation-fallbesprechung.webp) | Aufbaukurs Pflegeberater/in nach § 45 SGB XI · `/weiterbildung/VZ-P-2724` | Zwei Pflegekräfte besprechen gemeinsam einen Übungsfall. |
+| [mediendesign-farbkonzept-layout.webp](../public/bilder/mediendesign-farbkonzept-layout.webp) | Adobe® InDesign®, Basics · `/weiterbildung/VZ-X-425` | Eine Designerin stimmt Farbmuster und Layoutentwürfe an einer Pinnwand ab. |
+| [energieberatung-waermebild-gebaeude.webp](../public/bilder/energieberatung-waermebild-gebaeude.webp) | Energieeffizienz-Experte/-in - Basismodul Wohngebäude für andere Berufsgruppen · `/weiterbildung/VZ-U-3561` | Ein junger Mann untersucht eine Gebäudefassade mit einer Wärmebildkamera. |
+| [personalentwicklung-teamworkshop-moderieren.webp](../public/bilder/personalentwicklung-teamworkshop-moderieren.webp) | Agiles Arbeiten mit Scrum und OKR · `/weiterbildung/VZ-M-4641` | Eine Moderatorin und ein Kollege ordnen Themen an einer Workshoptafel. |
+| [qualitaetssicherung-messschieber-werkstueck.webp](../public/bilder/qualitaetssicherung-messschieber-werkstueck.webp) | Qualitätsmanagement Grundlagen - Qualitätsfachkraft (TÜV) · `/weiterbildung/VZ-Q-3253` | Ein Techniker prüft mit einem Messschieber die Maße eines Werkstücks. |
+| [online-marketing-content-storyboard.webp](../public/bilder/online-marketing-content-storyboard.webp) | Online Marketing Experte (m/w/d) · `/weiterbildung/FDM-OME-VZ` | Zwei Lernende wählen Bildmotive für das Storyboard einer Produktkampagne aus. |
+| [3d-modellierung-materialstudie.webp](../public/bilder/3d-modellierung-materialstudie.webp) | 3D / CGI Basics der 3D-Software Autodesk 3Ds Max · `/weiterbildung/VZ-B-3881` | Ein 3D-Gestalter vergleicht Materialproben mit einem digital gerenderten Stuhl. |
+| [ki-datenanalyse-ergebnis-pruefen.webp](../public/bilder/ki-datenanalyse-ergebnis-pruefen.webp) | Data-Science kompakt – Der Weg von Rohdaten zum Erkenntnisgewinn · `/weiterbildung/VZ-KI-4489` | Eine Lernende vergleicht zwei Punktdiagramme bei einer Datenanalyse. |
+| [gastgewerbe-veranstaltung-tischplanung.webp](../public/bilder/gastgewerbe-veranstaltung-tischplanung.webp) | Bedienung und Service in der Hotellerie und Gastronomie · `/weiterbildung/VZ-H-3721` | Zwei Mitarbeitende im Gastgewerbe planen die Tischanordnung für eine Veranstaltung. |
+| [objektschutz-zutrittskontrolle-empfang.webp](../public/bilder/objektschutz-zutrittskontrolle-empfang.webp) | Qualifizierung im Sicherheitsbereich - Objektschutz und Bewachung (IHK) · `/weiterbildung/VZ-D-593` | Eine Mitarbeiterin am Empfang erklärt einem Besucher die Nutzung seiner Zutrittskarte. |
+| [bildungsgutschein-antrag-unterlagen-ordnen.webp](../public/bilder/bildungsgutschein-antrag-unterlagen-ordnen.webp) | bildungsgutschein-beantragen · `/ratgeber/bildungsgutschein-beantragen` | Ein junger Mann sortiert Kursunterlagen für seinen Beratungstermin. |
+| [weiterbildungsberatung-gespraech-vorbereiten.webp](../public/bilder/weiterbildungsberatung-gespraech-vorbereiten.webp) | gespraech-arbeitsagentur-weiterbildung · `/ratgeber/gespraech-arbeitsagentur-weiterbildung` | Eine Frau übt mit einem Gesprächspartner, ihr Weiterbildungsziel zu erklären. |
+| [weiterbildung-wochenplan-lernzeiten.webp](../public/bilder/weiterbildung-wochenplan-lernzeiten.webp) | vollzeit-oder-teilzeit-weiterbildung · `/ratgeber/vollzeit-oder-teilzeit-weiterbildung` | Ein Lernender plant seine Lernzeiten mit farbigen Blöcken in einem Wochenplan. |
+| [online-unterricht-rueckfrage-uebung.webp](../public/bilder/online-unterricht-rueckfrage-uebung.webp) | online-weiterbildung-ablauf · `/ratgeber/online-weiterbildung-ablauf` | Eine Teilnehmerin stellt im Online-Unterricht eine Frage zu ihrer Übung. |
+| [akademie-berufliche-weiterbildung-lernprojekt.webp](../public/bilder/akademie-berufliche-weiterbildung-lernprojekt.webp) | ueber-uns · `/ueber-uns` | Header von „Über uns“. Zwei Lernende betrachten gemeinsam das Ergebnis einer Übung auf einem Tablet. |
+| [lernfeedback-weiterbildung-gemeinsam.webp](../public/bilder/lernfeedback-weiterbildung-gemeinsam.webp) | leitbild · `/leitbild` | Abschnitt „Unsere Werte“. Zwei Lernende geben einander Rückmeldung zu einer bearbeiteten Aufgabe. |
+
+## So wählt Claude ein Bild aus
+
+1. **Fachbereich und Kurs erfüllen unterschiedliche Aufgaben.** Die Übersichtsseiten behalten ihre etablierten Fachbereichsmotive. Die Kursdetailseite ruft `kursMotiv(kurs.titel, kurs.fachbereich_name)` auf. Spezifische Titelregeln stehen vor dem allgemeinen Kursbild eines Fachbereichs. Der Zielgruppen-Zusatz im Kurstitel wird bei der Auswahl ausgeklammert. Für neue Kursreihen zuerst Titel, Inhalt und bestehende Regeln abgleichen.
+2. **Dasselbe Fachgebiet kann mehrere Tätigkeiten zeigen.** Bei Programmierung ist die Arbeit am Code zu sehen, bei Netzwerkkursen die Netzwerktopologie. Im Marketing zeigen Contentkurse ein Storyboard, SEO-Kurse die Kampagnenauswertung. Die Auswahl ist reproduzierbar. Voll- und Teilzeit dürfen dieselbe praktische Tätigkeit zeigen.
+3. **Kursketten zeigen die tatsächlichen Lernstufen.** Auf der Detailseite steht die vorhandene nummerierte Stufenliste im Mittelpunkt. Ein weiteres großformatiges Fachbereichsfoto würde sich beim Wechsel zu den Modulen wiederholen.
+4. **Jeder der zehn Ratgeber hat ein unterscheidbares Motiv.** Bei neuen Artikeln den Slug explizit in der Bildzuordnung berücksichtigen. Vorschaukarte, Artikelbild und strukturierte Artikeldaten sollen dasselbe Thema erkennbar machen. Das Leitbild und „Über uns“ haben jeweils ein eigenes Bild. Die Kontaktszene gehört zur Kontaktseite.
+5. **Dateiname und Alt-Text beschreiben das sichtbare Motiv auf Deutsch.** Dateinamen sind kleingeschrieben, mit Bindestrichen, ASCII-Umschreibung und `.webp`. Informationsbilder erhalten einen kurzen beschreibenden Alt-Text. Auf verlinkten Karten mit bereits aussagekräftiger Beschriftung bleibt das Vorschaubild dekorativ.
+6. **Die Motive sind KI-generierte Symbolbilder.** Sie illustrieren Lern- und Berufssituationen. Für namentliche Porträts, Teilnehmerstimmen, Schulungsräume oder dokumentierte Arbeitsergebnisse sind freigegebene Originalaufnahmen erforderlich.
+7. **Vor dem Merge prüfen:** exakt 20 neue Assets in dieser Serie, jede Datei unter ihrem eigenen Namen erreichbar, keine identischen Dateien, passende Ausschnitte bei 3:2 und 2:1, korrekte Textalternative. Beispielseiten in der Vercel-Vorschau öffnen. Bei neuen Regeln zusätzlich einen ähnlichen Kurstitel mit anderer Tätigkeit prüfen.
+
+## Internationale Referenzen
+
+- Die University of Glasgow beschreibt einen natürlichen Reportagestil, eine fachlich passende Umgebung und sichtbare Interaktion. Für FDM bedeutet das etwa, dass beim Gespräch zur Kurswahl die Notizkarte und das Gegenüber erkennbar sind. [University of Glasgow · Photography: People](https://www.gla.ac.uk/myglasgow/staff/brandtoolkit/resources/photographyandvideo/photography/people/)
+- Monash University unterscheidet Kampagnenporträts und spontane Szenen des Studienalltags. Für FDM eignen sich besonders kleine Momente, an denen Können erkennbar wird, etwa der Abgleich eines Bauteils mit einem CAD-Modell. [Monash University · Photography](https://www.monash.edu/brandbook/brand-elements/photography)
+- Die Open University zeigt anhand ihrer Studierendengeschichten, wie sich Lernen mit Arbeit und Alltag verbindet. Das Wochenplanmotiv greift diesen Alltag auf. [The Open University · International student stories](https://www.open.ac.uk/international-students/student-stories/)
