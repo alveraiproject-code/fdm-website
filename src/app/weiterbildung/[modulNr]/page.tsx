@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Award, BookOpen, CalendarClock, CheckCircle, ChevronRight, Clock, FileText, GraduationCap, Users } from "lucide-react";
+import { ArrowRight, Award, BookOpen, CalendarClock, CalendarDays, CheckCircle, ChevronRight, Clock, FileText, GraduationCap, Users } from "lucide-react";
 import AnfrageFormular from "@/components/AnfrageFormular";
 import BeratungSprung from "@/components/BeratungSprung";
 import Kennzeichen from "@/components/Kennzeichen";
 import { faqSeite } from "@/lib/faq";
-import { dauerText, kursPfad, ladeKatalog, ladeKurstext, type Weiterbildung } from "@/lib/katalog";
+import { dauerText, kursPfad, ladeKatalog, ladeKurstext, naechsterStart, tagDe, type Weiterbildung } from "@/lib/katalog";
 import { kettenPfad, kettenVonKurs, ladeKetten } from "@/lib/ketten";
 import { kursdetails } from "@/lib/kursdetails";
 import { breadcrumb, courseAZAV, kursSchema } from "@/lib/schema";
@@ -89,6 +89,11 @@ export default async function KursSeite({ params }: Props) {
       name: "Umfang",
       wert: kurs.lerneinheiten ? `${kurs.lerneinheiten.toLocaleString("de-DE")} Unterrichtseinheiten` : null,
     },
+    {
+      icon: CalendarDays,
+      name: "Nächster Start",
+      wert: naechsterStart(kurs) ? `${tagDe(naechsterStart(kurs)!)} (geplant)` : null,
+    },
     { icon: Users, name: "Gruppe", wert: details?.teilnehmer ?? null },
     { icon: FileText, name: "Maßnahme-ID", wert: details?.massnahme ?? null },
   ].filter((f) => f.wert);
@@ -170,6 +175,35 @@ export default async function KursSeite({ params }: Props) {
                 </div>
               ))}
             </dl>
+
+            {kurs.termine && kurs.termine.length > 0 && (
+              <div className="mb-8 rounded-2xl border border-slate-200 bg-white p-5">
+                <h2 className="flex items-center gap-2 text-lg font-bold text-slate-900">
+                  <CalendarDays className="h-5 w-5 text-[#3f74bc]" aria-hidden="true" />
+                  Geplante Starttermine
+                </h2>
+                <ul className="mt-3 divide-y divide-slate-100">
+                  {kurs.termine.map((t) => (
+                    <li key={t.start} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 py-2 text-sm">
+                      <span className="font-semibold text-slate-900">
+                        <time dateTime={t.start}>{tagDe(t.start)}</time>
+                        {t.ende && (
+                          <>
+                            {" bis "}
+                            <time dateTime={t.ende}>{tagDe(t.ende)}</time>
+                          </>
+                        )}
+                      </span>
+                      <span className="text-slate-600">{kurs.zeitmodell_name}, live online</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-3 text-xs leading-relaxed text-slate-500">
+                  Die Termine sind geplant; wir bestätigen Ihren Starttermin mit der Anmeldung. Weitere Termine nennen
+                  wir Ihnen gern in der Beratung.
+                </p>
+              </div>
+            )}
 
             {details && details.varianten.length > 1 && (
               <p className="mb-8 flex flex-wrap items-center gap-2 text-sm text-slate-600">

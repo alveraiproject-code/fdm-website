@@ -22,7 +22,19 @@ export interface Weiterbildung {
   laufender_einstieg: boolean | null;
   // Als FDM-Maßnahme nach AZAV zugelassen; steuert nur den Wortlaut des Förderhinweises.
   zugelassen?: boolean;
+  // Nächste geplante Starttermine (höchstens drei), aufsteigend. Leer, wenn keine bekannt sind.
+  termine?: Kurstermin[];
 }
+
+export interface Kurstermin {
+  start: string;
+  ende: string | null;
+}
+
+// 2027-01-18 -> 18.01.2027
+export const tagDe = (iso: string) => iso.split("-").reverse().join(".");
+
+export const naechsterStart = (k: Pick<Weiterbildung, "termine">) => k.termine?.[0]?.start ?? null;
 
 // Lädt den Katalog serverseitig und hält ihn fünf Minuten vor.
 // Ist das CRM nicht erreichbar, bleibt die Seite mit leerem Katalog benutzbar.

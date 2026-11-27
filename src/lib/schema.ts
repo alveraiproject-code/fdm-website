@@ -160,12 +160,14 @@ export function kursSchema(k: Weiterbildung) {
     educationalCredentialAwarded: "Zertifikat des Bildungsträgers",
     // Nur zugelassene Maßnahmen werden als förderfähig ausgezeichnet.
     ...(k.zugelassen ? { financialAidEligible: "Bildungsgutschein (Agentur für Arbeit, Jobcenter)" } : {}),
-    hasCourseInstance: {
+    // Mit bekannten Terminen je Termin eine Durchführung, sonst eine ohne Datum.
+    hasCourseInstance: (k.termine?.length ? k.termine : [null]).map((t) => ({
       "@type": "CourseInstance",
       courseMode: ["online", k.zeitmodell === "teilzeit" ? "part-time" : "full-time"],
       ...(stunden ? { courseWorkload: `PT${stunden}H` } : {}),
+      ...(t ? { startDate: t.start, ...(t.ende ? { endDate: t.ende } : {}) } : {}),
       location: { "@type": "VirtualLocation", url },
-    },
+    })),
     offers: {
       "@type": "Offer",
       category: "Paid",

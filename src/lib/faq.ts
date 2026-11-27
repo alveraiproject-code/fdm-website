@@ -111,7 +111,7 @@ export function fragen(z: { gesamt: number; vollzeit: number; teilzeit: number; 
       rubrik: "Teilnahme",
       frage: "Wann kann ich mit der Weiterbildung beginnen?",
       antwort:
-        "Viele Module haben keinen festen Kursbeginn, sodass der Einstieg zu verschiedenen Terminen möglich ist. Den konkreten Starttermin stimmt die FDM Akademie mit Ihnen in der Beratung ab. Wichtig bei einem Bildungsgutschein: Die Weiterbildung muss innerhalb seiner Gültigkeit beginnen.",
+        "Viele Kurse beginnen mehrmals im Jahr, einige sogar wöchentlich. Die nächsten geplanten Starttermine stehen auf der jeweiligen Kursseite. Den konkreten Starttermin stimmt die FDM Akademie mit Ihnen in der Beratung ab und bestätigt ihn mit der Anmeldung. Wichtig bei einem Bildungsgutschein: Die Weiterbildung muss innerhalb seiner Gültigkeit beginnen.",
     },
     {
       rubrik: "Teilnahme",

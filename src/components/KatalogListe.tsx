@@ -3,7 +3,7 @@
 import { useMemo, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { ArrowRight, Clock, Search } from "lucide-react";
-import { dauerText, kursPfad, type Weiterbildung } from "@/lib/katalog";
+import { dauerText, kursPfad, naechsterStart, tagDe, type Weiterbildung } from "@/lib/katalog";
 import Kennzeichen from "@/components/Kennzeichen";
 
 // Durchsuchbare Liste der geförderten Weiterbildungen (Daten kommen serverseitig aus dem CRM).
@@ -101,6 +101,11 @@ export default function KatalogListe({ kurse }: { kurse: Weiterbildung[] }) {
               <span className="font-semibold leading-snug text-slate-900">{k.titel}</span>
               {k.kurzbeschreibung && (
                 <span className="mt-2 line-clamp-3 text-sm text-slate-600">{k.kurzbeschreibung}</span>
+              )}
+              {naechsterStart(k) && (
+                <span className="mt-3 text-xs font-medium text-slate-700">
+                  Nächster Start: {tagDe(naechsterStart(k)!)} (geplant)
+                </span>
               )}
               <span className="mt-auto flex items-center justify-between gap-2 pt-4 text-xs text-slate-500">
                 <span className="inline-flex items-center gap-1">
