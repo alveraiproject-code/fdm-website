@@ -29,6 +29,7 @@ export default function KontaktPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          anrede: text("anrede"),
           vorname: text("vorname"),
           nachname: text("nachname"),
           email: text("email"),
@@ -266,6 +267,21 @@ export default function KontaktPage() {
                           Bitte dieses Feld leer lassen
                           <input name="zusatz_b7" tabIndex={-1} autoComplete="off" />
                         </label>
+                      </div>
+
+                      <div>
+                        <label htmlFor="anrede" className="block text-sm font-medium mb-1.5 text-slate-700">
+                          Anrede <span aria-hidden="true">*</span>
+                          <span className="sr-only">(Pflichtfeld)</span>
+                        </label>
+                        <select id="anrede" name="anrede" required defaultValue="" className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#3f74bc]/30 focus:border-[#3f74bc] bg-white sm:max-w-[calc(50%-0.5rem)]">
+                          <option value="" disabled>
+                            Bitte wählen
+                          </option>
+                          <option>Frau</option>
+                          <option>Herr</option>
+                          <option value="Divers">Divers / keine Angabe</option>
+                        </select>
                       </div>
 
                       <div className="grid sm:grid-cols-2 gap-4">

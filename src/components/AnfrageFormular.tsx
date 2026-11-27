@@ -123,12 +123,14 @@ export default function AnfrageFormular({
       )}
       <div className="grid gap-3 sm:grid-cols-2">
         <label>
-          <span className={beschriftung}>Anrede</span>
-          <select name="anrede" className={feld} defaultValue="">
-            <option value="">–</option>
+          <span className={beschriftung}>Anrede *</span>
+          <select name="anrede" required className={feld} defaultValue="">
+            <option value="" disabled>
+              Bitte wählen
+            </option>
             <option>Frau</option>
             <option>Herr</option>
-            <option>Divers</option>
+            <option value="Divers">Divers / keine Angabe</option>
           </select>
         </label>
         <label>
