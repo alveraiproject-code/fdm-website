@@ -130,9 +130,10 @@ export default function FoerderCheck({ quelle }: { quelle: string }) {
           beschaeftigungsstatus: situation,
           interesse: bereich,
           nachricht,
-          firma_website: text("firma_website"),
+          zusatz_b7: text("zusatz_b7"),
           einwilligung: f.get("einwilligung") === "on",
           geladen: geladen.current,
+          dauer: Date.now() - geladen.current,
           quelle,
           kurs: "",
         }),
@@ -307,7 +308,7 @@ export default function FoerderCheck({ quelle }: { quelle: string }) {
           <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
             <label>
               Bitte dieses Feld leer lassen
-              <input name="firma_website" tabIndex={-1} autoComplete="off" />
+              <input name="zusatz_b7" tabIndex={-1} autoComplete="off" />
             </label>
           </div>
 

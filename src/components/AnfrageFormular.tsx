@@ -66,9 +66,10 @@ export default function AnfrageFormular({
           ort: text("ort"),
           beschaeftigungsstatus: text("beschaeftigungsstatus"),
           nachricht,
-          firma_website: text("firma_website"),
+          zusatz_b7: text("zusatz_b7"),
           einwilligung: f.get("einwilligung") === "on",
           geladen: geladen.current,
+          dauer: Date.now() - geladen.current,
           quelle: quelle ?? "fdm-group.de",
           kurs: kurs ?? "",
         }),
@@ -186,7 +187,7 @@ export default function AnfrageFormular({
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label>
           Bitte dieses Feld leer lassen
-          <input name="firma_website" tabIndex={-1} autoComplete="off" />
+          <input name="zusatz_b7" tabIndex={-1} autoComplete="off" />
         </label>
       </div>
 
