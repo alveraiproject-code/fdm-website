@@ -253,6 +253,51 @@ const motive: Record<string, Motiv> = {
   "thema/umwelt": {
     "datei": "umweltmanagement-betriebsbegehung-pruefen",
     "alt": "Zwei Fachkräfte prüfen bei einer Begehung den Betriebshof."
+  },
+  // Serie 4: Medien, Design und 3D
+  "thema/bildbearbeitung": {
+    "datei": "bildbearbeitung-foto-retuschieren",
+    "alt": "Eine Bildbearbeiterin vergleicht am Monitor ein Foto vor und nach der Retusche."
+  },
+  "thema/vektor": {
+    "datei": "vektorgrafik-illustration-zeichnen",
+    "alt": "Ein Illustrator zeichnet mit dem Grafiktablett eine Vektorgrafik."
+  },
+  "thema/print": {
+    "datei": "printlayout-broschuere-pruefen",
+    "alt": "Eine Mediengestalterin vergleicht einen Ausdruck mit dem Seitenlayout am Bildschirm."
+  },
+  "thema/video": {
+    "datei": "videoschnitt-zeitleiste-bearbeiten",
+    "alt": "Ein Cutter bearbeitet an einem Schnittplatz die Zeitleiste eines Videos."
+  },
+  "thema/motion": {
+    "datei": "motion-design-animation-anlegen",
+    "alt": "Eine Motion-Designerin legt am Bildschirm die Bewegungsphasen einer Animation an."
+  },
+  "thema/ux": {
+    "datei": "ux-design-prototyp-testen",
+    "alt": "Zwei Personen testen einen App-Entwurf auf dem Smartphone und machen Notizen."
+  },
+  "thema/website": {
+    "datei": "website-inhalte-pflegen",
+    "alt": "Ein Mann bearbeitet am Laptop die Inhalte einer Website und prüft sie auf dem Tablet."
+  },
+  "thema/kikreativ": {
+    "datei": "ki-kreativarbeit-bildideen-auswaehlen",
+    "alt": "Eine Gestalterin wählt am Monitor aus mehreren Bildentwürfen einen aus."
+  },
+  "thema/3danimation": {
+    "datei": "3d-animation-figur-posieren",
+    "alt": "Ein 3D-Artist stellt am Monitor die Pose einer Figur ein, daneben steht eine Gliederpuppe."
+  },
+  "thema/echtzeit": {
+    "datei": "echtzeit-3d-szene-begehen",
+    "alt": "Eine Entwicklerin bewegt sich am Monitor durch einen virtuellen Innenraum."
+  },
+  "thema/fashion": {
+    "datei": "digital-fashion-kleidung-virtuell",
+    "alt": "Eine Modedesignerin vergleicht ein Stoffmuster mit einem virtuellen Kleidungsstück am Monitor."
   }
 };
 
@@ -277,6 +322,18 @@ const kursMotive: ReadonlyArray<[RegExp, string]> = [
   [/ausbilder|\baevo\b|dozent|weiterbildungspädagog|berufspädagog/i, "thema/ausbilder"],
   [/pädagog|schulbegleit|lehrer|lehrkräfte|integrationsassistent/i, "thema/paedagogik"],
   [/coach|mediation|verhandlungstechnik|business-networking|moderieren/i, "thema/coaching"],
+  // Medien, Design und 3D: je Tätigkeit ein eigenes Motiv
+  [/character.animation|3d.*motion graphics/i, "thema/3danimation"],
+  [/unreal|realtime|projektvisualisierung/i, "thema/echtzeit"],
+  [/digital fashion|virtual garments/i, "thema/fashion"],
+  [/photoshop|bildbearbeitung|\bgimp\b|kamerabild/i, "thema/bildbearbeitung"],
+  [/illustrator|vektor|charakterdesign/i, "thema/vektor"],
+  [/indesign|barrierefreie pdf|\bprint\b/i, "thema/print"],
+  [/premiere|videoschnitt|kreativberufe: (?:kino|klangwelt)/i, "thema/video"],
+  [/after effects|\banimate\b|charakter-animation|motion graphics/i, "thema/motion"],
+  [/\bux\b|user experience|prototyping/i, "thema/ux"],
+  [/wordpress|\bcms\b|websites|webauftritt|onlineshop|bilddatenbank/i, "thema/website"],
+  [/kreativberufe: konzept|grafik, design und werbung|adobe express|content-produktion/i, "thema/kikreativ"],
   [/architekturvisualisierung/i, "3D und Digital Design"],
   [/\b(?:cgi|blender|zbrush|unreal engine)\b|3d.modell/i, "kurs/3D und Digital Design"],
   [/datenanaly|data[- ]?(?:science|scientist|analyst|engineering)|datenvisualisierung|business intelligence|power bi|machine learning/i, "kurs/Künstliche Intelligenz"],
@@ -296,7 +353,7 @@ const kursMotive: ReadonlyArray<[RegExp, string]> = [
   [/technische.{0,4} redakteur/i, "thema/redaktion"],
   [/social media|content creator|online.marketing experte|praxisprojekt im marketing/i, "kurs/Marketing und Vertrieb"],
   [/suchmaschinen|\bseo\b|\bsem\b|webanalyse|performance.marketing/i, "Marketing und Vertrieb"],
-  [/indesign|illustrator|photoshop|\bgimp\b|bildbearbeitung|grafik.{0,12}design|layout|farbgestaltung/i, "kurs/Medien und Design"],
+  [/grafik.{0,12}design|layout|farbgestaltung/i, "kurs/Medien und Design"],
   [/copilot|ki.{0,14}büro|prompt/i, "Künstliche Intelligenz"],
   [/energieberat|energieeffizien|wohngebäude/i, "kurs/Umwelt und Energie"],
   [/umwelt|nachhaltig|klimaschutz|naturschutz|gewässer|\blca\b|lebenszyklus/i, "thema/umwelt"],

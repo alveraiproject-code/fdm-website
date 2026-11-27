@@ -106,3 +106,7 @@ Die 24 Motive stehen in `src/lib/bilder.ts` unter Schlüsseln der Form `thema/<n
 | [3d-animation-figur-posieren.webp](../public/bilder/3d-animation-figur-posieren.webp) | Ein 3D-Artist stellt am Monitor die Pose einer Figur ein, daneben steht eine Gliederpuppe. |
 | [echtzeit-3d-szene-begehen.webp](../public/bilder/echtzeit-3d-szene-begehen.webp) | Eine Entwicklerin bewegt sich am Monitor durch einen virtuellen Innenraum. |
 | [digital-fashion-kleidung-virtuell.webp](../public/bilder/digital-fashion-kleidung-virtuell.webp) | Eine Modedesignerin vergleicht ein Stoffmuster mit einem virtuellen Kleidungsstück am Monitor. |
+
+### Einbindung der Serie 4 (28.11.2026)
+
+Die elf Motive stehen in `src/lib/bilder.ts` unter `thema/<name>` (zum Beispiel `thema/bildbearbeitung`, `thema/video`, `thema/echtzeit`). Die bisherigen Sammelmotive `mediendesign-farbkonzept-layout.webp` und `3d-modellierung-materialstudie.webp` stehen nur noch bei Gestaltungsgrundlagen sowie 3D-Grundlagen und Materialien. Der Auftrag an die Bildlieferung steht in [bildauftrag-serie-4-medien.md](bildauftrag-serie-4-medien.md).
