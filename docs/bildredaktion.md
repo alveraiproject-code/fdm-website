@@ -86,3 +86,7 @@ Die Regeln in `kursMotive` wurden bei der Übernahme erweitert, weil das allgeme
 | [arztpraxis-empfang-terminplanung.webp](../public/bilder/arztpraxis-empfang-terminplanung.webp) | Eine medizinische Fachangestellte plant am Empfang einer Praxis Termine. |
 | [seniorenbetreuung-aktivierung-gespraech.webp](../public/bilder/seniorenbetreuung-aktivierung-gespraech.webp) | Eine Betreuungskraft sieht mit einer älteren Frau ein Fotoalbum an. |
 | [umweltmanagement-betriebsbegehung-pruefen.webp](../public/bilder/umweltmanagement-betriebsbegehung-pruefen.webp) | Zwei Fachkräfte prüfen bei einer Begehung den Betriebshof. |
+
+### Einbindung der Serie 3 (27.11.2026)
+
+Die 24 Motive stehen in `src/lib/bilder.ts` unter Schlüsseln der Form `thema/<name>` (zum Beispiel `thema/kita`, `thema/cloud`, `thema/lager`) und werden über die Regeln in `kursMotive` den Kursen zugeordnet. Damit ersetzen sie die Behelfsmotive aus dem Nachtrag oben: Pädagogik, Coaching, Cloud, Büro, Logistik, SPS, CNC, Aufstiegsfortbildungen, Personal, Arztpraxis, Seniorenbetreuung und Umweltmanagement haben jetzt ein eigenes Bild. Nach der Einbindung steht kein Motiv bei mehr als 35 verschiedenen Kursen. Der Auftrag an die Bildlieferung steht in [bildauftrag-serie-3.md](bildauftrag-serie-3.md).

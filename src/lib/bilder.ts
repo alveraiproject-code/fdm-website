@@ -156,6 +156,103 @@ const motive: Record<string, Motiv> = {
   "leitbild": {
     "datei": "lernfeedback-weiterbildung-gemeinsam",
     "alt": "Zwei Lernende geben einander Rückmeldung zu einer bearbeiteten Aufgabe."
+  },
+  // Serie 3: Motive für einzelne Kursgruppen
+  "thema/kita": {
+    "datei": "kita-assistenz-bastelangebot-vorbereiten",
+    "alt": "Eine Frau bereitet an einem niedrigen Tisch in einer Kita Bastelmaterial vor."
+  },
+  "thema/paedagogik": {
+    "datei": "paedagogik-fallbesprechung-foerderplan",
+    "alt": "Zwei Fachkräfte besprechen an einem Tisch einen Förderplan."
+  },
+  "thema/coaching": {
+    "datei": "coaching-gespraech-zielklaerung",
+    "alt": "Eine Coachin hört einem Klienten zu, der sein Anliegen erklärt."
+  },
+  "thema/ausbilder": {
+    "datei": "ausbildereignung-unterweisung-arbeitsplatz",
+    "alt": "Ein Ausbilder erklärt einer Auszubildenden einen Arbeitsschritt."
+  },
+  "thema/deutsch": {
+    "datei": "berufsbezogenes-deutsch-gespraech-ueben",
+    "alt": "Zwei Erwachsene üben mit Arbeitsblättern ein Gespräch aus dem Berufsalltag."
+  },
+  "thema/englisch": {
+    "datei": "wirtschaftsenglisch-besprechung-ueben",
+    "alt": "Eine Frau stellt zwei Kollegen an einem Flipchart ein Diagramm vor."
+  },
+  "thema/cloud": {
+    "datei": "cloud-administration-dienste-ueberwachen",
+    "alt": "Ein Administrator prüft Auslastungsdiagramme auf zwei Monitoren."
+  },
+  "thema/sicherheit": {
+    "datei": "it-sicherheit-zugriffe-pruefen",
+    "alt": "Eine IT-Fachfrau prüft Sicherheitswarnungen am Bildschirm."
+  },
+  "thema/datenschutz": {
+    "datei": "datenschutz-unterlagen-pruefen",
+    "alt": "Ein Mann gleicht Unterlagen in einem Ordner mit einer Checkliste ab."
+  },
+  "thema/office": {
+    "datei": "office-tabellenkalkulation-auswerten",
+    "alt": "Eine Frau wertet am Laptop eine Tabelle mit Diagramm aus."
+  },
+  "thema/grundlagen": {
+    "datei": "computergrundlagen-erste-schritte",
+    "alt": "Eine Frau folgt am Laptop Schritt für Schritt einer gedruckten Anleitung."
+  },
+  "thema/web": {
+    "datei": "webentwicklung-seitenentwurf-umsetzen",
+    "alt": "Ein Entwickler vergleicht eine Skizze mit dem Seitenaufbau am Bildschirm."
+  },
+  "thema/lager": {
+    "datei": "lagerlogistik-wareneingang-erfassen",
+    "alt": "Eine Lagermitarbeiterin erfasst einen Karton mit dem Handscanner."
+  },
+  "thema/sps": {
+    "datei": "sps-technik-steuerung-programmieren",
+    "alt": "Ein Techniker programmiert mit dem Laptop eine Steuerung im Schaltschrank."
+  },
+  "thema/cnc": {
+    "datei": "cnc-fraesen-maschine-einrichten",
+    "alt": "Eine Fachkraft richtet an einer CNC-Fräsmaschine ein Werkstück ein."
+  },
+  "thema/elektro": {
+    "datei": "elektrotechnik-messung-pruefen",
+    "alt": "Ein Elektriker misst an einer Übungstafel eine Schaltung durch."
+  },
+  "thema/facility": {
+    "datei": "facility-management-gebaeudetechnik-pruefen",
+    "alt": "Eine Fachkraft prüft mit einem Tablet eine Anlage im Technikraum."
+  },
+  "thema/redaktion": {
+    "datei": "technische-redaktion-anleitung-erstellen",
+    "alt": "Ein Redakteur gleicht ein Gerät mit seiner Anleitung am Bildschirm ab."
+  },
+  "thema/aufstieg": {
+    "datei": "aufstiegsfortbildung-lerngruppe-pruefungsvorbereitung",
+    "alt": "Drei Berufstätige bereiten sich gemeinsam auf eine Prüfung vor."
+  },
+  "thema/immobilien": {
+    "datei": "immobilien-grundriss-besprechen",
+    "alt": "Eine Immobilienfachfrau erläutert einem Kunden einen Grundriss."
+  },
+  "thema/personal": {
+    "datei": "personalwesen-bewerbungsgespraech-fuehren",
+    "alt": "Eine Personalerin führt mit einem Bewerber ein Gespräch."
+  },
+  "thema/arztpraxis": {
+    "datei": "arztpraxis-empfang-terminplanung",
+    "alt": "Eine medizinische Fachangestellte plant am Empfang einer Praxis Termine."
+  },
+  "thema/senioren": {
+    "datei": "seniorenbetreuung-aktivierung-gespraech",
+    "alt": "Eine Betreuungskraft sieht mit einer älteren Frau ein Fotoalbum an."
+  },
+  "thema/umwelt": {
+    "datei": "umweltmanagement-betriebsbegehung-pruefen",
+    "alt": "Zwei Fachkräfte prüfen bei einer Begehung den Betriebshof."
   }
 };
 
@@ -172,44 +269,55 @@ const artikelMotive: Record<string, string> = {
 // Regel gewinnt; deshalb stehen enge Regeln vor weiten. Das Bild soll die Tätigkeit des Kurses zeigen, nicht
 // nur den Fachbereich: Ein Cloud-Kurs zeigt kein Programmieren, ein Logistikkurs kein CAD-Modell.
 const kursMotive: ReadonlyArray<[RegExp, string]> = [
-  // Metallbearbeitung: Werkstück und Messmittel
-  [/\bcnc\b|fräsen|industriemeister\/-in (?:metall|mechatronik)/i, "kurs/Qualitätsmanagement"],
+  [/\bcnc\b|fräsen|industriemeister\/-in (?:metall|mechatronik)/i, "thema/cnc"],
   // Sprachkurse. "in deutscher und englischer Sprache" und "in Deutschland" sind keine Sprachkurse.
-  [/\bdeutsch\b|englisch\b|fremdsprache|sprachtraining|sprachzertifikat|textverständnis/i, "kurs/Sprachen und Schlüsselkompetenzen"],
-  // Pädagogik und Begleitung von Lernenden
-  [/pädagog|\bkita\b|schulbegleit|lehrer|lehrkräfte|integrationsassistent/i, "leitbild"],
-  // Gesprächsführung
-  [/coach|mediation|verhandlungstechnik|ausbilder|\baevo\b|dozent|business-networking|moderieren/i, "gespraech-arbeitsagentur-weiterbildung"],
+  [/\bdeutsch\b|textverständnis/i, "thema/deutsch"],
+  [/englisch\b|fremdsprache|sprachtraining|sprachzertifikat/i, "thema/englisch"],
+  [/\bkita\b/i, "thema/kita"],
+  [/ausbilder|\baevo\b|dozent|weiterbildungspädagog|berufspädagog/i, "thema/ausbilder"],
+  [/pädagog|schulbegleit|lehrer|lehrkräfte|integrationsassistent/i, "thema/paedagogik"],
+  [/coach|mediation|verhandlungstechnik|business-networking|moderieren/i, "thema/coaching"],
   [/architekturvisualisierung/i, "3D und Digital Design"],
   [/\b(?:cgi|blender|zbrush|unreal engine)\b|3d.modell/i, "kurs/3D und Digital Design"],
   [/datenanaly|data[- ]?(?:science|scientist|analyst|engineering)|datenvisualisierung|business intelligence|power bi|machine learning/i, "kurs/Künstliche Intelligenz"],
-  [/programmier|softwareentwicklung|softwaredesign|anwendungsentwicklung|objektorientierung|webentwicklung|frontend|backend|python|javascript|typescript|\bjava\b|c\+\+|c#|\bphp\b|\bsql\b|html/i, "kurs/IT und EDV"],
-  [/netzwerk|networking|server|cloud|\baws\b|azure|administrator|cybersicherheit|it-sicherheit|\bsecurity\b|hacking|comptia|infrastrukturbetrieb/i, "IT und EDV"],
-  [/\b(?:word|excel|powerpoint|outlook|access|sharepoint)\b|microsoft teams|büroverwaltung|büromanagement|schriftverkehr|pc-grundlagen|browser|online grundlagen|online zusammenarbeit|datenschutz|low-code/i, "selbstlernen"],
+  [/html|\bcss\b|frontend|webentwicklung|webdesign|webseitengestaltung|webprogrammierung|javascript|typescript/i, "thema/web"],
+  [/programmier|softwareentwicklung|softwaredesign|anwendungsentwicklung|objektorientierung|backend|python|\bjava\b|c\+\+|c#|\bphp\b|\bsql\b/i, "kurs/IT und EDV"],
+  [/cybersicherheit|it-sicherheit|\bsecurity\b|hacking|identity/i, "thema/sicherheit"],
+  [/cloud|\baws\b|azure|administrator/i, "thema/cloud"],
+  [/netzwerk|networking|server|comptia|infrastrukturbetrieb/i, "IT und EDV"],
+  [/datenschutz/i, "thema/datenschutz"],
+  [/pc-grundlagen|online grundlagen|online zusammenarbeit|browser|grundkompetenzen/i, "thema/grundlagen"],
+  [/\b(?:word|excel|powerpoint|outlook|access|sharepoint)\b|microsoft teams|büroverwaltung|büromanagement|sekretariat|schriftverkehr|low-code/i, "thema/office"],
+  [/logisti|\blager|spedition|supply-chain|kraftverkehr/i, "thema/lager"],
   [/buchhalt|datev|lohn.{0,12}abrechnung|rechnungswesen|belegerfassung|steuerrecht/i, "kurs/Kaufmännisch"],
-  // Lager, Logistik, Elektro- und Anlagentechnik: Arbeit im Betrieb statt am CAD-Modell
-  [/logisti|\blager|spedition|supply-chain|kraftverkehr|meister\/-in|facility|\bsps\b|elektrotechni|robotertechnik/i, "arbeitgeber"],
-  [/technische.{0,4} redakteur/i, "Künstliche Intelligenz"],
+  [/elektrotechni|\beplan/i, "thema/elektro"],
+  [/\bsps\b|robotertechnik/i, "thema/sps"],
+  [/facility|wärmepumpe/i, "thema/facility"],
+  [/technische.{0,4} redakteur/i, "thema/redaktion"],
   [/social media|content creator|online.marketing experte|praxisprojekt im marketing/i, "kurs/Marketing und Vertrieb"],
   [/suchmaschinen|\bseo\b|\bsem\b|webanalyse|performance.marketing/i, "Marketing und Vertrieb"],
   [/indesign|illustrator|photoshop|\bgimp\b|bildbearbeitung|grafik.{0,12}design|layout|farbgestaltung/i, "kurs/Medien und Design"],
   [/copilot|ki.{0,14}büro|prompt/i, "Künstliche Intelligenz"],
-  [/energieberat|energieeffizien|wohngebäude|wärmepumpe/i, "kurs/Umwelt und Energie"],
+  [/energieberat|energieeffizien|wohngebäude/i, "kurs/Umwelt und Energie"],
+  [/umwelt|nachhaltig|klimaschutz|naturschutz|gewässer|\blca\b|lebenszyklus/i, "thema/umwelt"],
+  [/photovoltaik|sonnenenergie|energiemanagement/i, "Umwelt und Energie"],
   [/auditor|auditverfahren|prozessmanagement/i, "Qualitätsmanagement"],
-  [/umwelt|nachhaltig|klimaschutz|naturschutz|gewässer|\blca\b|lebenszyklus|photovoltaik|sonnenenergie|energiemanagement/i, "Umwelt und Energie"],
   [/teamarbeit|scrum|projektmanagement|\bproject\b|moderation/i, "kurs/Management und Personal"],
-  [/personal(?:arbeit|management|wesen|verwaltung|recht)|recht in der personal|mitarbeiterführung|führen von/i, "Management und Personal"],
-  [/pflegeberat|praxisanleitung|demenz|betreuungskraft/i, "kurs/Gesundheit und Pflege"],
-  [/praxismanage|arztpraxis|zahn|abrechnung|\bebm\b|terminologie|fachkunde|dokumentation.*pflege|e-health/i, "Gesundheit und Pflege"],
+  [/personal(?:arbeit|management|wesen|verwaltung|recht|fach)|recht in der personal|recruiting|mitarbeiterführung|führen von/i, "thema/personal"],
+  [/betreuungskraft|seniorenbetreu|demenz/i, "thema/senioren"],
+  [/pflegeberat|praxisanleitung/i, "kurs/Gesundheit und Pflege"],
+  [/praxismanage|arztpraxis|zahn|abrechnung|\bebm\b|terminologie|fachkunde/i, "thema/arztpraxis"],
+  [/dokumentation.*pflege|e-health/i, "Gesundheit und Pflege"],
   [/veranstaltung|eventmanage|bedienung und service/i, "kurs/Hotel und Gastronomie"],
   [/\brezeption|hotelmanagement/i, "Hotel und Gastronomie"],
   [/qualitätsfachkraft|qualitätsmanagement|qualitätssicherung/i, "kurs/Qualitätsmanagement"],
   [/objektschutz|bewachung|sicherheitskraft/i, "kurs/Schutz und Sicherheit"],
-  [/solidworks|autocad|inventor|konstruktion(?!.*zahn)/i, "kurs/Technik und CAD"],
-  // Kaufmännische Abschlüsse und Betriebswirtschaft: Arbeit mit Zahlen und Unterlagen statt Belege kontieren
-  [/fachwirt|betriebswirt|fachkaufmann|\bbwl\b|business skills|immobilien|rechtsanwalt|wirtschaftsrecht|unternehmerisch|auftragsbearbeitung|kompaktwissen/i, "Kaufmännisch"],
+  [/solidworks|autocad|inventor|konstruktion/i, "kurs/Technik und CAD"],
+  [/immobilien/i, "thema/immobilien"],
+  // Aufstiegsfortbildungen der IHK und Betriebswirtschaft: gemeinsame Prüfungsvorbereitung
+  [/fachwirt|betriebswirt|fachkaufmann|meister\/-in|\bbwl\b|business skills/i, "thema/aufstieg"],
+  [/rechtsanwalt|wirtschaftsrecht|unternehmerisch|auftragsbearbeitung|kompaktwissen/i, "Kaufmännisch"],
   [/vertrieb|\bsales\b|verkauf|e-commerce/i, "Marketing und Vertrieb"],
-  [/grundkompetenzen/i, "unterricht"],
   [/lern- und arbeitstechniken|lernstrategien|digitales lernen|zeitmanagement|selbstmanagement/i, "vollzeit-oder-teilzeit-weiterbildung"],
 ];
 
