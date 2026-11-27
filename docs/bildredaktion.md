@@ -55,3 +55,4 @@ Die Regeln in `kursMotive` wurden bei der Übernahme erweitert, weil das allgeme
 - Cloud, Administration und IT-Sicherheit zeigen die Netzwerkplanung, Büro- und Anwenderkurse den digitalen Lernplatz.
 - Lager, Logistik, SPS und Meisterkurse zeigen die Planung im Betrieb, CNC und Metall das Werkstück mit Messschieber.
 - Nach jeder Änderung an den Regeln die Verteilung über den ganzen Katalog prüfen: Kein Motiv soll bei mehr als etwa 45 verschiedenen Kursen stehen.
+- Die Motive sollen keinen bestimmten Ort zeigen. In vier Bildern war im Hintergrund der Berliner Fernsehturm zu sehen; er wurde retuschiert. Neue Motive ohne erkennbare Wahrzeichen anlegen.
