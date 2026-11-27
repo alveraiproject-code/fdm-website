@@ -78,7 +78,7 @@ const motive: Record<string, Motiv> = {
     "alt": "Zwei Fachkräfte besprechen einen Gebäudeplan."
   },
   "kurs/IT und EDV": {
-    "datei": "softwareentwicklung-programmieren-lernprojekt",
+    "datei": "softwareentwicklung-programm-pruefen",
     "alt": "Eine Lernende prüft ein Programm am Bildschirm."
   },
   "kurs/Sprachen und Schlüsselkompetenzen": {
@@ -86,11 +86,11 @@ const motive: Record<string, Motiv> = {
     "alt": "Zwei junge Erwachsene üben einen Dialog mit Bildkarten."
   },
   "kurs/Kaufmännisch": {
-    "datei": "finanzbuchhaltung-belege-kontieren",
+    "datei": "finanzbuchhaltung-belege-ordnen",
     "alt": "Ein Lernender ordnet Belege neben Taschenrechner und Buchungsunterlagen."
   },
   "kurs/Technik und CAD": {
-    "datei": "cad-konstruktion-prototyp-pruefen",
+    "datei": "cad-konstruktion-prototyp-vergleichen",
     "alt": "Eine Konstrukteurin vergleicht einen Prototyp mit dem CAD-Modell."
   },
   "kurs/Gesundheit und Pflege": {
@@ -122,7 +122,7 @@ const motive: Record<string, Motiv> = {
     "alt": "Ein 3D-Gestalter vergleicht Materialproben mit einem digital gerenderten Stuhl."
   },
   "kurs/Künstliche Intelligenz": {
-    "datei": "ki-datenanalyse-ergebnis-pruefen",
+    "datei": "datenanalyse-punktdiagramme-vergleichen",
     "alt": "Eine Lernende vergleicht zwei Punktdiagramme bei einer Datenanalyse."
   },
   "kurs/Hotel und Gastronomie": {
