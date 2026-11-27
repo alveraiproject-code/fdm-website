@@ -40,7 +40,7 @@ export default function DatenschutzPage() {
               <br />
               Telefon: 07161 – 6275120
               <br />
-              E-Mail: info@fdm-group.de
+              E-Mail: beratung@fdm-akademie.de
               <br />
               Vertreten durch: Dursun Alver (Geschäftsführer)
             </p>
@@ -99,7 +99,7 @@ export default function DatenschutzPage() {
               lit. a DSGVO) sowie die Durchführung vorvertraglicher Maßnahmen
               auf Ihre Anfrage hin (Art. 6 Abs. 1 lit. b DSGVO). Sie können
               Ihre Einwilligung jederzeit mit Wirkung für die Zukunft
-              widerrufen, zum Beispiel per E-Mail an info@fdm-group.de. Die
+              widerrufen, zum Beispiel per E-Mail an beratung@fdm-akademie.de. Die
               Verarbeitung bis zum Widerruf bleibt rechtmäßig.
             </p>
             <h3 className="font-semibold mb-1">Verwaltung der Anfragen</h3>
@@ -246,7 +246,7 @@ export default function DatenschutzPage() {
             </p>
             <p>
               Wenn Sie Fragen zum Datenschutz haben, wenden Sie sich bitte an:
-              info@fdm-group.de
+              beratung@fdm-akademie.de
             </p>
           </div>
 

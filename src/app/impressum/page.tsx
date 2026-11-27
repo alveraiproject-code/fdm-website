@@ -46,11 +46,11 @@ export default function ImpressumPage() {
               <br />
               E-Mail:{" "}
               <a
-                href="mailto:info@fdm-group.de"
+                href="mailto:beratung@fdm-akademie.de"
                 className="hover:underline"
                 style={{ color: "#3f74bc" }}
               >
-                info@fdm-group.de
+                beratung@fdm-akademie.de
               </a>
               <br />
               Website:{" "}

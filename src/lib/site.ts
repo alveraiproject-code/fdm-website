@@ -14,7 +14,7 @@ export const TRAEGER = {
   plz: "73054",
   telefon: "07161 6275120",
   telefonLink: "+4971616275120",
-  email: "info@fdm-group.de",
+  email: "beratung@fdm-akademie.de",
   beratungEmail: "beratung@fdm-akademie.de",
   zertifikat: "Z-000473-2",
   zertifizierer: "GZQ GmbH (von der DAkkS akkreditierte Zertifizierungsstelle)",
