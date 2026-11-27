@@ -44,3 +44,14 @@ Bei Kursen nennt die Tabelle eine konkrete Beispielseite. Weitere fachlich passe
 - Die University of Glasgow beschreibt einen natürlichen Reportagestil, eine fachlich passende Umgebung und sichtbare Interaktion. Für FDM bedeutet das etwa, dass beim Gespräch zur Kurswahl die Notizkarte und das Gegenüber erkennbar sind. [University of Glasgow · Photography: People](https://www.gla.ac.uk/myglasgow/staff/brandtoolkit/resources/photographyandvideo/photography/people/)
 - Monash University unterscheidet Kampagnenporträts und spontane Szenen des Studienalltags. Für FDM eignen sich besonders kleine Momente, an denen Können erkennbar wird, etwa der Abgleich eines Bauteils mit einem CAD-Modell. [Monash University · Photography](https://www.monash.edu/brandbook/brand-elements/photography)
 - Die Open University zeigt anhand ihrer Studierendengeschichten, wie sich Lernen mit Arbeit und Alltag verbindet. Das Wochenplanmotiv greift diesen Alltag auf. [The Open University · International student stories](https://www.open.ac.uk/international-students/student-stories/)
+
+## Nachträge bei der Übernahme (27.11.2026)
+
+Die Regeln in `kursMotive` wurden bei der Übernahme erweitert, weil das allgemeine Kursbild eines Fachbereichs bei vielen Kursen eine falsche Tätigkeit zeigte (zum Beispiel Programmieren bei Cloud- und Bürokursen, ein CAD-Modell bei Logistik- und SPS-Kursen, Belege kontieren bei Fachwirten). Es gilt:
+
+- Die erste passende Regel gewinnt; enge Regeln stehen vor weiten.
+- „in deutscher und englischer Sprache“ und „in Deutschland“ im Titel machen einen Kurs nicht zum Sprachkurs.
+- Pädagogik, Kita und Schulbegleitung zeigen das Motiv „Rückmeldung zu einer Aufgabe“, Coaching und Mediation das Gesprächsmotiv.
+- Cloud, Administration und IT-Sicherheit zeigen die Netzwerkplanung, Büro- und Anwenderkurse den digitalen Lernplatz.
+- Lager, Logistik, SPS und Meisterkurse zeigen die Planung im Betrieb, CNC und Metall das Werkstück mit Messschieber.
+- Nach jeder Änderung an den Regeln die Verteilung über den ganzen Katalog prüfen: Kein Motiv soll bei mehr als etwa 45 verschiedenen Kursen stehen.

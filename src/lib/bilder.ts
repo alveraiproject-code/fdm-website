@@ -168,33 +168,49 @@ const artikelMotive: Record<string, string> = {
   "ki-weiterbildung-fuer-beschaeftigte": "Künstliche Intelligenz"
 };
 
-// Ein konkretes Kursthema hat Vorrang vor der organisatorischen Fachbereichszuordnung.
+// Ein konkretes Kursthema hat Vorrang vor der organisatorischen Fachbereichszuordnung. Die erste passende
+// Regel gewinnt; deshalb stehen enge Regeln vor weiten. Das Bild soll die Tätigkeit des Kurses zeigen, nicht
+// nur den Fachbereich: Ein Cloud-Kurs zeigt kein Programmieren, ein Logistikkurs kein CAD-Modell.
 const kursMotive: ReadonlyArray<[RegExp, string]> = [
-  [/deutsch|englisch|fremdsprache|sprachtraining|verhandlungstechnik/i, "kurs/Sprachen und Schlüsselkompetenzen"],
+  // Metallbearbeitung: Werkstück und Messmittel
+  [/\bcnc\b|fräsen|industriemeister\/-in (?:metall|mechatronik)/i, "kurs/Qualitätsmanagement"],
+  // Sprachkurse. "in deutscher und englischer Sprache" und "in Deutschland" sind keine Sprachkurse.
+  [/\bdeutsch\b|englisch\b|fremdsprache|sprachtraining|sprachzertifikat|textverständnis/i, "kurs/Sprachen und Schlüsselkompetenzen"],
+  // Pädagogik und Begleitung von Lernenden
+  [/pädagog|\bkita\b|schulbegleit|lehrer|lehrkräfte|integrationsassistent/i, "leitbild"],
+  // Gesprächsführung
+  [/coach|mediation|verhandlungstechnik|ausbilder|\baevo\b|dozent|business-networking|moderieren/i, "gespraech-arbeitsagentur-weiterbildung"],
   [/architekturvisualisierung/i, "3D und Digital Design"],
   [/\b(?:cgi|blender|zbrush|unreal engine)\b|3d.modell/i, "kurs/3D und Digital Design"],
-  [/programmier|softwareentwicklung|anwendungsentwicklung|python|javascript|\bjava\b|c\+\+/i, "kurs/IT und EDV"],
-  [/netzwerk|server|cloud-infrastruktur|infrastrukturbetrieb/i, "IT und EDV"],
-  [/buchhaltung|datev|lohn.{0,12}abrechnung|rechnungswesen|belegerfassung/i, "kurs/Kaufmännisch"],
+  [/datenanaly|data[- ]?(?:science|scientist|analyst|engineering)|datenvisualisierung|business intelligence|power bi|machine learning/i, "kurs/Künstliche Intelligenz"],
+  [/programmier|softwareentwicklung|softwaredesign|anwendungsentwicklung|objektorientierung|webentwicklung|frontend|backend|python|javascript|typescript|\bjava\b|c\+\+|c#|\bphp\b|\bsql\b|html/i, "kurs/IT und EDV"],
+  [/netzwerk|networking|server|cloud|\baws\b|azure|administrator|cybersicherheit|it-sicherheit|\bsecurity\b|hacking|comptia|infrastrukturbetrieb/i, "IT und EDV"],
+  [/\b(?:word|excel|powerpoint|outlook|access|sharepoint)\b|microsoft teams|büroverwaltung|büromanagement|schriftverkehr|pc-grundlagen|browser|online grundlagen|online zusammenarbeit|datenschutz|low-code/i, "selbstlernen"],
+  [/buchhalt|datev|lohn.{0,12}abrechnung|rechnungswesen|belegerfassung|steuerrecht/i, "kurs/Kaufmännisch"],
+  // Lager, Logistik, Elektro- und Anlagentechnik: Arbeit im Betrieb statt am CAD-Modell
+  [/logisti|\blager|spedition|supply-chain|kraftverkehr|meister\/-in|facility|\bsps\b|elektrotechni|robotertechnik/i, "arbeitgeber"],
+  [/technische.{0,4} redakteur/i, "Künstliche Intelligenz"],
   [/social media|content creator|online.marketing experte|praxisprojekt im marketing/i, "kurs/Marketing und Vertrieb"],
   [/suchmaschinen|\bseo\b|\bsem\b|webanalyse|performance.marketing/i, "Marketing und Vertrieb"],
-  [/indesign|illustrator|grafik.{0,12}design|layout|farbgestaltung/i, "kurs/Medien und Design"],
-  [/datenanaly|data.science|datenvisualisierung|business intelligence|power bi/i, "kurs/Künstliche Intelligenz"],
+  [/indesign|illustrator|photoshop|\bgimp\b|bildbearbeitung|grafik.{0,12}design|layout|farbgestaltung/i, "kurs/Medien und Design"],
   [/copilot|ki.{0,14}büro|prompt/i, "Künstliche Intelligenz"],
-  [/energieberat|energieeffizienz|wohngebäude/i, "kurs/Umwelt und Energie"],
-  [/photovoltaik|sonnenenergie|energiemanagement/i, "Umwelt und Energie"],
-  [/teamarbeit|scrum|projektmanagement|moderation/i, "kurs/Management und Personal"],
-  [/personalverwaltung|personalrecht|mitarbeiterführung/i, "Management und Personal"],
+  [/energieberat|energieeffizien|wohngebäude|wärmepumpe/i, "kurs/Umwelt und Energie"],
+  [/auditor|auditverfahren|prozessmanagement/i, "Qualitätsmanagement"],
+  [/umwelt|nachhaltig|klimaschutz|naturschutz|gewässer|\blca\b|lebenszyklus|photovoltaik|sonnenenergie|energiemanagement/i, "Umwelt und Energie"],
+  [/teamarbeit|scrum|projektmanagement|\bproject\b|moderation/i, "kurs/Management und Personal"],
+  [/personal(?:arbeit|management|wesen|verwaltung|recht)|recht in der personal|mitarbeiterführung|führen von/i, "Management und Personal"],
   [/pflegeberat|praxisanleitung|demenz|betreuungskraft/i, "kurs/Gesundheit und Pflege"],
-  [/praxismanage|dokumentation.*pflege|e-health/i, "Gesundheit und Pflege"],
+  [/praxismanage|arztpraxis|zahn|abrechnung|\bebm\b|terminologie|fachkunde|dokumentation.*pflege|e-health/i, "Gesundheit und Pflege"],
   [/veranstaltung|eventmanage|bedienung und service/i, "kurs/Hotel und Gastronomie"],
   [/\brezeption|hotelmanagement/i, "Hotel und Gastronomie"],
-  [/auditor|auditverfahren|prozessmanagement/i, "Qualitätsmanagement"],
   [/qualitätsfachkraft|qualitätsmanagement|qualitätssicherung/i, "kurs/Qualitätsmanagement"],
   [/objektschutz|bewachung|sicherheitskraft/i, "kurs/Schutz und Sicherheit"],
-  [/solidworks|autocad|inventor|konstruktion/i, "kurs/Technik und CAD"],
-  [/\b(?:word|excel|powerpoint|outlook)\b|büroverwaltung/i, "selbstlernen"],
-  [/lern- und arbeitstechniken|zeitmanagement|selbstmanagement/i, "vollzeit-oder-teilzeit-weiterbildung"],
+  [/solidworks|autocad|inventor|konstruktion(?!.*zahn)/i, "kurs/Technik und CAD"],
+  // Kaufmännische Abschlüsse und Betriebswirtschaft: Arbeit mit Zahlen und Unterlagen statt Belege kontieren
+  [/fachwirt|betriebswirt|fachkaufmann|\bbwl\b|business skills|immobilien|rechtsanwalt|wirtschaftsrecht|unternehmerisch|auftragsbearbeitung|kompaktwissen/i, "Kaufmännisch"],
+  [/vertrieb|\bsales\b|verkauf|e-commerce/i, "Marketing und Vertrieb"],
+  [/grundkompetenzen/i, "unterricht"],
+  [/lern- und arbeitstechniken|lernstrategien|digitales lernen|zeitmanagement|selbstmanagement/i, "vollzeit-oder-teilzeit-weiterbildung"],
 ];
 
 export function kursMotiv(titel: string, bereich: string) {
