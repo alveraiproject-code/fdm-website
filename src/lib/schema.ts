@@ -111,7 +111,7 @@ export const courseAZAV = {
   "@id": `${BASE}/weiterbildung/FDM-OME-VZ#course`,
   name: "Online Marketing Experte (m/w/d)",
   description:
-    "Nach AZAV zugelassener Lehrgang der FDM GmbH für den umfassenden Einstieg in das Online-Marketing: 9 Lernmodule von Suchmaschinenoptimierung bis Performance Marketing, 1.920 Unterrichtseinheiten, in Vollzeit (48 Wochen) oder Teilzeit (96 Wochen), vollständig online. Mit einem Bildungsgutschein der Agentur für Arbeit oder des Jobcenters finanzierbar.",
+    "Nach AZAV zugelassener Lehrgang der FDM GmbH für den umfassenden Einstieg in das Online-Marketing: 10 Abschnitte von den Grundlagen des Online Marketings bis zum Abschlussprojekt, 1.920 Unterrichtseinheiten, in Vollzeit (12 Monate) oder Teilzeit (24 Monate), vollständig online. Mit einem Bildungsgutschein der Agentur für Arbeit oder des Jobcenters finanzierbar.",
   provider: { "@id": `${BASE}/#organization` },
   url: `${BASE}/weiterbildung/FDM-OME-VZ`,
   inLanguage: "de-DE",

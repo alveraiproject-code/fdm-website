@@ -19,6 +19,8 @@ export interface Weiterbildung {
   lerneinheiten: number | null;
   praktikumsstunden: number | null;
   dauer_wochen: number | null;
+  // Dauer in Monaten, wenn die Maßnahme bei der Agentur für Arbeit so geführt wird
+  dauer_monate?: number | null;
   laufender_einstieg: boolean | null;
   // Als FDM-Maßnahme nach AZAV zugelassen; steuert nur den Wortlaut des Förderhinweises.
   zugelassen?: boolean;
@@ -81,7 +83,8 @@ export function fachbereiche(kurse: Weiterbildung[]): { name: string; anzahl: nu
   return [...zaehler.entries()].map(([name, anzahl]) => ({ name, anzahl })).sort((a, b) => b.anzahl - a.anzahl);
 }
 
-export function dauerText(k: Pick<Weiterbildung, "dauer_wochen">): string | null {
+export function dauerText(k: Pick<Weiterbildung, "dauer_wochen" | "dauer_monate">): string | null {
+  if (k.dauer_monate) return `${k.dauer_monate} Monate`;
   if (!k.dauer_wochen) return null;
   const wochen = Number(k.dauer_wochen);
   if (wochen >= 8) {
