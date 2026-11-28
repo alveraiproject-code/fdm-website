@@ -103,6 +103,42 @@ export default function UeberUnsPage() {
         </div>
       </section>
 
+      {/* Trägerzertifikat: nur als Ansicht mit Wasserzeichen und ohne Unterschrift, nie die Originaldatei. */}
+      <section className="pb-16 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid md:grid-cols-[minmax(0,320px)_1fr] gap-8 md:gap-12 items-center">
+            <div
+              className="rounded-xl overflow-hidden border border-slate-200 shadow-sm select-none pointer-events-none"
+            >
+              <Image
+                src="/bilder/traegerzertifikat-azav-ansicht.jpg"
+                alt="Ansicht des Trägerzertifikats der FDM GmbH nach AZAV, ausgestellt von der GZQ GmbH, Zertifikat Z-000473-2"
+                width={900}
+                height={1273}
+                sizes="(max-width: 768px) 90vw, 320px"
+                draggable={false}
+                className="w-full h-auto"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold mb-4" style={{ color: "#1e293b" }}>
+                Unser Trägerzertifikat
+              </h2>
+              <div className="space-y-4 text-slate-600 leading-relaxed">
+                <p>
+                  Die GZQ GmbH hat die FDM GmbH als Träger nach dem Recht der Arbeitsförderung zugelassen. Das Zertifikat
+                  trägt die Nummer Z-000473-2 und gilt vom 18. Oktober 2024 bis zum 17. Oktober 2029.
+                </p>
+                <p>
+                  Hier sehen Sie eine Ansicht der ersten Seite mit Wasserzeichen und ohne Unterschrift. Kostenträgern
+                  und Arbeitgebern legen wir das Zertifikat auf Anfrage vollständig vor.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Zwei Bereiche */}
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
